@@ -11,6 +11,20 @@ It will provide functionalities such as managing the sprint board, tracking stat
 
 The technology stack consists of Ruby on Rails, AngularJS, PostgreSQL and will be deployed on Heroku platform (link will be available later).
 
+Modules of application are:
+
+1. System module
+2. Login and registration module
+3. User module
+4. Product owner  module
+5. Scrum master module
+6. Developer module
+7. Project module
+8. Sprint module
+9. Task module
+10. Meetings module
+
+
 [Trello board][trello]
 
 Contributors:
