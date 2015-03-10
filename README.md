@@ -3,7 +3,7 @@
 [ssuljic]: https://github.com/ssuljic
 [mirhazec]: https://github.com/mirhazec
 [zulicn]: https://github.com/zulicn
-# scrummer
+# Scrummer
 
 Scrummer is a tool intended to help managing scrum projects, for both teams and individuals.
 
