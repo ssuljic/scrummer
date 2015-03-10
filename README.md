@@ -1,3 +1,4 @@
+[trello]: https://trello.com/b/Q5qdqq5B/scrum-management-tool
 [ejasarevic]: https://github.com/ejasarevic
 [ssuljic]: https://github.com/ssuljic
 [mirhazec]: https://github.com/mirhazec
@@ -10,7 +11,7 @@ It will provide functionalities such as managing the sprint board, tracking stat
 
 The technology stack consists of Ruby on Rails, AngularJS, PostgreSQL and will be deployed on Heroku platform (link will be available later).
 
-[Trello board] https://trello.com/b/Q5qdqq5B/scrum-management-tool
+[Trello board][trello]
 
 Contributors:
 * [Eman Jasarevic][ejasarevic]
