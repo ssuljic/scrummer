@@ -41,11 +41,22 @@ The technology stack consists of Ruby on Rails, AngularJS, PostgreSQL and will b
 6. Prilikom rada na ticketu moguće je evidentirati vrijeme potrošeno na rad na ticketu, kao i ostavljati komentare vezane za ticket.
 7. U aplikaciji je osigurano da ne postoje 2 ticketa sa istim nazivom unutar istog projekta.
 
-## 5. News feed module
+## 5. Board module
+1. Board module omogućava korisnicima pregled i upravljanje ticketima koji su dodijeljeni njemu.
+2. Korisniku se prikazuju ticketi raspoređeni u tri grupe: To-Do, Active i Done. U To-Do grupi se nalaze ticketi koji su dodijeljeni korisniku, ali korisnik još nije započeo rad na njima. Active grupa sadrži tickete na kojima korisnik trenutno radi, dok se u Done grupi nalaze ticketi koje je korisnik završio. Na ovaj način korisnik ima uvid u svoj cjelokupan rad, kao i mogućnost upravljanja pojedinim ticketima (prebacivanje iz jednog stanja u drugo, evidentiranje rada ostavljanje komentara i sl.)
 
-## 6. Backlog module
+## 6. News feed module
+1. News feed module predstavlja početnu stranicu aplikacije na kojoj su prikazana posljednje izmjene na projektu ili 
+obavijesti za korisnika.
+2. Izmjene su prikazane na način da se vidi vrijeme izmjene, vrsta izmjene, kao i korisnik koji je izvršio izmjenu na projektu. Izmjene su vidljive svim korisnicima koji rade na projektu, dok obavijesti mogu biti vezane za sve korisnike na projektu, ili za tačno određenog korisnika.
+3. Korisnik ima mogućnost pregleda svake od izmjena koja je prikazana u news feed-u, kao i različitih vrsta obavijesti.
 
-## 7. Board module
+## 7. Backlog module
+1. Da bi se omogućio uvid u historiju rada na projektu, aplikacija posjeduje i backlog modul. U ovom modulu se evidentiraju sve promjene vezane na projektu (kreiranje projekta, izmjena vezana za projekat ili pojedinu aktivnost unutar njega, itd.).
+2. U okviru ovog modula je moguće dobiti informaciju o ukupnom broju kreiranih aktivnosti unutar projekta, vremenu rada na projektu, broju korisnika koji rade na projektu, broju završenih i nezavršenih aktivnosti u projektu, itd.
+
+
+
 
 [Trello board][trello]
 
