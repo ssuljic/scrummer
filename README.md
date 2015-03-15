@@ -3,8 +3,7 @@
 [ssuljic]: https://github.com/ssuljic
 [mirhazec]: https://github.com/mirhazec
 [zulicn]: https://github.com/zulicn
-
-[Trello board][trello]
+[erd]: scrummer/diagrams/Scrummer ERD.png
 
 # Scrummer
 
@@ -58,10 +57,12 @@ obavijesti za korisnika.
 1. Da bi se omogućio uvid u historiju rada na projektu, aplikacija posjeduje i backlog modul. U ovom modulu se evidentiraju sve promjene vezane na projektu (kreiranje projekta, izmjena vezana za projekat ili pojedinu aktivnost unutar njega, itd.).
 2. U okviru ovog modula je moguće dobiti informaciju o ukupnom broju kreiranih aktivnosti unutar projekta, vremenu rada na projektu, broju korisnika koji rade na projektu, broju završenih i nezavršenih aktivnosti u projektu, itd.
 
-
+[Entity Relationship Diagram][erd]
 
 Contributors:
 * [Eman Jasarevic][ejasarevic]
 * [Sadzid Suljic][ssuljic]
 * [Mirha Zec][mirhazec]
 * [Nejra Zulic][zulicn]
+
+[Trello board][trello]
