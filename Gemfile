@@ -38,6 +38,11 @@ gem 'bcrypt', '~> 3.1.7'
 # Use postgreSQL DBMS
 gem 'pg'
 
+group :development do
+	gem "binding_of_caller"
+	gem "better_errors", '1.1.0'
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
