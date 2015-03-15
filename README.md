@@ -3,7 +3,7 @@
 [ssuljic]: https://github.com/ssuljic
 [mirhazec]: https://github.com/mirhazec
 [zulicn]: https://github.com/zulicn
-[erd]: scrummer/diagrams/Scrummer ERD.png
+[erd]: https://github.com/ssuljic/scrummer/diagrams/Scrummer ERD.png
 
 # Scrummer
 
