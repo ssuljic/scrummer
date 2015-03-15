@@ -3,6 +3,9 @@
 [ssuljic]: https://github.com/ssuljic
 [mirhazec]: https://github.com/mirhazec
 [zulicn]: https://github.com/zulicn
+
+[Trello board][trello]
+
 # Scrummer
 
 Scrummer is a tool intended to help managing scrum projects, for both teams and individuals.
@@ -56,9 +59,6 @@ obavijesti za korisnika.
 2. U okviru ovog modula je moguće dobiti informaciju o ukupnom broju kreiranih aktivnosti unutar projekta, vremenu rada na projektu, broju korisnika koji rade na projektu, broju završenih i nezavršenih aktivnosti u projektu, itd.
 
 
-
-
-[Trello board][trello]
 
 Contributors:
 * [Eman Jasarevic][ejasarevic]
