@@ -1,5 +1,4 @@
 class Api::SessionsController < ApiController
-
   def create
     user = User.authenticate(params[:email], params[:password])
     session_key = nil
@@ -12,5 +11,4 @@ class Api::SessionsController < ApiController
 
     render response: { session_key: session_key }
   end
-
 end

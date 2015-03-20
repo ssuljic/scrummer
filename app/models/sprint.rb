@@ -1,4 +1,4 @@
 class Sprint < ActiveRecord::Base
-	belongs_to :project
-	has_many   :tickets
+  belongs_to :project
+  has_many   :tickets
 end
