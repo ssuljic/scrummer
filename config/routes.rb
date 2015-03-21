@@ -8,7 +8,7 @@ Scrummer::Application.routes.draw do
       end
     end
 
-    resources :boards, only: :show
+    resource :board, only: :show
   end
 
   match '/api/*any',  to: 'api#no_route', via: :all
