@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20150321150838) do
     t.integer  "type_id"
     t.integer  "status_id"
     t.integer  "user_id"
-    t.integer  "user_story_id_id"
+    t.integer  "user_story_id"
     t.integer  "sprint_id"
     t.integer  "project_id"
     t.datetime "created_at"
