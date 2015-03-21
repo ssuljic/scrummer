@@ -1,6 +1,6 @@
 module Domain
   module Decorators
-    class GroupTickets
+    class TicketOrganizer
       def initialize tickets
         @tickets = tickets.map(&:serializable_hash)
       end
