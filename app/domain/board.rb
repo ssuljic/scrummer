@@ -3,18 +3,15 @@ class Board
 
   def initialize(sprint)
     @sprint  = sprint
-    @tickets = sprint.tickets.independent
-    @stories = sprint.user_stories
+    @tickets = Domain::Decorators::GroupTickets.new(sprint.tickets.independent).decorate
+    @stories = sprint.user_stories.map(&:serializable_hash).each do |story|
+      story[:tickets] = Domain::Decorators::GroupTickets.new(story[:tickets]).decorate
+    end
   end
 
   def to_json
-    tickets = @tickets.map(&:serializable_hash).group_by { |t| t[:type] }
-    stories = @stories.map(&:serializable_hash)
-    stories.each do |story|
-      story[:tickets] = story[:tickets].map(&:serializable_hash).group_by { |t| t[:type] }
-    end
     {
-      sprint:  @sprint,
+      sprint:  sprint,
       stories: stories,
       tickets: tickets
     }
