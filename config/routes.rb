@@ -20,9 +20,10 @@ Scrummer::Application.routes.draw do
           get 'search'
         end
       end
+      member do
+        resource :board, only: :show
+      end
     end
-
-    resource :board, only: :show
 
     resource :dashboard, only: :show
   end
