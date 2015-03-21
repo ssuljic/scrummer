@@ -9,9 +9,17 @@ Scrummer::Application.routes.draw do
     end
 
     resources :boards, only: :show
-    resources :users, only: [:create, :update, :destroy] do
+    resources :users, only: [:create, :update, :destroy, :show] do
       member do
         put 'change_password'
+      end
+    end
+
+    resources :projects do
+      resources :members, :only => [:index, :create, :destroy] do
+        collection do
+          get 'search'
+        end
       end
     end
   end

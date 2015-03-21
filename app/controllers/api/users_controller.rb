@@ -2,22 +2,26 @@ class Api::UsersController < ApiController
   before_filter :restrict_api_access, except: :create
 
   def create
-    @user = User.create(user_params)
+    User.create(user_params)
     render response: { :message => "User created."}
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(update_params)
+    User.find(params[:id]).update(update_params)
     render response: { :message => "User successfully updated."}
   end
 
   def change_password
-    @user = User.find(params[:id])
-    if @current_user.try(:authenticate, params[:old_password])
-      @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+    user = User.find(params[:id])
+    if user.try(:authenticate, params[:old_password])
+      user.update(password: params[:password], password_confirmation: params[:password_confirmation])
       render response: { :message => "Password successfully changed."}
     end
+  end
+
+  def destroy
+    User.find(params[:id]).update(:is_active => false)
+    render response: { :message => "You are deactivated."}
   end
 
   private
