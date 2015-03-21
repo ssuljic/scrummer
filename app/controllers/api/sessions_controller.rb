@@ -1,14 +1,14 @@
 class Api::SessionsController < ApiController
+  before_filter :restrict_api_access, only: :logout
+
   def create
-    user = User.authenticate(params[:email], params[:password])
-    session_key = nil
-    raise InvalidAuthentication unless user
-
-    if (user)
-      user.update_attributes(session_key: SecureRandom.hex) unless user.session_key
-      session_key = user.session_key
-    end
-
+    session_key = User.authenticate(params[:email], params[:password])
+    raise InvalidAuthentication unless session_key
     render response: { session_key: session_key }
+  end
+
+  def logout
+    current_user.session.destroy!
+    render response: { status: :OK }
   end
 end
