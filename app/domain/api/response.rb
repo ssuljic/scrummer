@@ -6,7 +6,7 @@ module Domain
 
       def initialize(options = {})
         self.document = options[:document]
-        self.status = options[:status] || Status.ok
+        self.status = options[:status] || Domain::Api::Status.ok
       end
     end
   end

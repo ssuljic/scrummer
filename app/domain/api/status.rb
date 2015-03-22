@@ -2,19 +2,21 @@ module Domain
   module Api
     class Status < StandardError
       attr_accessor :message
+      attr_accessor :exception_message
+      attr_accessor :stacktrace
 
       def initialize(options = {})
         super(options[:message])
         self.message = options[:message]
+        self.exception_message = options[:exception_message]
+        self.stacktrace = options[:stacktrace]
       end
 
       def self.from_exception(exception)
         if exception.instance_of?(Status)
           exception
-        elsif exception.class.superclass == ScrummerException
-          general_error(exception.user_friendly_message)
         else
-          general_error(exception.message)
+          general_error(exception)
         end
       end
 
@@ -23,12 +25,11 @@ module Domain
         return Api::Status.new(message: 'OK')
       end
 
-      def self.general_error(msg)
-        return Api::Status.new(message: msg)
-      end
-
-      def self.routing_error
-        return Api::Status.new(message: 'Page not found')
+      def self.general_error(e)
+        msg = e.class.superclass == ScrummerException ? e.user_friendly_message : 'Error processing request'
+        return Api::Status.new(message: msg,
+                               exception_message: e.message,
+                               stacktrace: e.backtrace)
       end
     end
   end
