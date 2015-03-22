@@ -33,10 +33,10 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.10'
 
 # Use postgreSQL DBMS
-gem 'pg'
+gem 'pg', '~> 0.18.1'
 
 group :development do
 	gem 'byebug'
