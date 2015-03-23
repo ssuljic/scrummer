@@ -2,8 +2,9 @@ class Api::CommentsController < ApiController
   before_filter :restrict_api_access
 
 
- def show
-    render response: { :message => "Comment created."}
+  def show
+     foundedComment=Comment.find(params[:id])
+     render response: { foundedComment: foundedComment.to_json }
   end
 
   def create
