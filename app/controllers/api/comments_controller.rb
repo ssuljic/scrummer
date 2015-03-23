@@ -22,6 +22,19 @@ class Api::CommentsController < ApiController
     render response: { :message => "Comment deleted."}
   end
 
+  def index
+      begin
+        if params[:ticket_id]
+          found_comment=Comment.where(ticket_id: params[:ticket_id])
+        elsif params[:user_id]
+          found_comment=Comment.where(user_id: params[:user_id])
+        end
+        render response: { :comments => found_comment }
+        rescue
+          render json:{message:'There is no comments!'},:status=>:bad_request
+      end
+  end
+
   private
   def comment_params
     params.permit(:ticket_id,:content,:user_id)
