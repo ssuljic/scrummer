@@ -24,7 +24,7 @@ class Api::CommentsController < ApiController
 
   private
   def comment_params
-    params.permit(:user_id, :ticket_id, :content)
+    params.permit(:ticket_id,:content,:user_id)
   end
 
   def update_params
