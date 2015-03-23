@@ -8,6 +8,8 @@ Scrummer::Application.routes.draw do
       end
     end
 
+    resources :comments
+
     resources :users, only: [:create, :update, :destroy, :show] do
       member do
         put 'change_password'
@@ -26,6 +28,7 @@ Scrummer::Application.routes.draw do
     end
 
     resource :dashboard, only: :show
+
   end
 
 
