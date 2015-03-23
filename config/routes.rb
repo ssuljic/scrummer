@@ -37,6 +37,7 @@ Scrummer::Application.routes.draw do
         collection do
         end
       end
+	  resources :tickets
     end
 
     resource :dashboard, only: :show
