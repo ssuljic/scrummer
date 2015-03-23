@@ -8,7 +8,13 @@ Scrummer::Application.routes.draw do
       end
     end
 
-    resources :comments
+    resources :tickets do
+      resources :comments
+    end
+
+    resources :users do
+      resources :comments
+    end
 
     resources :users, only: [:create, :update, :destroy, :show] do
       member do
