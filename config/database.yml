@@ -17,7 +17,11 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
+  adapter: postgresql
+  encoding: utf-8
+  database: scrummer
+  pool: 50
+  username: scrummer
+  password: scrummer
+  host: localhost
   timeout: 5000
