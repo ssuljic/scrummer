@@ -1,0 +1,1 @@
+Scrummer::Application.config.secret_token = ENV['SECRET_TOKEN'] || '30890fbfcdcbe2278baadeccf4c9fcd37f377d5d96b9b9185ebe88a67e45d4b5b48eb7c83c47a35bea526c7eae9c77f09ddf29c5197c9e55ae52b469fca4a6e8'
