@@ -39,6 +39,9 @@ gem 'bcrypt', '~> 3.1.10'
 
 gem 'pg', '~> 0.18.1'
 
+# Use bower for front-end dependencies
+gem 'bower-rails'
+
 group :development do
 	gem 'byebug'
 end
