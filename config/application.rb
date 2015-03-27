@@ -21,5 +21,10 @@ module Scrummer
     # config.i18n.default_locale = :de
     config.autoload_paths += %W(#{config.root}/app)
     config.autoload_paths += %W(#{config.root}/app/domain/exceptions)
+
+    config.assets.paths << Rails.root.join("vendor","assets","bower_components")
+    config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
+
+    config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
   end
 end
