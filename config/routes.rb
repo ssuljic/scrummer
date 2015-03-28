@@ -2,11 +2,7 @@ Scrummer::Application.routes.draw do
   root 'home#index'
 
   namespace :api do
-    resources :sessions, only: :create do
-      collection do
-        delete :logout
-      end
-    end
+    resources :sessions, only: :create
 
     resources :tickets do
       resources :comments
@@ -15,8 +11,6 @@ Scrummer::Application.routes.draw do
     resources :users do
       resources :comments
     end
-
-
 
     resources :users, only: [:create, :update, :destroy, :show] do
       member do
@@ -37,13 +31,12 @@ Scrummer::Application.routes.draw do
         collection do
         end
       end
-	  resources :tickets
+      resources :tickets
     end
 
     resource :dashboard, only: :show
 
   end
-
 
   match '/api/*any',  to: 'api#no_route', via: :all
 end
