@@ -1,8 +1,15 @@
 class Api::UsersController < ApiController
-  before_filter :restrict_api_access, except: :create
+  before_filter :restrict_api_access, except: [:create, :confirm]
 
   def create
-    User.create(user_params)
+    user = User.new(user_params)
+    user.is_active = false
+    user.save!
+    begin
+      UserMailer.confirmation_email(user).deliver
+    rescue
+      puts 'Failed to send email'
+    end
     render response: { :message => "User created."}
   end
 
@@ -22,6 +29,12 @@ class Api::UsersController < ApiController
   def destroy
     User.find(params[:id]).update(:is_active => false)
     render response: { :message => "You are deactivated."}
+  end
+
+  def confirm
+    decoded_token = Domain::Api::AuthToken.decode(params[:token])
+    User.find(decoded_token[:user_id]).update(is_active: true)
+    redirect_to root_path
   end
 
   private

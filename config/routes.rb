@@ -8,14 +8,15 @@ Scrummer::Application.routes.draw do
       resources :comments
     end
 
-    resources :users do
-      resources :comments
-    end
 
     resources :users, only: [:create, :update, :destroy, :show] do
+      collection do
+        get 'confirm'
+      end
       member do
         put 'change_password'
       end
+      resources :comments
     end
 
     resources :projects do
