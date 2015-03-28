@@ -41,6 +41,9 @@ gem 'pg', '~> 0.18.1'
 # Use bower for front-end dependencies
 gem 'bower-rails'
 
+# Use angular routing and templates
+gem 'angular-rails-templates'
+
 group :development do
 	gem 'byebug'
 end
