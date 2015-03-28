@@ -17,6 +17,14 @@ scrummer.config(['$routeProvider',
         templateUrl: 'login.html',
         controller: 'loginCtrl'
       }).
+       when('/signup', {
+        templateUrl: 'signup.html',
+        controller: 'signupCtrl'
+      }).
+       when('/dashboard', {
+        templateUrl: 'dashboard.html',
+        controller: 'dashboardCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });
