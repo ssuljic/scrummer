@@ -5,24 +5,24 @@ before_filter :restrict_api_access
      foundedProject=Project.find(params[:id])
      render response: { foundedProject: foundedProject.to_json }
   end
-  
+
   def create
-	Project.create(project_params)
+    Project.create(project_params)
     render response: { :message => "Project added."}
   end
-  
+
   def update
     Project.find(params[:id]).update(project_params)
     render response: { :message => "Project successfully edited."}
   end
-  
+
   def destroy
     Project.find(params[:id]).destroy
     render response: { :message => "Project deleted."}
   end
-  
+
   def index
-	projects = Project.all
+    projects = Project.all
     render response: { projects: projects}
   end
 
@@ -32,10 +32,3 @@ before_filter :restrict_api_access
   end
 
 end
-
-
-
-
-
-
-  

@@ -1,9 +1,10 @@
 class ApiController < ActionController::Base
   # Check API authentication token
   def restrict_api_access
-    authenticate_or_request_with_http_token do |token, options|
-      @current_user = Session.find_by(key: token).user
-    end
+    decoded_token = Domain::Api::AuthToken.decode(http_auth_header_content)
+    raise NotAuthenticated if decoded_token.nil?
+    raise ExpiredToken if decoded_token.expired?
+    @current_user = User.find(decoded_token[:user_id])
   end
 
   def current_user
@@ -23,5 +24,17 @@ class ApiController < ActionController::Base
   # No End Point
   def no_route
     raise NoRoute
+  end
+
+  # Authentication header content
+  def http_auth_header_content
+    return @http_auth_header_content if defined? @http_auth_header_content
+    @http_auth_header_content = begin
+      if request.headers['Authorization'].present?
+        request.headers['Authorization'].split('=').last
+      else
+        nil
+      end
+    end
   end
 end

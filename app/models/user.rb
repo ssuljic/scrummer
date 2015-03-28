@@ -9,10 +9,12 @@ class User < ActiveRecord::Base
   def self.authenticate(email, password)
     user = User.find_by(email: email).try(:authenticate, password)
     return nil unless user
+    user.generate_auth_token
+  end
 
-    # Create session if not present
-    user.session = Session.create(key: SecureRandom.hex, user_id: user.id) unless user.session
-    user.session.key
+  def generate_auth_token
+    payload = { user_id: self.id }
+    Domain::Api::AuthToken.encode(payload)
   end
 
   def serializable_hash options={}
