@@ -1,6 +1,6 @@
 class Api::BacklogsController < ApiController
   before_filter :restrict_api_access
-
+ #show all user stories and sprintes conected to specific project
   def index
     #found_tickets =Ticket.where(id: params[:project_id]).independent
     found_user_stories=UserStory.where(project_id: params[:project_id])
