@@ -41,6 +41,9 @@ gem 'pg', '~> 0.18.1'
 # Use bower for front-end dependencies
 gem 'bower-rails'
 
+# JSON Web Token
+gem 'jwt'
+
 group :development do
 	gem 'byebug'
 end
