@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8", http-equiv="Content-Type">
+  </head>
+  <body>
+    <p>Hi <%= @user.firstname %> <%= @user.lastname %>,</p>
+    <p>We have received your request for creating an account. To continue click on the <a href="https://scrummer-nwt.herokuapp.com/api/users/confirm?token=<%= @user.generate_auth_token %>">link</a>.
+    </p>
+    <p>Thank you,</p>
+    <p>the Scrummer Team</p>
+  </body>
+</html>
