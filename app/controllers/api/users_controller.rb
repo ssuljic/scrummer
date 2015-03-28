@@ -5,11 +5,11 @@ class Api::UsersController < ApiController
     user = User.new(user_params)
     user.is_active = false
     user.save!
-    # begin
+    begin
       UserMailer.confirmation_email(user).deliver
-    # rescue
-    #   puts 'Failed to send email'
-    # end
+    rescue
+      puts 'Failed to send email'
+    end
     render response: { :message => "User created."}
   end
 
