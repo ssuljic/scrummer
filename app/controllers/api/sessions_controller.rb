@@ -1,4 +1,5 @@
 class Api::SessionsController < ApiController
+  #Authenticates the user
   def create
     session_key = User.authenticate(params[:email], params[:password])
     raise InvalidAuthentication unless session_key
