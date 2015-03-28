@@ -44,6 +44,9 @@ gem 'bower-rails'
 # JSON Web Token
 gem 'jwt'
 
+# Use angular routing and templates
+gem 'angular-rails-templates'
+
 group :development do
 	gem 'byebug'
 end
