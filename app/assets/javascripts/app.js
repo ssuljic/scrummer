@@ -27,6 +27,10 @@ scrummer.config(['$routeProvider',
         templateUrl: 'dashboard.html',
         controller: 'dashboardCtrl'
       }).
+	   when('/reset', {
+        templateUrl: 'reset.html',
+        controller: 'resetCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });

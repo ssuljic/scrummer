@@ -21,6 +21,10 @@ controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$
      $scope.doLogin = function() {
         AuthService.login($scope.login.email, $scope.login.password);
     }
+	 $scope.doReset = function() {
+        alert('Test');
+		$location.path('/reset');
+    }
   }]);
 
 //Dashboard controller
@@ -39,5 +43,13 @@ controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory',
     $scope.createNewUser = function() {
       usersFactory.create($scope.user);
       $location.path('#/login');
+    }
+}]);
+
+//Reset controller
+controllers.controller('resetCtrl', ['$scope', '$location',
+  function($scope, $location) {
+    $scope.doReset = function() {
+        alert('Test123');
     }
 }]);
