@@ -1,8 +1,11 @@
 <div class="container-fluid">
 
-    <form class="form-horizontal" role="form" id="dashboard">
-      <div class="page-header">
-        <h4>You are authorized.</h4>
-      </div>
+  <form class="form-horizontal" role="form" id="dashboard">
+    <div class="page-header">
+      <h4>You are authorized.</h4>
+      <button class="btn btn-primary" ng-click="LogOut()">Log Out</button>
+    </div>
+    <p>{{content}}</p>
+  </form>
 
 </div>
