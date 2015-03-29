@@ -1,8 +1,56 @@
 <div class="container-fluid">
 
-    <form class="form-horizontal" role="form" id="signupform">
-      <div class="page-header">
-        <h4>Sign Up form</h4>
+  <form class="form-horizontal" role="form" id="signupform">
+    <div class="page-header">
+      <h4>Sign Up form</h4>
+    </div>
+    <div class="form-group">
+      <label for="firstname" class="col-xs-3 control-label">Firstname: </label>
+      <div class="col-xs-9">
+        <input type="text" ng-model="user.firstname" class="form-control" id="firstname" placeholder="" required>
       </div>
+    </div>
+    <div class="form-group">
+      <label for="lastname" class="col-xs-3 control-label">Lastname: </label>
+      <div class="col-xs-9">
+        <input type="text" ng-model="user.lastname" class="form-control" id="lastname" placeholder="" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="username" class="col-xs-3 control-label">Username: </label>
+      <div class="col-xs-9">
+        <input type="text" ng-model="user.username" class="form-control" id="username" placeholder="" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class="col-xs-3 control-label">Email: </label>
+      <div class="col-xs-9">
+        <input type="email" ng-model="user.email" class="form-control" id="email" placeholder="" required>
+      </div>
+    </div>
+     <div class="form-group">
+      <label for="password" class="col-xs-3 control-label">Password: </label>
+      <div class="col-xs-9">
+        <input type="password" ng-model="user.password" class="form-control" id="password" placeholder="" required>
+      </div>
+    </div>
+     <div class="form-group">
+      <label for="password_confirmation" class="col-xs-3 control-label">Re-Type Password: </label>
+      <div class="col-xs-9">
+        <input type="password" ng-model="user.password_confirmation" class="form-control" id="password_confirmation" placeholder="" required>
+      </div>
+    </div>
+    <div class="form-group">
+       <div class="col-xs-offset-3 col-xs-9">
+        <h6><a href="#/">Back to Sign in</a></h6>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-offset-3 col-xs-9">
+        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="submit" ng-click="createNewUser()" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
 
 </div>

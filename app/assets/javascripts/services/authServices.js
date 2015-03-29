@@ -1,5 +1,7 @@
+// Services for authentification with JWT token
 var auth = angular.module('auth', ['ngResource']);
 
+// Factory for token CRUD in local storage
 auth.factory('AuthToken', function() {
     return {
       get: function(key) {
@@ -14,6 +16,7 @@ auth.factory('AuthToken', function() {
     };
   });
 
+// Service for user login
 auth.factory("AuthService", function($http, $q, $rootScope, AuthToken, $location) {
   return {
     login: function(email, password) {
@@ -25,7 +28,6 @@ auth.factory("AuthService", function($http, $q, $rootScope, AuthToken, $location
         AuthToken.set('auth_token', resp.document.session_key);
         d.resolve(resp.response);
         if(resp.status.message == "OK") { $location.path('/dashboard'); }
-
       }).error(function(resp) {
         alert(resp.status.message);
         $location.path('/');
@@ -34,6 +36,7 @@ auth.factory("AuthService", function($http, $q, $rootScope, AuthToken, $location
     }
   };
 });
+
 
 auth.factory("AuthInterceptor", function($q, $injector) {
   return {

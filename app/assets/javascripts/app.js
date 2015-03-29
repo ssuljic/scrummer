@@ -4,7 +4,8 @@ var scrummer = angular.module('scrummer', [
   'templates',
   'ngRoute',
   'controllers',
-  'auth'
+  'auth',
+  'services'
 ]);
 
 scrummer.config(['$routeProvider',
