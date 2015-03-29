@@ -5,7 +5,11 @@ Scrummer::Application.routes.draw do
     resources :sessions, only: :create
 
     resources :tickets do
-      resources :comments
+      resources :comments do
+        collection do
+          get 'search'
+        end
+      end
     end
 
 

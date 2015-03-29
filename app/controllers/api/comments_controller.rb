@@ -14,15 +14,25 @@ class Api::CommentsController < ApiController
   end
   #updates content of specific comment
    def update
-    Comment.find(params[:id]).update(update_params)
-    render response: { :message => "Comment successfully edited."}
+    @found_user=Comment.find(params[:id])
+    if @current_user.id==@found_user.user_id
+        Comment.find(params[:id]).update(update_params)
+        render response: { :message => "Comment successfully edited."}
+    else
+        render json:{message:'You have no permission to edit this comment!'},:status=>:bad_request
+    end
   end
   #delete comment
   def destroy
-    Comment.find(params[:id]).destroy
-    render response: { :message => "Comment deleted."}
+    @found_user=Comment.find(params[:id])
+    if @current_user.id==@found_user.user_id
+      Comment.find(params[:id]).destroy
+      render response: { :message => "Comment deleted."}
+    else
+      render json:{message:'You have no permission to delete this comment!'},:status=>:bad_request
+    end
   end
-  #show all comments of specific user or specific ticket
+  #show all comments of specific user or specific ticket,tickets/:id/comments
   def index
       begin
         if params[:ticket_id]
@@ -33,6 +43,14 @@ class Api::CommentsController < ApiController
         render response: { :comments => found_comment }
         rescue
           render json:{message:'There is no comments!'},:status=>:bad_request
+      end
+  end
+# get all commets of a specific user on a specific ticket
+  def search
+    begin
+          found_comment=Comment.where(ticket_id: params[:ticket_id]).
+                               where(user_id: params[:user_id])
+          render response: { :comments => found_comment }
       end
   end
   # declaration od parameters
