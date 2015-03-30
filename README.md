@@ -21,9 +21,7 @@ Documentation:
 * [Description of application modules][modules]
 * [Entity Relationship Diagram][erd]
 * [Description of end-points][endpoints]
-
-
-[Trello board][trello]
+* [Trello board][trello]
 
 Contributors:
 * [Eman Jasarevic][ejasarevic]
