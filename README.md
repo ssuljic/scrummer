@@ -9,6 +9,8 @@
 
 # Scrummer
 
+[![Code Climate](https://codeclimate.com/github/ssuljic/scrummer/badges/gpa.svg)](https://codeclimate.com/github/ssuljic/scrummer)
+
 Scrummer is a tool intended to help managing scrum projects, for both teams and individuals.
 
 It will provide functionalities such as managing the sprint board, tracking status of tickets, managing the product backlog etc.
