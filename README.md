@@ -6,6 +6,7 @@
 [erd]: https://github.com/ssuljic/scrummer/blob/master/doc/diagrams/ScrummerERDv3.png
 [modules]: https://github.com/ssuljic/scrummer/wiki/Description-of-application-modules
 [endpoints]: https://github.com/ssuljic/scrummer/wiki/Description-of-end-points
+[heroku]: http://scrummer-nwt.herokuapp.com
 
 # Scrummer
 
@@ -15,7 +16,7 @@ Scrummer is a tool intended to help managing scrum projects, for both teams and 
 
 It will provide functionalities such as managing the sprint board, tracking status of tickets, managing the product backlog etc.
 
-The technology stack consists of Ruby on Rails, AngularJS, PostgreSQL and will be deployed on Heroku platform (link will be available later).
+The technology stack consists of Ruby on Rails, AngularJS, PostgreSQL and is deployed on Heroku platform [scrummer-nwt.herokuapp.com][heroku].
 
 Documentation:
 * [Description of application modules][modules]
