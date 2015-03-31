@@ -22,7 +22,6 @@ controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$
         AuthService.login($scope.login.email, $scope.login.password);
     }
 	 $scope.doReset = function() {
-        alert('Test');
 		$location.path('/reset');
     }
   }]);
@@ -50,6 +49,6 @@ controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory',
 controllers.controller('resetCtrl', ['$scope', '$location',
   function($scope, $location) {
     $scope.doReset = function() {
-        alert('Test123');
+         usersFactory.reset_password();
     }
 }]);

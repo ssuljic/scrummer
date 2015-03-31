@@ -35,11 +35,24 @@ class Api::UsersController < ApiController
     render response: { :message => "You are deactivated."}
   end
 
-  #Helper method to decode user session token. 
+  #Helper method to decode user session token.
   def confirm
     decoded_token = Domain::Api::AuthToken.decode(params[:token])
     User.find(decoded_token[:user_id]).update(is_active: true)
     redirect_to root_path
+  end
+
+  def reset_password
+      user = User.find(params[:id])
+      #ovdje neka funkcija za random generisanje stringa
+      @new_password='novi123'
+      user.update(password: @new_password)
+       begin
+      UserMailer.reset_password(user).deliver
+    rescue
+      puts 'Failed to send email'
+    end
+    render response: { :message => "Password successfully reseted."}
   end
 
   #Parameters for creating new user
