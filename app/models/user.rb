@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_one  :session
   has_secure_password
 
+  scope :active, -> { where(is_active: true) }
+
   def self.authenticate(email, password)
     user = User.find_by(email: email).try(:authenticate, password)
     return nil unless user

@@ -2,6 +2,7 @@ class Api::UsersController < ApiController
   before_filter :restrict_api_access, except: [:create, :confirm]
 
   #Creates new user with provided parameters
+  #POST   /api/users    api/users#create
   def create
     user = User.new(user_params)
     user.is_active = false
@@ -15,27 +16,49 @@ class Api::UsersController < ApiController
   end
 
   #Updates information of user with specified id.
+  #PUT/PATCH    /api/users/:id   api/users#update
   def update
-    User.find(params[:id]).update(update_params)
-    render response: { :message => "User successfully updated."}
+    if @current_user.id == params[:id]
+      User.active.find(params[:id]).update(update_params)
+      render response: { :message => "User successfully updated."}
+    else
+      raise NotAuthorized
+    end
   end
 
   #Changes password of user with specified id
+  #PUT/PATCH  /api/users/:id/change_password    api/users#change_password
   def change_password
-    user = User.find(params[:id])
+    user = User.active.find(params[:id])
     if user.try(:authenticate, params[:old_password])
       user.update(password: params[:password], password_confirmation: params[:password_confirmation])
       render response: { :message => "Password successfully changed."}
     end
   end
 
-  #Deactivates account of user, and sets 'is_active' field to false.
-  def destroy
-    User.find(params[:id]).update(:is_active => false)
-    render response: { :message => "You are deactivated."}
+  #Show user
+  #GET    /api/users/:id    api/users#show
+  def show
+    begin
+      user =  User.active.find(params[:id])
+      render response: { :user => user }
+    rescue
+      raise NoUserFound
+    end
   end
 
-  #Helper method to decode user session token. 
+  #Deactivates account of user, and sets 'is_active' field to false.
+  #DELETE   /api/users/:id    api/users#destroy
+  def destroy
+    if @current_user.id == params[:id]
+      User.find(params[:id]).update(:is_active => false)
+      render response: { :message => "You are deactivated."}
+    else
+      raise NotAuthorized
+    end
+  end
+
+  #Helper method to decode user session token.
   def confirm
     decoded_token = Domain::Api::AuthToken.decode(params[:token])
     User.find(decoded_token[:user_id]).update(is_active: true)
