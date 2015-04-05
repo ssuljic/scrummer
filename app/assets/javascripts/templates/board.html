@@ -29,12 +29,12 @@
     <!-- Stories -->
     <div class="row">
       <div class="panel panel-default" ng-repeat="story in content.document.board.stories">
-        <div class="panel-heading">{{ story.name }}</div>
+        <div class="panel-heading">{{ story.name }}: <small class="gray">{{ story.description }}</small></div>
         <div class="panel-body ticket-space">
           <div class="col-md-3 ticket-space-col" ng-repeat="status in statuses">
             <div class="well ticket" ng-repeat="ticket in story.tickets[status.name]">
-              <small>{{ ticket.name }}: {{ ticket.description }}</small><br>
-              <small>{{ ticket.assigned_to.firstname }} {{ ticket.assigned_to.lastname }}</small>
+              <small><b>{{ ticket.name }}</b>: {{ ticket.description }}</small><br>
+              <small class="small-info">{{ ticket.assigned_to.firstname }} {{ ticket.assigned_to.lastname }}</small>
             </div>
           </div>
         </div>
@@ -48,8 +48,8 @@
         <div class="panel-body ticket-space">
           <div class="col-md-3 ticket-space-col" ng-repeat="status in statuses">
             <div class="well ticket" ng-repeat="ticket in content.document.board.tickets[status.name]">
-              <small>{{ ticket.name }}: {{ ticket.description }}</small><br>
-              <small>{{ ticket.assigned_to.firstname }} {{ ticket.assigned_to.lastname }}</small>
+              <small><b>{{ ticket.name }}</b>: {{ ticket.description }}</small><br>
+              <small class="small-info">{{ ticket.assigned_to.firstname }} {{ ticket.assigned_to.lastname }}</small>
             </div>
           </div>
         </div>
