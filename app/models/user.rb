@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   scope :active, -> { where(is_active: true) }
 
   def self.authenticate(email, password)
-    user = User.find_by(email: email).try(:authenticate, password)
+    user = User.active.find_by(email: email).try(:authenticate, password)
     return nil unless user
     user.generate_auth_token
   end
@@ -20,6 +20,6 @@ class User < ActiveRecord::Base
   end
 
   def serializable_hash options={}
-    super(except: [:created_at, :updated_at, :password_digest])
+    super(except: [:created_at, :updated_at, :password_digest, :is_active])
   end
 end

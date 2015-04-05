@@ -15,3 +15,10 @@ services.factory('dashboardFactory', function ($resource) {
     get: { method: 'GET' }
   })
 });
+
+// Factory for dashboard
+services.factory('boardFactory', function ($resource) {
+  return $resource('/api/projects/1/board', {}, {
+    get: { method: 'GET' }
+  })
+});

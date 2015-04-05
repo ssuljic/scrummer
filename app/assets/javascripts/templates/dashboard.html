@@ -1,11 +1,19 @@
-<div class="container-fluid">
+<div class="container">
+<div class="row">
+  <div class="page-header">
+    <h1>
+      Dashboard
+    </h1>
+  </div>
+</div>
 
-  <form class="form-horizontal" role="form" id="dashboard">
-    <div class="page-header">
-      <h4>You are authorized.</h4>
-      <button class="btn btn-primary" ng-click="LogOut()">Log Out</button>
-    </div>
-    <p>{{content}}</p>
-  </form>
-
+<div class="col-md-3">
+  <div class="jumbotron">
+    <p><a ng-href="/#/dashboard">Dashboard</a></p>
+    <p><a ng-href="/#/projects/1/board">Sprint Board</a></p>
+    <p><a href="" ng-click="LogOut()">Log Out</a></p>
+  </div>
+</div>
+<div class="col-md-9">
+  <p>{{ content }}</p>
 </div>

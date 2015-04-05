@@ -27,7 +27,7 @@ controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$
     }
   }]);
 
-//Dashboard controller
+// Dashboard controller
 controllers.controller('dashboardCtrl', ['$scope', '$location', 'dashboardFactory', 'AuthToken',
   function($scope, $location, dashboardFactory, AuthToken) {
     $scope.content = dashboardFactory.get();
@@ -37,7 +37,19 @@ controllers.controller('dashboardCtrl', ['$scope', '$location', 'dashboardFactor
     }
 }]);
 
-//Signup controller
+// Board controller
+controllers.controller('boardCtrl', ['$scope', '$location', 'boardFactory', 'AuthToken',
+  function($scope, $location, boardFactory, AuthToken) {
+    $scope.content = boardFactory.get(function(result) {
+      $scope.statuses = result.document.board.statuses;
+    });
+    $scope.LogOut = function() {
+      AuthToken.unset('auth_token');
+      $location.path('#/');
+    }
+}]);
+
+// Signup controller
 controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory',
   function($scope, $location, usersFactory) {
     $scope.createNewUser = function() {
@@ -46,7 +58,7 @@ controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory',
     }
 }]);
 
-//Reset controller
+// Reset controller
 controllers.controller('resetCtrl', ['$scope', '$location',
   function($scope, $location) {
     $scope.doReset = function() {
