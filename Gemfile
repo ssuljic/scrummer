@@ -47,6 +47,9 @@ gem 'jwt'
 # Use angular routing and templates
 gem 'angular-rails-templates'
 
+# Use Google reCAPTCHA
+gem "recaptcha", :require => "recaptcha/rails"
+
 group :development do
 	gem 'byebug'
 end

@@ -3,14 +3,32 @@ var services = angular.module('services', ['ngResource']);
 
 
 // Factory for users
-services.factory('usersFactory', function ($resource) {
-  return $resource('api/users', {}, {
-    create: { method: 'POST' }
-  })
+services.factory('usersFactory', function ($http, $q, $location, flash) {
+  return {
+    create: function(user) {
+      var d = $q.defer();
+      $http.post('api/users', {
+        user: user
+      }).success(function(resp) {
+        if(resp.status.message == "OK") {
+          flash.setMessage("You received confirmation email. Please activate your account!");
+          $location.path('/');
+        }
+        else {
+          flash.setMessage(resp.status.message);
+          $location.path('/');
+        }
+      }).error(function(resp) {
+        flash.setMessage(resp.status.message);
+        $location.path('/');
+      });
+      return d.promise;
+    }
+  };
 });
 
 // Factory for dashboard
-services.factory('dashboardFactory', function ($http, $q, $rootScope, $location, flash) {
+services.factory('dashboardFactory', function ($http, $q, $location, $rootScope, flash) {
   return {
     get: function() {
       var d = $q.defer();
