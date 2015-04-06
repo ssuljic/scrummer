@@ -3,6 +3,8 @@ class Sprint < ActiveRecord::Base
   has_many   :tickets
   has_many   :user_stories
 
+  validates :project_id, presence: true
+
   def serializable_hash options={}
     {
       id:          id,

@@ -8,6 +8,13 @@ class Ticket < ActiveRecord::Base
   has_many   :worklogs
   has_many   :comments
 
+  validates :user_id, presence: true
+  validates :project_id, presence: true
+  validates :type_id, presence: true
+  validates :status_id, presence: true
+
+  before_create :set_seq
+
   scope :independent, -> { where(user_story_id: nil) }
 
   def serializable_hash options={}
@@ -20,5 +27,10 @@ class Ticket < ActiveRecord::Base
       status:      status.name,
       assigned_to: user.serializable_hash
     }
+  end
+
+  private
+  def set_seq
+    self.seq = Ticket.last.seq + 1
   end
 end
