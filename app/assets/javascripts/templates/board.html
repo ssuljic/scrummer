@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+      <h1>
+        {{ content.document.board.sprint.name }}
+        <small> {{ content.document.board.sprint.start_date }} - {{ content.document.board.sprint.end_date }}</small>
+      </h1>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="jumbotron">
+      <p><a ng-href="/#/dashboard">Dashboard</a></p>
+      <p><a ng-href="/#/projects/1/board">Sprint Board</a></p>
+      <p><a href="" ng-click="LogOut()">Log Out</a></p>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <!-- Statuses -->
+    <div class="row">
+      <div class="panel panel-primary">
+        <div class="panel-heading col-md-3 status-heading" ng-repeat="status in statuses">
+          {{ status.name }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Stories -->
+    <div class="row">
+      <div class="panel panel-default" ng-repeat="story in content.document.board.stories">
+        <div class="panel-heading">{{ story.name }}: <small class="gray">{{ story.description }}</small></div>
+        <div class="panel-body ticket-space">
+          <div class="col-md-3 ticket-space-col" ng-repeat="status in statuses">
+            <div class="well ticket" ng-repeat="ticket in story.tickets[status.name]">
+              <small><b>{{ ticket.name }}</b>: {{ ticket.description }}</small><br>
+              <small class="small-info">{{ ticket.assigned_to.firstname }} {{ ticket.assigned_to.lastname }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tickets -->
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">Other issues</div>
+        <div class="panel-body ticket-space">
+          <div class="col-md-3 ticket-space-col" ng-repeat="status in statuses">
+            <div class="well ticket" ng-repeat="ticket in content.document.board.tickets[status.name]">
+              <small><b>{{ ticket.name }}</b>: {{ ticket.description }}</small><br>
+              <small class="small-info">{{ ticket.assigned_to.firstname }} {{ ticket.assigned_to.lastname }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

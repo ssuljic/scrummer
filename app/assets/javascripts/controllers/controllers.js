@@ -15,7 +15,7 @@ controllers.controller('indexCtrl', ['$scope', '$location', 'flash',
     $scope.openSignup = function() {
         $location.path('/signup');
       }
-  }]);
+}]);
 
 // Login controller
 controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$location',
@@ -28,7 +28,7 @@ controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$
   }
 }]);
 
-//Dashboard controller
+// Dashboard controller
 controllers.controller('dashboardCtrl', ['$scope', '$location', 'dashboardFactory', 'AuthToken',
   function($scope, $location, dashboardFactory, AuthToken) {
     dashboardFactory.get();
@@ -38,9 +38,22 @@ controllers.controller('dashboardCtrl', ['$scope', '$location', 'dashboardFactor
     }
 }]);
 
-//Signup controller
+
+// Board controller
+controllers.controller('boardCtrl', ['$scope', '$location', 'boardFactory', 'AuthToken',
+  function($scope, $location, boardFactory, AuthToken) {
+    $scope.content = boardFactory.get(function(result) {
+      $scope.statuses = result.document.board.statuses;
+    });
+    $scope.LogOut = function() {
+      AuthToken.unset('auth_token');
+      $location.path('#/');
+    }
+}]);
+
+// Signup controller
 controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory', 'reCAPTCHA',
-  function($scope, $location, usersFactory, reCAPTCHA) {
+    function($scope, $location, usersFactory, reCAPTCHA) {
     $scope.submitted = false; // Set form unsubmitted to unable validation messages
     reCAPTCHA.setPublicKey('6Ldy3wQTAAAAABjSq3V4LP1idmrqVSBebSGyf_YQ');
     $scope.createNewUser = function() {
@@ -53,7 +66,7 @@ controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory', 're
     }
 }]);
 
-//Reset controller
+// Reset controller
 controllers.controller('resetCtrl', ['$scope', '$location',
   function($scope, $location) {
     $scope.doReset = function() {

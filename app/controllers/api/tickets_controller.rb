@@ -3,13 +3,17 @@ before_filter :restrict_api_access
 
   #Shows ticket with specified id
   def show
-     foundedTicket=Ticket.find(params[:id])
-     render response: { foundedTicket: foundedTicket.to_json }
+	begin
+      foundedTicket = Ticket.find(params[:id])
+      render response: { foundedTicket: foundedTicket.to_json }
+	rescue
+	  render response: { :message => "Ticket with specified id not found!"}
+	end
   end
   
   #Creates new ticket with provided parameters
   def create
-	Ticket.create(seq: params[:seq], description: params[:description], estimate: params[:estimate], type_id: params[:type_id], project_id: params[:project_id])
+	Ticket.create(seq: params[:seq], description: params[:description], estimate: params[:estimate], type_id: params[:type_id], project_id: params[:project_id], status_id: 1, user_id: @current_user.id)
     render response: { :message => "Ticket added."}
   end
   
@@ -21,13 +25,17 @@ before_filter :restrict_api_access
   
   #Deletes ticket with provided id
   def destroy
-    Ticket.find(params[:id]).destroy
-    render response: { :message => "Ticket deleted."}
+    begin
+      Ticket.find(params[:id]).destroy
+      render response: { :message => "Ticket deleted."}
+	rescue 
+	  render response: { :message => "Ticket with specified id not found!"}
+	end
   end
   
-  #Shows all tickets
+  #Shows all tickets in specified project
   def index
-	tickets = Ticket.all
+	tickets = Ticket.where(project_id: params[:project_id])
     render response: { tickets: tickets}
   end
 
