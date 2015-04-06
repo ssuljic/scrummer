@@ -3,7 +3,7 @@ var services = angular.module('services', ['ngResource']);
 
 
 // Factory for users
-services.factory('usersFactory', function ($http, $q, $location, flash) {
+services.factory('usersFactory', function ($http, $q, $location, $rootScope, flash) {
   return {
     create: function(user) {
       var d = $q.defer();

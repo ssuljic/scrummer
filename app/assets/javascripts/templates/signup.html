@@ -133,14 +133,15 @@
       </div>
     </div>
     <div class="form-group">
-       <div class="col-xs-offset-3 col-xs-9">
-        <h6><a href="#/">Back to Home</a></h6>
-      </div>
-    </div>
-    <div class="form-group">
       <div class="col-xs-offset-3 col-xs-9">
         <p>Confirm you are not a robot :)</p>
         <div re-captcha ng-model="user.captcha"></div>
+        <p class="error">{{flash.getMessage()}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+       <div class="col-xs-offset-3 col-xs-9">
+        <h6><a href="#/">Back to Home</a></h6>
       </div>
     </div>
     <div class="form-group">

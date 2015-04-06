@@ -6,6 +6,9 @@ class Api::UsersController < ApiController
   def create
     user = User.new(user_params)
     user.is_active = false
+    # Translate captcha params to match what expect captcha gem
+    params[:recaptcha_challenge_field] = params[:user][:captcha][:challenge]
+    params[:recaptcha_response_field] = params[:user][:captcha][:response]
     if verify_recaptcha
       user.save!
       begin
