@@ -28,6 +28,7 @@ auth.factory("AuthService", function($http, $q, $rootScope, AuthToken, $location
         AuthToken.set('auth_token', resp.document.session_key);
         d.resolve(resp.response);
         if(resp.status.message == "OK") { $location.path('/dashboard'); }
+        else { $location.path('/'); }
       }).error(function(resp) {
         alert(resp.status.message);
         $location.path('/');
