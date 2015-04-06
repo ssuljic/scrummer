@@ -26,4 +26,8 @@ Scrummer::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # reCAPTCHA keys
+  RECAPTCHA_PUBLIC_KEY= '6LeV5wQTAAAAAA4uCs95tbEZwBNP55UlSCiI21lC'
+  RECAPTCHA_PRIVATE_KEY= '6LeV5wQTAAAAAMrkZASznvOsrM3-h9WPxjwwskao'
 end

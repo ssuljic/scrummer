@@ -7,7 +7,6 @@ var controllers = angular.module('controllers', []);
 // Index controller
 controllers.controller('indexCtrl', ['$scope', '$location', 'flash',
   function($scope, $location, flash) {
-    console.log(flash);
     $scope.flash = flash;
     $scope.openLogin = function() {
         $location.path('/login');
@@ -55,11 +54,10 @@ controllers.controller('boardCtrl', ['$scope', '$location', 'boardFactory', 'Aut
 controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory', 'reCAPTCHA',
     function($scope, $location, usersFactory, reCAPTCHA) {
     $scope.submitted = false; // Set form unsubmitted to unable validation messages
-    reCAPTCHA.setPublicKey('6Ldy3wQTAAAAABjSq3V4LP1idmrqVSBebSGyf_YQ');
+    reCAPTCHA.setPublicKey('6LeV5wQTAAAAAA4uCs95tbEZwBNP55UlSCiI21lC');
     $scope.createNewUser = function() {
       if ($scope.signupform.$valid) {
         usersFactory.create($scope.user);
-        $location.path('#/login');
       } else {
         $scope.signupform.submitted = true;
       }
