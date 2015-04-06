@@ -1,5 +1,5 @@
 class Api::UsersController < ApiController
-  before_filter :restrict_api_access, except: [:create, :confirm]
+  before_filter :restrict_api_access, except: [:create, :confirm, :reset_password]
 
   #Creates new user with provided parameters
   def create
@@ -43,7 +43,8 @@ class Api::UsersController < ApiController
   end
 
   def reset_password
-      user = User.find(params[:id])
+      #Ako ga nije nasao poruka upozorenja dodati
+      user = User.find(params[:email])
       #ovdje neka funkcija za random generisanje stringa
       @new_password='novi123'
       user.update(password: @new_password)

@@ -6,7 +6,7 @@ var services = angular.module('services', ['ngResource']);
 services.factory('usersFactory', function ($resource) {
   return $resource('api/users', {}, {
     create: { method: 'POST' },
-    reset_password: {method: 'GET'}
+    reset_password: {method: 'POST'}
   })
 });
 

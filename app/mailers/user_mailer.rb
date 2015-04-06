@@ -8,8 +8,6 @@ class UserMailer < ActionMailer::Base
   def reset_password(user)
     @user=user
     mail(to: @user.email,
-         body: @user.password,
-         content_type: "text/html",
-         subject: "Your new password!")
+         subject: 'Your new password!')
   end
 end
