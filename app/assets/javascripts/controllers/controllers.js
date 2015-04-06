@@ -51,13 +51,19 @@ controllers.controller('boardCtrl', ['$scope', '$location', 'boardFactory', 'Aut
 }]);
 
 // Signup controller
-controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory', 'reCAPTCHA',
-    function($scope, $location, usersFactory, reCAPTCHA) {
+controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory', 'reCAPTCHA', 'flash',
+    function($scope, $location, usersFactory, reCAPTCHA, flash) {
     $scope.submitted = false; // Set form unsubmitted to unable validation messages
     reCAPTCHA.setPublicKey('6LeV5wQTAAAAAA4uCs95tbEZwBNP55UlSCiI21lC');
     $scope.createNewUser = function() {
       if ($scope.signupform.$valid) {
-        usersFactory.create($scope.user);
+        usersFactory.create($scope.user)
+          .success(function(resp) {
+            flash.setMessage("You received confirmation email. Please activate your account!");
+            $location.path('/');
+          }).error(function(resp) {
+            $scope.errorMessage = resp.status.message;
+          });
       } else {
         $scope.signupform.submitted = true;
       }

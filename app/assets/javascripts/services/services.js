@@ -6,23 +6,7 @@ var services = angular.module('services', ['ngResource']);
 services.factory('usersFactory', function ($http, $q, $location, $rootScope, flash) {
   return {
     create: function(user) {
-      var d = $q.defer();
-      $http.post('api/users', {
-        user: user
-      }).success(function(resp) {
-        if(resp.status.message == "OK") {
-          flash.setMessage("You received confirmation email. Please activate your account!");
-          $location.path('/');
-        }
-        else {
-          flash.setMessage(resp.status.message);
-          $location.path('/');
-        }
-      }).error(function(resp) {
-        flash.setMessage(resp.status.message);
-        $location.path('/');
-      });
-      return d.promise;
+      return $http.post('api/users', { user: user });
     }
   };
 });
