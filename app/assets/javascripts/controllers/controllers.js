@@ -5,8 +5,9 @@
 var controllers = angular.module('controllers', []);
 
 // Index controller
-controllers.controller('indexCtrl', ['$scope', '$location', 'flash',
-  function($scope, $location, flash) {
+controllers.controller('indexCtrl', ['$scope', '$location', 'flash', 'AuthToken',
+  function($scope, $location, flash, AuthToken) {
+    if(AuthToken.get('auth_token')) $location.path('/dashboard');
     $scope.flash = flash;
     $scope.openLogin = function() {
         $location.path('/login');
