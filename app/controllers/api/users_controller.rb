@@ -1,5 +1,5 @@
 class Api::UsersController < ApiController
-  before_filter :restrict_api_access, except: [:create, :confirm]
+  before_filter :restrict_api_access, except: [:create, :confirm, :reset_password]
 
   #Creates new user with provided parameters
   #POST   /api/users    api/users#create
@@ -70,6 +70,23 @@ class Api::UsersController < ApiController
     decoded_token = Domain::Api::AuthToken.decode(params[:token])
     User.find(decoded_token[:user_id]).update(is_active: true)
     redirect_to root_path
+  end
+
+  def reset_password
+      #Ako ga nije nasao poruka upozorenja dodati
+      user = User.find_by(email: params[:email])
+      #generates randum string for new password
+      o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+      @new_password =  (0...50).map{ o[rand(o.length)]  }.join
+      user.password=@new_password
+      user.password_confirmation=@new_password
+      user.save
+       begin
+      UserMailer.reset_password(user).deliver
+    rescue
+      puts 'Failed to send email'
+    end
+    render response: { :message => "Password successfully reseted."}
   end
 
   #Parameters for creating new user

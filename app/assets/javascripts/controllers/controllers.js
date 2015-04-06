@@ -22,8 +22,8 @@ controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$
     $scope.doLogin = function() {
       AuthService.login($scope.login.email, $scope.login.password);
     }
-	$scope.doReset = function() {
-	   $location.path('/reset');
+  $scope.doReset = function() {
+     $location.path('/reset');
   }
 }]);
 
@@ -64,10 +64,11 @@ controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory', 're
     }
 }]);
 
-// Reset controller
-controllers.controller('resetCtrl', ['$scope', '$location',
-  function($scope, $location) {
+//Reset controller
+controllers.controller('resetCtrl', ['$scope', '$location','resetFactory',
+  function($scope, $location,resetFactory) {
     $scope.doReset = function() {
-        alert('Test123');
+         resetFactory.reset_password($scope.reset.email);
+         $location.path('#/login');
     }
 }]);
