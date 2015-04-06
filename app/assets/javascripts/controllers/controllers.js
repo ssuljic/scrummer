@@ -46,10 +46,10 @@ controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory',
 }]);
 
 //Reset controller
-controllers.controller('resetCtrl', ['$scope', '$location','usersFactory',
-  function($scope, $location,usersFactory) {
+controllers.controller('resetCtrl', ['$scope', '$location','resetFactory',
+  function($scope, $location,resetFactory) {
     $scope.doReset = function() {
-         usersFactory.reset_password($scope.email);
+         resetFactory.reset_password($scope.reset.email);
          $location.path('#/login');
     }
 }]);

@@ -44,10 +44,13 @@ class Api::UsersController < ApiController
 
   def reset_password
       #Ako ga nije nasao poruka upozorenja dodati
-      user = User.find(params[:email])
-      #ovdje neka funkcija za random generisanje stringa
-      @new_password='novi123'
-      user.update(password: @new_password)
+      user = User.find_by(email: params[:email])
+      #generates randum string for new password
+      o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+      @new_password =  (0...50).map{ o[rand(o.length)]  }.join
+      user.password=@new_password
+      user.password_confirmation=@new_password
+      user.save
        begin
       UserMailer.reset_password(user).deliver
     rescue
