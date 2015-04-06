@@ -10,10 +10,20 @@ services.factory('usersFactory', function ($resource) {
 });
 
 // Factory for dashboard
-services.factory('dashboardFactory', function ($resource) {
-  return $resource('api/dashboard', {}, {
-    get: { method: 'GET' }
-  })
+services.factory('dashboardFactory', function ($http, $q, $rootScope, $location, flash) {
+  return {
+    get: function() {
+      var d = $q.defer();
+      $http.get('api/dashboard', {}).success(function(resp) {
+        if(resp.status.message == "OK") { $rootScope.content = resp; }
+        else { flash.setMessage(resp.status.message); $location.path('/'); }
+      }).error(function(resp) {
+        flash.setMessage(resp.status.message);
+        $location.path('/');
+      });
+      return d.promise;
+    }
+  };
 });
 
 // Factory for dashboard

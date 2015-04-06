@@ -5,6 +5,17 @@ class User < ActiveRecord::Base
   has_many :comments
   has_one  :session
   has_secure_password
+  #Callbacks because some database adapters use case-sensitive indices
+  before_save { self.email = email.downcase }
+  before_save { self.username = username.downcase }
+  validates :firstname, presence: true, length: {minimum: 3, maximum: 25}
+  validates :lastname, presence: true, length: {minimum: 2, maximum: 35}
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: {minimum: 5, maximum: 255}, format: { with: VALID_EMAIL_REGEX },
+                      uniqueness: { case_sensitive: false }
+  validates :username, presence: true, length: {minimum: 5, maximum: 15},
+                      uniqueness: { case_sensitive: false }
+  validates :password, length: { minimum: 6 }
 
   scope :active, -> { where(is_active: true) }
 

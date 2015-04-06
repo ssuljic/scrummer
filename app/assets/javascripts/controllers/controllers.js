@@ -5,37 +5,39 @@
 var controllers = angular.module('controllers', []);
 
 // Index controller
-controllers.controller('indexCtrl', ['$scope', '$location',
-  function($scope, $location) {
+controllers.controller('indexCtrl', ['$scope', '$location', 'flash',
+  function($scope, $location, flash) {
+    console.log(flash);
+    $scope.flash = flash;
     $scope.openLogin = function() {
         $location.path('/login');
       }
     $scope.openSignup = function() {
         $location.path('/signup');
       }
-  }]);
+}]);
 
 // Login controller
 controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$location',
   function($scope, $routeParams, AuthService, $location) {
-     $scope.doLogin = function() {
-        AuthService.login($scope.login.email, $scope.login.password);
+    $scope.doLogin = function() {
+      AuthService.login($scope.login.email, $scope.login.password);
     }
-	 $scope.doReset = function() {
-        alert('Test');
-		$location.path('/reset');
-    }
-  }]);
+	$scope.doReset = function() {
+	   $location.path('/reset');
+  }
+}]);
 
 // Dashboard controller
 controllers.controller('dashboardCtrl', ['$scope', '$location', 'dashboardFactory', 'AuthToken',
   function($scope, $location, dashboardFactory, AuthToken) {
-    $scope.content = dashboardFactory.get();
+    dashboardFactory.get();
     $scope.LogOut = function() {
       AuthToken.unset('auth_token');
       $location.path('#/');
     }
 }]);
+
 
 // Board controller
 controllers.controller('boardCtrl', ['$scope', '$location', 'boardFactory', 'AuthToken',
@@ -50,11 +52,17 @@ controllers.controller('boardCtrl', ['$scope', '$location', 'boardFactory', 'Aut
 }]);
 
 // Signup controller
-controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory',
-  function($scope, $location, usersFactory) {
+controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory', 'reCAPTCHA',
+    function($scope, $location, usersFactory, reCAPTCHA) {
+    $scope.submitted = false; // Set form unsubmitted to unable validation messages
+    reCAPTCHA.setPublicKey('6Ldy3wQTAAAAABjSq3V4LP1idmrqVSBebSGyf_YQ');
     $scope.createNewUser = function() {
-      usersFactory.create($scope.user);
-      $location.path('#/login');
+      if ($scope.signupform.$valid) {
+        usersFactory.create($scope.user);
+        $location.path('#/login');
+      } else {
+        $scope.signupform.submitted = true;
+      }
     }
 }]);
 
