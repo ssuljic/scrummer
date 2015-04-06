@@ -8,7 +8,7 @@ class UserStory < ActiveRecord::Base
       id:          id,
       name:        name,
       description: description,
-      tickets:     tickets
+      tickets:     tickets.map(&:serializable_hash)
     }
   end
 end

@@ -18,7 +18,7 @@ class Ticket < ActiveRecord::Base
       estimate:    estimate,
       type:        type.name,
       status:      status.name,
-      assigned_to: user
+      assigned_to: user.serializable_hash
     }
   end
 end
