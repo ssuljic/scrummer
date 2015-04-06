@@ -6,13 +6,17 @@ class Api::UsersController < ApiController
   def create
     user = User.new(user_params)
     user.is_active = false
-    user.save!
-    begin
-      UserMailer.confirmation_email(user).deliver
-    rescue
-      puts 'Failed to send email'
+    if verify_recaptcha
+      user.save!
+      begin
+        UserMailer.confirmation_email(user).deliver
+      rescue
+        puts 'Failed to send email'
+      end
+      render response: { :message => "User created."}
+    else
+      raise WrongCaptcha
     end
-    render response: { :message => "User created."}
   end
 
   #Updates information of user with specified id.
@@ -85,7 +89,7 @@ class Api::UsersController < ApiController
   #Parameters for creating new user
   private
   def user_params
-    params.permit(:firstname, :lastname, :email, :username, :password, :password_confirmation)
+    params.require(:user).permit(:firstname, :lastname, :email, :username, :password, :password_confirmation)
   end
 
   #Parameters for updating information of existing user

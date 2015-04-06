@@ -16,5 +16,6 @@
 //= require angular-route/angular-route
 //= require angular-resource/angular-resource
 //= require angular-rails-templates
+//= require angular-re-captcha/angular-re-captcha
 //= require_tree .
 
