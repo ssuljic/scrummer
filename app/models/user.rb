@@ -12,10 +12,10 @@ class User < ActiveRecord::Base
   validates :lastname, presence: true, length: {minimum: 2, maximum: 35}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: {minimum: 5, maximum: 255}, format: { with: VALID_EMAIL_REGEX },
-                      uniqueness: { case_sensitive: false }
+                      uniqueness: { case_sensitive: false }, :if => :email_changed?
   validates :username, presence: true, length: {minimum: 5, maximum: 15},
-                      uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6 }
+                      uniqueness: { case_sensitive: false }, :if => :username_changed?
+  validates :password, length: { minimum: 6 }, :if => :password_digest_changed?
 
   scope :active, -> { where(is_active: true) }
 
