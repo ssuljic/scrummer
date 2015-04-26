@@ -1,5 +1,5 @@
 class Api::UsersController < ApiController
-  before_filter :restrict_api_access, except: [:create, :confirm, :reset_password]
+  before_filter :restrict_api_access, except: [:create, :confirm, :reset_password, :check_email, :check_username]
 
   #Creates new user with provided parameters
   #POST   /api/users    api/users#create
@@ -87,6 +87,16 @@ class Api::UsersController < ApiController
       puts 'Failed to send email'
     end
     render response: { :message => "Password successfully reseted."}
+  end
+
+  # Helper method to check uniqueness of email
+  def check_email
+    render response: { :isUnique => User.exists?(:email => params[:field]) }
+  end
+
+  #Helper method to check uniqueness of username
+  def check_username
+    render response: { :isUnique => User.exists?(:username => params[:field]) }
   end
 
   #Parameters for creating new user

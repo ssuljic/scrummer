@@ -17,6 +17,8 @@ Scrummer::Application.routes.draw do
       collection do
         get 'confirm'
         post 'reset_password'
+        post 'check_email'
+        post 'check_username'
       end
       member do
         put 'change_password'

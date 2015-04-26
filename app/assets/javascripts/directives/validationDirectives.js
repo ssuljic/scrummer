@@ -47,6 +47,26 @@ validator.directive('validatePasswordCharacters', function () {
     }
 });
 
+// Ensure uniqueness of data
+validator.directive('ensureUnique', ['$http', function($http) {
+  return {
+    require: 'ngModel',
+    link: function(scope, ele, attrs, c) {
+      scope.$watch(attrs.ngModel, function() {
+        $http({
+          method: 'POST',
+          url: 'api/users/check_' + attrs.ensureUnique,
+          data: {'field': attrs.ensureUnique}
+        }).success(function(data, status, headers, cfg) {
+          c.$setValidity('unique', data.document.isUnique);
+        }).error(function(data, status, headers, cfg) {
+          c.$setValidity('unique', false);
+        });
+      });
+    }
+  }
+}]);
+
 // Configuration of captcha
 validator.config(function (reCAPTCHAProvider) {
     // required
