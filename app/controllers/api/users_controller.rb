@@ -1,9 +1,5 @@
 class Api::UsersController < ApiController
-<<<<<<< HEAD
-  before_filter :restrict_api_access, except: [:create, :confirm, :reset_password, :check_email, :check_username]
-=======
   before_filter :restrict_api_access, only: [:update, :destroy, :show]
->>>>>>> master
 
   # Public:
   # POST /api/users

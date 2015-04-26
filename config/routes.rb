@@ -18,7 +18,6 @@ Scrummer::Application.routes.draw do
         post 'check_username'
       end
       member do
-        put 'change_password'
         get  :confirm
         post :reset_password
         get  :change_password_form
