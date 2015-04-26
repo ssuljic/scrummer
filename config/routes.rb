@@ -7,19 +7,17 @@ Scrummer::Application.routes.draw do
     resources :tickets do
       resources :comments do
         collection do
-          get 'search'
+          get :search
         end
       end
     end
 
-
     resources :users, only: [:create, :update, :destroy, :show] do
       collection do
-        get 'confirm'
-        post 'reset_password'
-      end
-      member do
-        put 'change_password'
+        get  :confirm
+        post :reset_password
+        get  :change_password_form
+        put  :change_password
       end
       resources :comments
     end
@@ -27,7 +25,7 @@ Scrummer::Application.routes.draw do
     resources :projects do
       resources :members, :only => [:index, :create, :destroy] do
         collection do
-          get 'search'
+          get :search
         end
       end
       member do
@@ -41,7 +39,6 @@ Scrummer::Application.routes.draw do
     end
 
     resource :dashboard, only: :show
-
   end
 
   match '/api/*any',  to: 'api#no_route', via: :all
