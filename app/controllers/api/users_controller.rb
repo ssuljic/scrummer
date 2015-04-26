@@ -1,8 +1,11 @@
 class Api::UsersController < ApiController
-  before_filter :restrict_api_access, except: [:create, :confirm, :reset_password]
+  before_filter :restrict_api_access, only: [:update, :destroy, :show]
 
-  #Creates new user with provided parameters
-  #POST   /api/users    api/users#create
+  # Public:
+  # POST /api/users
+  # @params: :firstname, :lastname, :email, :username, :password, :password_confirmation, :captcha
+  # @returns: success message or exception message if validation fails
+  # Creates a new user
   def create
     user = User.new(user_params)
     user.is_active = false
@@ -12,7 +15,7 @@ class Api::UsersController < ApiController
     if verify_recaptcha
       user.save!
       begin
-        UserMailer.confirmation_email(user).deliver
+        UserMailer.confirmation_email(user, request.url.split('/api').first).deliver
       rescue
         puts 'Failed to send email'
       end
@@ -22,8 +25,11 @@ class Api::UsersController < ApiController
     end
   end
 
-  #Updates information of user with specified id.
-  #PUT/PATCH    /api/users/:id   api/users#update
+  # Public:
+  # PUT/PATCH /api/users/:id
+  # @params: :id, :firstname, :lastname, :email, :username
+  # @returns: success message or exception message if validation fails
+  # Updates user
   def update
     if @current_user.id == params[:id]
       User.active.find(params[:id]).update(update_params)
@@ -33,18 +39,22 @@ class Api::UsersController < ApiController
     end
   end
 
-  #Changes password of user with specified id
-  #PUT/PATCH  /api/users/:id/change_password    api/users#change_password
+  # Public:
+  # PUT/PATCH /api/users/:id
+  # @params: :token, :password, :password_confirmation
+  # @returns: redirects to home page
+  # Updates password of user who is authenticated with the provided JWT
   def change_password
-    user = User.active.find(params[:id])
-    if user.try(:authenticate, params[:old_password])
-      user.update(password: params[:password], password_confirmation: params[:password_confirmation])
-      render response: { :message => "Password successfully changed."}
-    end
+    decoded_token = Domain::Api::AuthToken.decode(params[:token])
+    @user = User.find(decoded_token[:user_id])
+    @user.update!(password: params[:password], password_confirmation: params[:password_confirmation])
+    redirect_to root_path
   end
 
-  #Show user
-  #GET    /api/users/:id    api/users#show
+  # Public:
+  # GET /api/users/:id
+  # @params: :id
+  # @returns: JSON representation of the user, or exception if user is not found
   def show
     begin
       user =  User.active.find(params[:id])
@@ -54,8 +64,11 @@ class Api::UsersController < ApiController
     end
   end
 
-  #Deactivates account of user, and sets 'is_active' field to false.
-  #DELETE   /api/users/:id    api/users#destroy
+  # Public:
+  # DELETE /api/users/:id
+  # @params: :id
+  # @returns: success message or exception message if validation fails
+  # Deactivates account of user, and sets 'is_active' field to false.
   def destroy
     if @current_user.id == params[:id]
       User.find(params[:id]).update(:is_active => false)
@@ -65,37 +78,47 @@ class Api::UsersController < ApiController
     end
   end
 
-  #Helper method to decode user session token.
+  # Public:
+  # GET /api/users/confirm
+  # @params: :token
+  # @returns: redirects to home page
+  # Activates account of user, and sets 'is_active' field to true.
   def confirm
     decoded_token = Domain::Api::AuthToken.decode(params[:token])
     User.find(decoded_token[:user_id]).update(is_active: true)
     redirect_to root_path
   end
 
+  # Public:
+  # POST /api/users/reset_password
+  # @params: :email
+  # @returns: success message or exception
+  # Sends email with password reset instructions
   def reset_password
-      #Ako ga nije nasao poruka upozorenja dodati
-      user = User.find_by(email: params[:email])
-      #generates randum string for new password
-      o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
-      @new_password =  (0...50).map{ o[rand(o.length)]  }.join
-      user.password=@new_password
-      user.password_confirmation=@new_password
-      user.save
-       begin
-      UserMailer.reset_password(user).deliver
+    user = User.find_by(email: params[:email])
+    begin
+      UserMailer.reset_password(user, request.url.split('/api').first).deliver
+      render response: { :message => "Email sent." }
     rescue
-      puts 'Failed to send email'
+      raise 'Failed to send email'
     end
-    render response: { :message => "Password successfully reseted."}
   end
 
-  #Parameters for creating new user
+  # Public:
+  # GET /api/users/change_password_form
+  # @params:
+  # @returns: change passsword view
+  # Displays a form for password reseting
+  def change_password_form
+  end
+
   private
+  # Parameters for creating new user
   def user_params
     params.require(:user).permit(:firstname, :lastname, :email, :username, :password, :password_confirmation)
   end
 
-  #Parameters for updating information of existing user
+  # Parameters for updating information of existing user
   def update_params
     params.permit(:firstname, :lastname, :email, :username)
   end

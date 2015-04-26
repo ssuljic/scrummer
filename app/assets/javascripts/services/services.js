@@ -45,7 +45,7 @@ services.factory('resetFactory', function($http, $q, $rootScope, $location) {
       $http.post('api/users/reset_password', {
         email: email
       }).success(function(resp) {
-        if(resp.status.message == "OK") {alert("We have sent you mail with new password!"); $location.path('#/login'); }
+        if(resp.status.message == "OK") {alert("Email with password reset instruction has been sent!"); $location.path('#/login'); }
       }).error(function(resp) {
         alert("There is no user with that email account");
         $location.path('#/reset');
