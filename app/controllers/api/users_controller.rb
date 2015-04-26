@@ -1,5 +1,9 @@
 class Api::UsersController < ApiController
+<<<<<<< HEAD
+  before_filter :restrict_api_access, except: [:create, :confirm, :reset_password, :check_email, :check_username]
+=======
   before_filter :restrict_api_access, only: [:update, :destroy, :show]
+>>>>>>> master
 
   # Public:
   # POST /api/users
@@ -104,6 +108,17 @@ class Api::UsersController < ApiController
     end
   end
 
+
+  # Helper method to check uniqueness of email
+  def check_email
+    render response: { :isUnique => User.exists?(:email => params[:field]) }
+  end
+
+  #Helper method to check uniqueness of username
+  def check_username
+    render response: { :isUnique => User.exists?(:username => params[:field]) }
+  end
+
   # Public:
   # GET /api/users/change_password_form
   # @params:
@@ -111,6 +126,7 @@ class Api::UsersController < ApiController
   # Displays a form for password reseting
   def change_password_form
   end
+
 
   private
   # Parameters for creating new user

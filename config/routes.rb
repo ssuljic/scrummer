@@ -14,6 +14,11 @@ Scrummer::Application.routes.draw do
 
     resources :users, only: [:create, :update, :destroy, :show] do
       collection do
+        post 'check_email'
+        post 'check_username'
+      end
+      member do
+        put 'change_password'
         get  :confirm
         post :reset_password
         get  :change_password_form
