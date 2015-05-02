@@ -7,7 +7,8 @@ var scrummer = angular.module('scrummer', [
   'auth',
   'services',
   'validator',
-  'custom'
+  'custom',
+  'view_directives'
 ]);
 
 scrummer.config(['$routeProvider',
@@ -36,6 +37,10 @@ scrummer.config(['$routeProvider',
 	     when('/reset', {
         templateUrl: 'reset.html',
         controller: 'resetCtrl'
+      }).
+      when('/logout', {
+        templateUrl: 'index.html',
+        controller: 'logoutCtrl'
       }).
       otherwise({
         redirectTo: '/'

@@ -1,19 +1,18 @@
 <div class="container">
 <div class="row">
-  <div class="page-header">
-    <h1>
-      Dashboard
-    </h1>
-  </div>
+  <header title='title'></header>
 </div>
 
 <div class="col-md-3">
   <div class="jumbotron">
-    <p><a ng-href="/#/dashboard">Dashboard</a></p>
-    <p><a ng-href="/#/projects/1/board">Sprint Board</a></p>
-    <p><a href="" ng-click="LogOut()">Log Out</a></p>
+    <p>Here will be menu directive.</p>
   </div>
 </div>
 <div class="col-md-9">
-  <p>{{ content }}</p>
+  <div ng-repeat="activity in activities | orderBy:'timestamp'" ng-animate="'animate'">
+    <a class="jumbotron col-sm-6" href="{{activity.msg.url}}" id="activity">
+      <span class="{{activity.msg.icon}}"> {{activity.msg.content}}</span><br><br>
+      <small id="timestamp" ng-model="activity.timestamp">{{activity.timestamp}}</small>
+    </a>
+  </div>
 </div>

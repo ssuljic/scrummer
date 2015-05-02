@@ -14,8 +14,8 @@ Scrummer::Application.routes.draw do
 
     resources :users, only: [:create, :update, :destroy, :show] do
       collection do
-        post 'check_email'
-        post 'check_username'
+        post :check_email
+        post :check_username
       end
       member do
         get  :confirm

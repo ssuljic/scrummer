@@ -6,15 +6,17 @@ before_filter :restrict_api_access
     begin
       foundedProject=Project.find(params[:id])
       render response: { foundedProject: foundedProject.to_json }
-	rescue 
+	rescue
 	  render response: { :message => "Project with specified id not found!"}
 	end
   end
 
   #Creates new project with provided parameters, and assigns user that created project as project_manager (role_id = 1)
   def create
-    new_project = Project.create(project_params)
-	UserProject.create(user_id: @current_user.id, role_id: 1, project_id: new_project.id)
+    new_project = Project.new(project_params)
+	  UserProject.create(user_id: @current_user.id, role_id: Role.manager, project_id: new_project.id)
+    new_project.save!
+    new_project.create_activity key: 'project.is_created', owner: @current_user, :params => {:context => new_project.id}
     render response: { :message => "Project added."}
   end
 

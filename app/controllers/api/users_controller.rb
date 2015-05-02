@@ -104,12 +104,19 @@ class Api::UsersController < ApiController
     end
   end
 
-
+  # Public:
+  # POST /api/users/check_email
+  # @params: :field
+  # @returns: true or false
   # Helper method to check uniqueness of email
   def check_email
     render response: { :isUnique => User.exists?(:email => params[:field]) }
   end
 
+  # Public:
+  # POST /api/users/check_username
+  # @params: :field
+  # @returns: true or false
   #Helper method to check uniqueness of username
   def check_username
     render response: { :isUnique => User.exists?(:username => params[:field]) }

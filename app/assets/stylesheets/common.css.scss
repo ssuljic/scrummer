@@ -17,3 +17,24 @@
 .gray {
   color: #888;
 }
+
+#header .btn  {
+  float:right;
+}
+
+#header {
+  font-size: 14px;
+}
+
+#header p {
+  font-size: 24px;
+  font-weight: bold;
+}
+#header p small {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+#activity:hover {
+  text-decoration: none;
+}

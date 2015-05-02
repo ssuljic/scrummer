@@ -47,7 +47,7 @@ validator.directive('validatePasswordCharacters', function () {
     }
 });
 
-// Ensure uniqueness of data
+// Ensure uniqueness of data directive
 validator.directive('ensureUnique', ['$http', function($http) {
   return {
     require: 'ngModel',

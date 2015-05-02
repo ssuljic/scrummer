@@ -17,11 +17,12 @@ services.factory('dashboardFactory', function ($http, $q, $location, $rootScope,
     get: function() {
       var d = $q.defer();
       $http.get('api/dashboard', {}).success(function(resp) {
-        if(resp.status.message == "OK") { $rootScope.content = resp; }
-        else { flash.setMessage(resp.status.message); $location.path('/'); }
+        if(resp.status.message == "OK") { $rootScope.activities = resp.document.dashboard.content;
+                                          $rootScope.projects = resp.document.dashboard.projects;
+                                          $rootScope.logged_user = resp.user.username;
+                                        }
       }).error(function(resp) {
-        flash.setMessage(resp.status.message);
-        $location.path('/');
+        $rootScope.content = resp.status.message;
       });
       return d.promise;
     }
