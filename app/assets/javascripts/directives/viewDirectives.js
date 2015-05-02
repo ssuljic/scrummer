@@ -19,7 +19,6 @@ view_directives.directive('header', function() {
                 '</small>' +
                 '<button class="btn btn-default"><a ng-href="/#/logout">Log Out</a></button>' +
                 '<button class="btn btn-default"><a ng-href="/#/dashboard">Dashboard</a></button>' +
-                '<small style="float: right;">You are logged as {{logged_user}}.</small>' +
               '</p>' +
             '</div>'
     };
