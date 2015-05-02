@@ -13,7 +13,7 @@ class ApiController < ActionController::Base
 
   # Renderer
   ActionController::Renderers.add :response do |obj, options|
-    render json: Domain::Api::Response.new(document: obj)
+    render json: Domain::Api::Response.new(document: obj, user: current_user)
   end
 
   # Error handling

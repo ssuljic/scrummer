@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  include PublicActivity::Common
   has_many :user_projects
   has_many :users, :through => :user_projects
   has_many :user_stories

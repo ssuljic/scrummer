@@ -38,7 +38,7 @@ auth.factory("AuthService", function($http, $q, $rootScope, AuthToken, $location
   };
 });
 
-
+// Configuration of every outgoing http request
 auth.factory("AuthInterceptor", function($q, $injector) {
   return {
     // This will be called on every outgoing http request
