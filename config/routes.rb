@@ -16,12 +16,10 @@ Scrummer::Application.routes.draw do
       collection do
         post :check_email
         post :check_username
-      end
-      member do
-        get  :confirm
-        post :reset_password
         get  :change_password_form
         put  :change_password
+        get  :confirm
+        post :reset_password
       end
       resources :comments
     end
