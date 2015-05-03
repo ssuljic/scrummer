@@ -25,8 +25,7 @@
         <div class="panel-body ticket-space">
           <div class="col-md-3 ticket-space-col" ng-repeat="status in statuses">
             <div class="well ticket" ng-repeat="ticket in story.tickets[status.name]">
-              <small><b>{{ ticket.name }}</b>: {{ ticket.description }}</small><br>
-              <small class="small-info">{{ ticket.assigned_to.firstname }} {{ ticket.assigned_to.lastname }}</small>
+              <ticket></ticket>
             </div>
           </div>
         </div>
@@ -40,8 +39,7 @@
         <div class="panel-body ticket-space">
           <div class="col-md-3 ticket-space-col" ng-repeat="status in statuses">
             <div class="well ticket" ng-repeat="ticket in content.document.board.tickets[status.name]">
-              <small><b>{{ ticket.name }}</b>: {{ ticket.description }}</small><br>
-              <small class="small-info">{{ ticket.assigned_to.firstname }} {{ ticket.assigned_to.lastname }}</small>
+              <ticket></ticket>
             </div>
           </div>
         </div>
