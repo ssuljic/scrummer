@@ -22,7 +22,8 @@ services.factory('dashboardFactory', function ($http, $q, $location, $rootScope,
                                           $rootScope.logged_user = resp.user.username;
                                         }
       }).error(function(resp) {
-        $rootScope.content = resp.status.message;
+        flash.setMessage(resp.status.message);
+        $location.path('/');
       });
       return d.promise;
     }
