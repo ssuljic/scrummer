@@ -2,29 +2,29 @@
 
     <form class="form-horizontal" role="form" id="loginform">
       <div class="page-header">
-        <h4>Login form</h4>
+        <h4 translate="LOGIN"></h4>
       </div>
       <div class="form-group">
-        <label for="email" class="col-xs-1 control-label">Email</label>
+        <label for="email" class="col-xs-1 control-label" translate="EMAIL"></label>
         <div class="col-xs-11">
           <input type="text" ng-model="login.email" class="form-control" id="email" required>
         </div>
       </div>
       <div class="form-group">
-        <label for="password" class="col-xs-1 control-label">Password</label>
+        <label for="password" class="col-xs-1 control-label" translate="PASSWORD"></label>
         <div class="col-xs-11">
           <input type="password" ng-model="login.password" class="form-control" id="password" required>
         </div>
       </div>
       <div class="form-group">
          <div class="col-xs-offset-1 col-xs-11">
-          <h6><a id="forgotPassword" ng-click="doReset()">Forgot password?</a></h6>
+          <h6><a id="forgotPassword" ng-click="doReset()" translate="FORGOT_PASS"></a></h6>
         </div>
       </div>
       </div>
       <div class="form-group">
         <div class="col-xs-offset-1 col-xs-11">
-          <button type="submit" class="btn btn-primary" ng-click="doLogin()">Login</button>
+          <button type="submit" class="btn btn-primary" ng-click="doLogin()" translate="LOGIN"></button>
         </div>
       </div>
     </form>
