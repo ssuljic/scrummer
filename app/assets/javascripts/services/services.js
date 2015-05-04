@@ -26,6 +26,7 @@ services.factory('dashboardFactory', function ($http, $q, $location, $rootScope,
       });
       return d.promise;
     }
+
   };
 });
 
