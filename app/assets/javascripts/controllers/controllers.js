@@ -31,9 +31,7 @@ controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$
 // Dashboard controller
 controllers.controller('dashboardCtrl', ['$scope', '$location', 'dashboardFactory',
   function($scope, $location, dashboardFactory) {
-   $scope.content= dashboardFactory.get(function(result){
-    $scope.projects=result.document.dashboard.projects;
-   });
+    dashboardFactory.get();
     $scope.title = 'Dashboard';
     $scope.openActivity = function(url) {
       $location.path(url);
