@@ -27,6 +27,7 @@ services.factory('dashboardFactory', function ($http, $q, $location, $rootScope,
       });
       return d.promise;
     }
+
   };
 });
 
@@ -53,6 +54,15 @@ services.factory('resetFactory', function($http, $q, $rootScope, $location) {
         $location.path('#/reset');
       });
       return d.promise;
+    }
+  };
+});
+
+// Factory for users
+services.factory('projectFactory', function ($http, $q, $location, $rootScope) {
+  return {
+    create: function(name,code_name,description) {
+      return $http.post('api/projects', {name : name,code_name:code_name,description:description});
     }
   };
 });

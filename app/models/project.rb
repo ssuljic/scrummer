@@ -14,4 +14,5 @@ class Project < ActiveRecord::Base
     end
     User.where('id not in (?)', a)
   end
+
 end

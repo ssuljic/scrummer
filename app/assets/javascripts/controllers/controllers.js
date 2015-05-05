@@ -36,6 +36,15 @@ controllers.controller('dashboardCtrl', ['$scope', '$location', 'dashboardFactor
     $scope.openActivity = function(url) {
       $location.path(url);
     }
+
+       $scope.openNewProject = function() {
+        $location.path('/newProject');
+      }
+        $scope.showProject = function() {
+          window.alert("This will show data of a project");
+      }
+
+
 }]);
 
 // Logout controller
@@ -88,3 +97,23 @@ controllers.controller('resetCtrl', ['$scope', '$location','resetFactory',
          $location.path('#/login');
     }
 }]);
+
+// New project controller
+controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory',
+  function($scope, $location,projectFactory) {
+     $scope.title = 'New project';
+       $scope.showProject = function() {
+          window.alert("This will show data of a project");
+      }
+
+    $scope.saveProject = function() {
+          projectFactory.create($scope.project.name,$scope.project.code_name,$scope.project.description)
+          .success(function(resp) {
+                $location.path('/dashboard');
+          }).error(function(resp) {
+            $location.path('/newProject');
+          });
+
+    }
+}]);
+
