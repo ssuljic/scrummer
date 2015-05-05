@@ -42,6 +42,10 @@ scrummer.config(['$routeProvider',
         templateUrl: 'index.html',
         controller: 'logoutCtrl'
       }).
+       when('/newProject', {
+        templateUrl: 'new_project.html',
+        controller: 'newProjectCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });

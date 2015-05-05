@@ -1,12 +1,12 @@
  <div class="jumbotron">
-  <button class="btn btn-default" data-toggle="modal" data-target="#projectModal">
+  <button class="btn btn-default" data-toggle="modal" ng-click="openNewProject()">
     New project
      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
   </button>
   <div class="btn-group btn-block">
 <div ng-repeat="project in  projects">
-   <button class="btn btn-default">
-     <a ng-href="#" href="#"> {{project}}</a>
+   <button class="btn btn-default" ng-click="showProject()">
+      {{project}}
   </button>
 
 </div>
