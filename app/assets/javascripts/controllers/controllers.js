@@ -99,9 +99,9 @@ controllers.controller('resetCtrl', ['$scope', '$location','resetFactory',
 }]);
 
 // New project controller
-controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory',
-  function($scope, $location,projectFactory) {
-     $scope.title = 'New project';
+controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory','$translate',
+  function($scope, $location,projectFactory,$translate) {
+     $scope.title = 'NEW_PROJECT';
        $scope.showProject = function() {
           window.alert("This will show data of a project");
       }

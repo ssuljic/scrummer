@@ -16,7 +16,15 @@ scrummer.config(function($translateProvider) {
     USERNAME: 'Username:',
     PASSWORD_CONFIRM: 'Re-type your password:',
     BACK_TO_HOME: 'Back to Home',
-    SUBMIT: 'Submit'
+    SUBMIT: 'Submit',
+    NEW_PROJECT: 'New project',
+    PROJECT: 'Project',
+    NAME: 'Name',
+    PROJECT_FORM: 'New project form-basic info',
+    NAME_PROJECT: 'Name of project',
+    CODE_NAME_PROJECT: 'Code name of project',
+    DESCRIPTION: 'Description',
+    SAVE_PROJECT: 'Save project'
   })
   .translations('bs', {
     DASHBOARD: 'Komandna Tabla',
@@ -35,7 +43,15 @@ scrummer.config(function($translateProvider) {
     USERNAME: 'Korisnicko ime:',
     PASSWORD_CONFIRM: 'Potvrda sifre:',
     BACK_TO_HOME: 'Nazad na Pocetnu',
-    SUBMIT: 'Potvrdi'
+    SUBMIT: 'Potvrdi',
+    NEW_PROJECT: 'Novi projekat',
+    PROJECT: 'Projekat',
+    NAME: 'Ime',
+    PROJECT_FORM: 'Forma za unos novog projekta-osnovne info',
+    NAME_PROJECT: 'Ime projekta',
+    CODE_NAME_PROJECT: 'Kodno ime projekta',
+    DESCRIPTION: 'Opis',
+    SAVE_PROJECT: 'Sačuvaj projekat'
   });
    $translateProvider.preferredLanguage('en');
 });
