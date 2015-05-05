@@ -18,5 +18,7 @@
 //= require angular-rails-templates
 //= require angular-re-captcha/angular-re-captcha
 //= require angular-translate/angular-translate
+//= require angular-ui-bootstrap-bower/ui-bootstrap.js
+//= require angular-ui-bootstrap-bower/ui-bootstrap-tpls.js
 //= require_tree .
 

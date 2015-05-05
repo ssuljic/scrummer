@@ -9,7 +9,8 @@ var scrummer = angular.module('scrummer', [
   'validator',
   'custom',
   'view_directives',
-  'pascalprecht.translate'
+  'pascalprecht.translate',
+  'ui.bootstrap'
 ]);
 
 scrummer.config(['$routeProvider',
