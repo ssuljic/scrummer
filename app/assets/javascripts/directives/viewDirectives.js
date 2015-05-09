@@ -14,7 +14,7 @@ view_directives.directive('header', ['$translate', function() {
     template:'<div class="page-header" id="header">' +
               '<p>' +
                 '{{title | translate}}' +
-                '<small>' +
+                '<small style="color:gray;margin-left:20px;">' +
                   ' {{description}}' +
                 '</small>' +
                 '<button class="btn btn-default" ng-click="changeLanguage(\'bs\')" translate="BUTTON_TEXT_BS"></button>' +

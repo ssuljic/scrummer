@@ -32,10 +32,12 @@ services.factory('dashboardFactory', function ($http, $q, $location, $rootScope,
 });
 
 // Factory for dashboard
-services.factory('boardFactory', function ($resource) {
-  return $resource('/api/projects/1/board', {}, {
-    get: { method: 'GET' }
-  })
+services.factory('boardFactory', function ($http) {
+  return {
+    get: function(id) {
+      return $http.get('/api/projects/' + id + '/board');
+    }
+  };
 });
 
 
@@ -61,6 +63,12 @@ services.factory('resetFactory', function($http, $q, $rootScope, $location) {
 // Factory for users
 services.factory('projectFactory', function ($http, $q, $location, $rootScope) {
   return {
+    index: function() {
+      return $http.get('/api/projects');
+    },
+    show: function(id) {
+      return $http.get('/api/projects/' + id);
+    },
     create: function(name,code_name,description) {
       return $http.post('api/projects', {name : name,code_name:code_name,description:description});
     }

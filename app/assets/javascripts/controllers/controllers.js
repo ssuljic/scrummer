@@ -56,17 +56,15 @@ controllers.controller('logoutCtrl', ['$scope', '$location', 'AuthToken',
 
 
 // Board controller
-controllers.controller('boardCtrl', ['$scope', '$location', 'boardFactory', 'AuthToken',
-  function($scope, $location, boardFactory, AuthToken) {
-    $scope.content = boardFactory.get(function(result) {
+controllers.controller('boardCtrl', ['$scope', 'boardFactory', '$routeParams',
+  function($scope, boardFactory, $routeParams) {
+    boardFactory.get($routeParams.id)
+    .success(function(result) {
+      $scope.content = result;
       $scope.statuses = result.document.board.statuses;
       $scope.title = result.document.board.sprint.name;
       $scope.description = result.document.board.sprint.start_date + '-' + result.document.board.sprint.end_date;
     });
-    // $scope.LogOut = function() {
-    //   AuthToken.unset('auth_token');
-    //   $location.path('#/');
-    // }
 }]);
 
 // Signup controller
@@ -98,22 +96,38 @@ controllers.controller('resetCtrl', ['$scope', '$location','resetFactory',
     }
 }]);
 
-// New project controller
-controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory','$translate',
-  function($scope, $location,projectFactory,$translate) {
-     $scope.title = 'NEW_PROJECT';
-       $scope.showProject = function() {
-          window.alert("This will show data of a project");
-      }
+controllers.controller('newProjectCtrl', ['$scope', 'projectFactory', function($scope, projectFactory) {
+  $scope.title = "NEW_PROJECT";
 
-    $scope.saveProject = function() {
-          projectFactory.create($scope.project.name,$scope.project.code_name,$scope.project.description)
-          .success(function(resp) {
-                $location.path('/dashboard');
-          }).error(function(resp) {
-            $location.path('/newProject');
-          });
+  $scope.saveProject = function() {
+    projectFactory.create($scope.project.name,$scope.project.code_name,$scope.project.description)
+    .success(function(resp) {
+      $location.path('/dashboard');
+    }).error(function(resp) {
+      $location.path('/project/new');
+    });
+  }
+}]);
 
-    }
+controllers.controller('projectCtrl', ['projectFactory', function(projectFactory) {
+  var project = this;
+
+  projectFactory.index()
+  .success(function(data) {
+    project.projects = data.document.projects;
+  });
+
+}]);
+
+controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routeParams', function($scope, projectFactory, $routeParams) {
+  if($routeParams && $routeParams.id) {
+    // Project page
+    projectFactory.show($routeParams.id)
+    .success(function(response) {
+      $scope.project = response.document;
+      $scope.title = $scope.project.name;
+      $scope.description = $scope.project.description;
+    });
+  }
 }]);
 

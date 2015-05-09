@@ -1,14 +1,6 @@
- <div class="jumbotron">
-  <button class="btn btn-default" data-toggle="modal" ng-click="openNewProject()" translate="NEW_PROJECT">
-    New project
-     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-  </button>
-  <div class="btn-group btn-block">
-<div ng-repeat="project in  projects">
-   <button class="btn btn-default" ng-click="showProject()">
-      {{project}}
-  </button>
-
+<div class="jumbotron">
+  <p><a ng-href="/#/project/new" translate="NEW_PROJECT">New project</a></p>
+  <p ng-repeat="project in Project.projects">
+  <a ng-href="/#/projects/{{project.id}}">{{project.name}}</a>
+  </p>
 </div>
-</div>
- </div>

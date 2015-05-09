@@ -32,7 +32,15 @@ scrummer.config(['$routeProvider',
         templateUrl: 'dashboard.html',
         controller: 'dashboardCtrl'
       }).
-       when('/projects/1/board', {
+       when('/project/new', {
+        templateUrl: 'new_project.html',
+        controller: 'newProjectCtrl'
+      }).
+       when('/projects/:id', {
+        templateUrl: 'project.html',
+        controller: 'projectPageCtrl'
+      }).
+       when('/projects/:id/board', {
         templateUrl: 'board.html',
         controller: 'boardCtrl'
       }).
@@ -43,10 +51,6 @@ scrummer.config(['$routeProvider',
       when('/logout', {
         templateUrl: 'index.html',
         controller: 'logoutCtrl'
-      }).
-       when('/newProject', {
-        templateUrl: 'new_project.html',
-        controller: 'newProjectCtrl'
       }).
       otherwise({
         redirectTo: '/'
