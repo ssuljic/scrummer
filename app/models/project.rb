@@ -12,7 +12,11 @@ class Project < ActiveRecord::Base
     self.users.each do |u|
       a << u.id
     end
-    User.where('id not in (?)', a)
+    User.where('id not :id in (?)', a)
+  end
+
+  def get_role(user_id)
+    Role.find(UserProject.where(:user_id => user_id, :project_id => self.id ).first.role_id).name
   end
 
 end
