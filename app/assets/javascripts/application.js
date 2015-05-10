@@ -20,5 +20,9 @@
 //= require angular-translate/angular-translate
 //= require angular-ui-bootstrap-bower/ui-bootstrap.js
 //= require angular-ui-bootstrap-bower/ui-bootstrap-tpls.js
+//= require underscore/underscore.js
+//= require d3/d3.js
+//= require nvd3/nv.d3.min.js
+//= require angular-nvd3/dist/angular-nvd3.js
 //= require_tree .
 

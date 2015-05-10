@@ -7,8 +7,16 @@
     <menu></menu>
   </div>
 
-  <div class="project-navigation">
-    <a class="btn btn-primary" ng-href="/#/projects/{{project.id}}/board">Sprint Board</a>
-    <a class="btn btn-default" ng-href="/#/projects/{{project.id}}/backlog">Backlog</a>
+  <div class="col-md-9">
+    <div class="project-navigation">
+      <a class="btn btn-primary" ng-href="/#/projects/{{project.id}}/board">Sprint Board</a>
+      <a class="btn btn-default" ng-href="/#/projects/{{project.id}}/backlog">Backlog</a>
+    </div>
+    <br>
+
+    <div class="col-md-6 chart" ng-repeat="chart in charts">
+      <h5>{{chart.title}}</h5>
+      <nvd3 options="chart.options" data="chart.data"></nvd3>
+    </div>
   </div>
 </div>
