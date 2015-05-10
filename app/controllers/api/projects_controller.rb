@@ -4,7 +4,12 @@ before_filter :restrict_api_access
   #Shows project with specified id
   def show
     project = Project.find(params[:id])
-    render response: project
+    summary = SummaryBuilder.new(project).build.data
+
+    render response: {
+      project: project,
+      summary: summary
+    }
   end
 
   #Creates new project with provided parameters, and assigns user that created project as project_manager (role_id = 1)

@@ -128,12 +128,14 @@ controllers.controller('projectCtrl', ['projectFactory', function(projectFactory
 
 controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routeParams', function($scope, projectFactory, $routeParams) {
   if($routeParams && $routeParams.id) {
-    // Project page
     projectFactory.show($routeParams.id)
     .success(function(response) {
-      $scope.project = response.document;
+      $scope.project = response.document.project;
       $scope.title = $scope.project.name;
       $scope.description = $scope.project.description;
+      $scope.summary = response.document.summary;
+      var chartsBuilder = new ChartsBuilder($scope.summary);
+      $scope.charts = chartsBuilder.build();
     });
   }
 }]);
