@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+  <header title="title" description="description"></header>
+  </div>
+
+  <div class="col-md-3">
+    <menu></menu>
+  </div>
+
+  <div class="col-md-9">
+
+    <div ng-show="user_role == 'Manager'">
+      <button class="btn btn-default">Start this sprint</button>
+    </div><br>
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">Sprint</div>
+        Drag tickets here.
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">Backlog</div>
+        <div class="panel-body ticket-space">
+            <div ng-repeat = "story in stories">
+              <p>From user story: {{ story.name }} </p>
+              <div class="well ticket" ng-repeat="ticket in story.tickets">
+                <ticket></ticket>
+              </div>
+            </div>
+            <p>Independent tickets</p>
+            <div class="well ticket" ng-repeat="ticket in tickets">
+              <ticket></ticket>
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

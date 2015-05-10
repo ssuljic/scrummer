@@ -28,6 +28,13 @@ controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$
   }
 }]);
 
+// Backlog controller
+controllers.controller('backlogCtrl', ['$scope', '$location', 'backlogFactory', '$translate', '$routeParams',
+  function($scope, $location, backlogFactory, $translate, $routeParams) {
+    backlogFactory.get($routeParams.id);
+    $scope.title = 'BACKLOG';
+}]);
+
 // Dashboard controller
 controllers.controller('dashboardCtrl', ['$scope', '$location', 'dashboardFactory', '$translate',
   function($scope, $location, dashboardFactory, $translate) {
