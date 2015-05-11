@@ -11,6 +11,7 @@ var scrummer = angular.module('scrummer', [
   'view_directives',
   'pascalprecht.translate',
   'ui.bootstrap',
+  'oi.multiselect',
   'nvd3'
 ]);
 

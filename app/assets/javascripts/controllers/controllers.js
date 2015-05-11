@@ -103,11 +103,15 @@ controllers.controller('resetCtrl', ['$scope', '$location','resetFactory',
     }
 }]);
 
-controllers.controller('newProjectCtrl', ['$scope', 'projectFactory', function($scope, projectFactory) {
+controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory', 'usersFactory',function($scope,$location, projectFactory,usersFactory) {
   $scope.title = "NEW_PROJECT";
+  usersFactory.index()
+  .success(function(data) {
+    $scope.users = data.document.users;
+  });
 
   $scope.saveProject = function() {
-    projectFactory.create($scope.project.name,$scope.project.code_name,$scope.project.description)
+    projectFactory.create($scope.project.name,$scope.project.code_name,$scope.project.description,$scope.selected_users)
     .success(function(resp) {
       $location.path('/dashboard');
     }).error(function(resp) {
@@ -139,4 +143,6 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
     });
   }
 }]);
+
+
 

@@ -7,6 +7,9 @@ services.factory('usersFactory', function ($http, $q, $location, $rootScope, fla
   return {
     create: function(user) {
       return $http.post('api/users', { user: user });
+    },
+    index: function() {
+      return $http.get('/api/users');
     }
   };
 });
@@ -92,8 +95,8 @@ services.factory('projectFactory', function ($http, $q, $location, $rootScope) {
     show: function(id) {
       return $http.get('/api/projects/' + id);
     },
-    create: function(name,code_name,description) {
-      return $http.post('api/projects', {name : name,code_name:code_name,description:description});
+    create: function(name,code_name,description,selected_users) {
+      return $http.post('api/projects', {name : name,code_name:code_name,description:description,selected_users:selected_users});
     }
   };
 });

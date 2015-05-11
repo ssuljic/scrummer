@@ -32,7 +32,21 @@
           <input type="text" ng-model="project.description" class="form-control" id="description" required>
         </div>
       </div>
+
+        <div class="form-group">
+                <label for="mambers" class="col-xs-4 control-label" translate="ADDMEMBERS"></label>
+                <div class="col-xs-8">
+                <oi-multiselect
+                  ng-options="user.firstname for user in users track by user.id"
+                  ng-model="selected_users"
+                  multiple
+                  placeholder="Select members"
+                  ></oi-multiselect>
+                </div>
       </div>
+      </div>
+
+
       <div class="form-group">
         <div class="col-xs-offset-10 col-xs-8">
           <button type="submit" class="btn btn-primary" ng-click="saveProject()" translate="SAVE_PROJECT"></button>
@@ -41,5 +55,6 @@
     </form>
 
 </div>
+
 </div>
 </div>

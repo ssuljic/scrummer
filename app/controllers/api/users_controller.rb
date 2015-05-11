@@ -130,6 +130,12 @@ class Api::UsersController < ApiController
   def change_password_form
   end
 
+   #Shows all users
+  def index
+    users = User.all
+    render response: { users: users}
+  end
+
 
   private
   # Parameters for creating new user

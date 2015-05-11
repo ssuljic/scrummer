@@ -25,7 +25,8 @@ scrummer.config(function($translateProvider) {
     CODE_NAME_PROJECT: 'Code name of project',
     DESCRIPTION: 'Description',
     SAVE_PROJECT: 'Save project',
-    BACKLOG: 'Backlog'
+    BACKLOG: 'Backlog',
+    ADDMEMBERS:'Members of project:'
   })
   .translations('bs', {
     DASHBOARD: 'Komandna Tabla',
@@ -53,7 +54,9 @@ scrummer.config(function($translateProvider) {
     CODE_NAME_PROJECT: 'Kodno ime projekta',
     DESCRIPTION: 'Opis',
     SAVE_PROJECT: 'Sačuvaj projekat',
-    BACKLOG: 'Katalog zadataka'
+    BACKLOG: 'Katalog zadataka',
+    ADDMEMBERS:'Članovi projekta:'
+
   });
    $translateProvider.preferredLanguage('en');
 });

@@ -12,7 +12,7 @@ Scrummer::Application.routes.draw do
       end
     end
 
-    resources :users, only: [:create, :update, :destroy, :show] do
+    resources :users, only: [:create, :update, :destroy, :show,:index] do
       collection do
         post :check_email
         post :check_username
