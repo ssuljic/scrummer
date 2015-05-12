@@ -14,14 +14,16 @@ before_filter :restrict_api_access
   #Creates new project with provided parameters, and assigns user that created project as project_manager (role_id = 1)
   def create
     new_project = Project.new(project_params)
-    selected=params[:selected_users]
+   # parsed_json = ActiveSupport::JSON.decode(your_json_string)
+
+   @selected=params[:selected_users]
     new_project.save!
 	  user_project=UserProject.new(user_id: @current_user.id, role_id: Role.manager, project_id: new_project.id)
     user_project.save!
     new_project.create_activity key: 'project.is_created', owner: @current_user, :params => {:context => new_project.id}
-    selected.each do  |obj|
-      user_project2=UserProject.new(user_id: obj.id, role_id: Role.member, project_id: new_project.id)
-      user_project2.save!
+    ActiveSupport::JSON.decode(@selected).each do  |obj|
+      user_project=UserProject.new(user_id: obj["id"], role_id: Role.member, project_id: new_project.id)
+      user_project.save!
     end
     render response: { :message => "Project added."}
   end
@@ -52,6 +54,9 @@ before_filter :restrict_api_access
   private
   def project_params
     params.permit(:name, :code_name, :description)
+  end
+  def user_params
+    params.permit(:selected_users)
   end
 
 end
