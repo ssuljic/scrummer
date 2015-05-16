@@ -20,6 +20,11 @@
   color: #888;
 }
 
+#header a  {
+  float:right;
+  margin: 0 7px;
+}
+
 #header .btn  {
   float:right;
 }
@@ -58,4 +63,8 @@ menu {
     border-bottom: 1px solid #377BB5;
     text-align:center;
   }
+}
+
+.message-container .table {
+  min-height: 200px;
 }

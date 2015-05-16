@@ -40,6 +40,8 @@ Scrummer::Application.routes.draw do
       resources :tickets
     end
 
+    resources :messages, only: [:index, :show, :create]
+
     resource :dashboard, only: :show
   end
 

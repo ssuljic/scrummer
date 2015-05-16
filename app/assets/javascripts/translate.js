@@ -1,6 +1,13 @@
 scrummer.config(function($translateProvider) {
   $translateProvider.translations('en', {
     DASHBOARD: 'Dashboard',
+    INBOX: 'Inbox',
+    MESSAGES: 'Messages',
+    SUBJECT: 'Subject',
+    SENDER: 'Sender',
+    RECIPIENT: 'Recipient',
+    SEND: 'Send',
+    NEW_MESSAGE: 'New message',
     BUTTON_TEXT_EN: 'En*',
     BUTTON_TEXT_BS: 'Bs',
     LOGOUT: 'Logout',
@@ -30,6 +37,13 @@ scrummer.config(function($translateProvider) {
   })
   .translations('bs', {
     DASHBOARD: 'Komandna Tabla',
+    INBOX: 'Poruke',
+    MESSAGES: 'Poruke',
+    SUBJECT: 'Naslov',
+    SENDER: 'Pošiljaoc',
+    RECIPIENT: 'Primaoc',
+    SEND: 'Pošalji',
+    NEW_MESSAGE: 'Nova poruka',
     BUTTON_TEXT_EN: 'En',
     BUTTON_TEXT_BS: 'Bs*',
     LOGOUT: 'Odjava',
