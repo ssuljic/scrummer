@@ -1,2 +1,3 @@
 <small><b>{{ ticket.name }}</b>: {{ ticket.description }}</small><br>
-<small class="small-info">{{ ticket.assigned_to.firstname }} {{ ticket.assigned_to.lastname }}</small>
+<small class="small-info" ng-if="ticket.assigned_to"><b>Assignee:</b> {{ ticket.assigned_to.firstname }} {{ ticket.assigned_to.lastname }}</small><br>
+<small class="small-info" ng-if="ticket.user_story"><b>Story:</b> {{ ticket.user_story.name }}</small>
