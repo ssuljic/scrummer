@@ -6,7 +6,7 @@ var scrummer = angular.module('scrummer', [
   'controllers',
   'auth',
   'services',
-  'messageService',
+  'alertService',
   'validator',
   'custom',
   'view_directives',

@@ -17,11 +17,11 @@ controllers.controller('indexCtrl', ['$scope', '$location', 'flash', 'AuthToken'
       }
 }]);
 
-controllers.controller('alertsCtrl', ['$scope', 'messageFactory', function($scope, messageFactory) {
-  $scope.alerts = messageFactory.get();
+controllers.controller('alertsCtrl', ['$scope', 'alertService', function($scope, alertService) {
+  $scope.alerts = alertService.get();
 
   $scope.closeAlert = function(index) {
-    messageFactory.close(index);
+    alertService.close(index);
   };
 }]);
 
@@ -184,8 +184,8 @@ controllers.controller('messageCtrl', ['$scope', 'messagesFactory', '$routeParam
   });
 }]);
 
-controllers.controller('newMessageCtrl', ['$scope', 'messagesFactory', 'usersFactory', 'messageFactory', '$location',
-  function($scope, messagesFactory, usersFactory, messageFactory, $location) {
+controllers.controller('newMessageCtrl', ['$scope', 'messagesFactory', 'usersFactory', 'alertService', '$location',
+  function($scope, messagesFactory, usersFactory, alertService, $location) {
   $scope.title = "INBOX";
   usersFactory.index()
   .success(function(data) {
@@ -200,7 +200,7 @@ controllers.controller('newMessageCtrl', ['$scope', 'messagesFactory', 'usersFac
     }).success(function(data) {
       $location.path('/inbox');
     }).error(function(data) {
-      messageFactory.add(data.status.message, 'danger');
+      alertService.add(data.status.message, 'danger');
     })
   }
 }]);
