@@ -31,7 +31,7 @@ Scrummer::Application.routes.draw do
         end
       end
       member do
-        resource :board, only: :show
+        resource :board, only: [:show, :update]
       end
       resources :backlogs, :only => [:index] do
         collection do
