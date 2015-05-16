@@ -17,6 +17,14 @@ controllers.controller('indexCtrl', ['$scope', '$location', 'flash', 'AuthToken'
       }
 }]);
 
+controllers.controller('alertsCtrl', ['$scope', 'messageFactory', function($scope, messageFactory) {
+  $scope.alerts = messageFactory.get();
+
+  $scope.closeAlert = function(index) {
+    messageFactory.close(index);
+  };
+}]);
+
 // Login controller
 controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$location',
   function($scope, $routeParams, AuthService, $location) {
@@ -81,10 +89,7 @@ controllers.controller('boardCtrl', ['$scope', 'boardFactory', '$routeParams',
         placeholder: "ticket",
         connectWith: ".ticket-space",
         stop: function() {
-          boardFactory.update($routeParams.id, $scope.tickets)
-          .success(function(result) {
-            console.log(result);
-          })
+          boardFactory.update($routeParams.id, $scope.tickets);
         }
       };
       return options;
@@ -161,5 +166,41 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
   }
 }]);
 
+controllers.controller('inboxCtrl', ['$scope', 'messagesFactory', function($scope, messagesFactory) {
+  $scope.title = "INBOX";
 
+  messagesFactory.all()
+  .success(function(data) {
+    $scope.messages = data.document.messages;
+  });
+}]);
 
+controllers.controller('messageCtrl', ['$scope', 'messagesFactory', '$routeParams', function($scope, messagesFactory, $routeParams) {
+  $scope.title = "INBOX";
+
+  messagesFactory.get($routeParams.id)
+  .success(function(data) {
+    $scope.message = data.document.message;
+  });
+}]);
+
+controllers.controller('newMessageCtrl', ['$scope', 'messagesFactory', 'usersFactory', 'messageFactory', '$location',
+  function($scope, messagesFactory, usersFactory, messageFactory, $location) {
+  $scope.title = "INBOX";
+  usersFactory.index()
+  .success(function(data) {
+    $scope.users = data.document.users;
+  });
+
+  $scope.sendMessage = function() {
+    messagesFactory.create({
+      title: $scope.subject,
+      content: $scope.content,
+      recipient: $scope.username
+    }).success(function(data) {
+      $location.path('/inbox');
+    }).error(function(data) {
+      messageFactory.add(data.status.message, 'danger');
+    })
+  }
+}]);

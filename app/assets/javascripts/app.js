@@ -6,6 +6,7 @@ var scrummer = angular.module('scrummer', [
   'controllers',
   'auth',
   'services',
+  'messageService',
   'validator',
   'custom',
   'view_directives',
@@ -58,6 +59,18 @@ scrummer.config(['$routeProvider',
       when('/logout', {
         templateUrl: 'index.html',
         controller: 'logoutCtrl'
+      }).
+      when('/inbox', {
+        templateUrl: 'inbox.html',
+        controller: 'inboxCtrl'
+      }).
+      when('/inbox/:id', {
+        templateUrl: 'message.html',
+        controller: 'messageCtrl'
+      }).
+      when('/message/new', {
+        templateUrl: 'new_message.html',
+        controller: 'newMessageCtrl'
       }).
       otherwise({
         redirectTo: '/'

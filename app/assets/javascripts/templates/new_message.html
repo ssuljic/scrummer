@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+  <header title="title" description="description"></header>
+  </div>
+
+  <div class="col-md-3">
+    <menu></menu>
+  </div>
+
+  <div class="col-md-9">
+    <form class="form" ng-submit="sendMessage()">
+      <div class="form-group">
+        <label for="recipient" translate="RECIPIENT">:</label>
+        <oi-multiselect
+          ng-options="user.username for user in users track by user.id"
+          ng-model="username"
+          notempty
+          autofocus
+          required
+          placeholder="Enter username"
+          ></oi-multiselect>
+      </div>
+      <div class="form-group">
+        <label for="subject" translate="SUBJECT">:</label>
+        <input type="text" class="form-control" id="subject" placeholder="Enter subject" ng-model="subject" required>
+      </div>
+      <div class="form-group">
+        <textarea id="content" rows="15" class="form-control" style="resize:none;" ng-model="content" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" translate="SEND"></button>
+    </form>
+  </div>
+</div>
