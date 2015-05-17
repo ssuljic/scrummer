@@ -5,13 +5,13 @@ var auth = angular.module('auth', ['ngResource']);
 auth.factory('AuthToken', function() {
     return {
       get: function(key) {
-        return localStorage.getItem(key);
+        return sessionStorage.getItem(key);
       },
       set: function(key, value) {
-        return localStorage.setItem(key, value);
+        return sessionStorage.setItem(key, value);
       },
       unset: function(key) {
-        return localStorage.removeItem(key);
+        return sessionStorage.removeItem(key);
       }
     };
   });
