@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :user_projects
   has_many :tickets
   has_many :comments
+  has_many :uploads
   has_one  :session
   has_secure_password
   #Callbacks because some database adapters use case-sensitive indices

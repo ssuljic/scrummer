@@ -39,7 +39,7 @@ end
 gem 'bcrypt', '~> 3.1.10'
 
 # Use postgreSQL DBMS
-gem 'pg', '~> 0.18.1'
+gem 'pg', '~> 0.17.1'
 
 # Use bower for front-end dependencies
 gem 'bower-rails'
@@ -49,6 +49,9 @@ gem 'jwt'
 
 # Use angular routing and templates
 gem 'angular-rails-templates'
+
+# File upload with angular
+gem 'angularjs-file-upload-rails'
 
 # Use Google reCAPTCHA
 gem "recaptcha", :require => "recaptcha/rails"

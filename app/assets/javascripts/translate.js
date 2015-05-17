@@ -34,6 +34,10 @@ scrummer.config(function($translateProvider) {
     SAVE_PROJECT: 'Save project',
     BACKLOG: 'Backlog',
     ADDMEMBERS:'Members of project:',
+    RESOURCES: 'Resources',
+    NEW_RESOURCE: 'New resource',
+    UPLOADED_BY: 'Uploaded by',
+    UPLOAD: 'Upload',
 	USERSTORY_FORM: 'New user story form',
 	USERSTORY_NAME: 'Name of user story',
 	SAVE_USERSTORY: 'Save user story',
@@ -74,11 +78,14 @@ scrummer.config(function($translateProvider) {
     SAVE_PROJECT: 'Sačuvaj projekat',
     BACKLOG: 'Katalog zadataka',
     ADDMEMBERS:'Članovi projekta:',
+    RESOURCES: 'Resursi',
+    NEW_RESOURCE: 'Novi resurs',
+    UPLOADED_BY: 'Postavio',
+    UPLOAD: 'Postavi',
 	USERSTORY_FORM: 'Forma za unos novog user story-a',
 	USERSTORY_NAME: 'Ime user story',
 	SAVE_USERSTORY: 'Spasi user story',
 	NEW_USERSTORY: 'Novi user story'
-
   });
    $translateProvider.preferredLanguage('en');
 });

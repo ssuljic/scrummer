@@ -45,7 +45,8 @@ controllers.controller('backlogCtrl', ['$scope', '$location', '$modal', '$log', 
           $scope.tickets= resp.document.tickets;
           $scope.selectedTickets = [];
           $scope.project = resp.document.project;
-          $scope.description = resp.document.project.name;
+          $scope.title = resp.document.project.name;
+          $scope.description = resp.document.project.description;
           $scope.user_role = resp.document.user_role;
           $scope.panels = [{name: "Sprint"}, {name: "Backlog"}];
           $scope.selectedItems = createOptions();
@@ -248,8 +249,8 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
     }).error(function(resp) {
       $location.path('/backlog');
     });
-  }  
-}]); 
+  }
+}]);
 
 controllers.controller('membersCtrl', ['membersFactory', '$routeParams', '$scope', '$location',
   function(membersFactory, $routeParams, $scope, $location) {
@@ -303,5 +304,27 @@ controllers.controller('newMessageCtrl', ['$scope', 'messagesFactory', 'usersFac
     }).error(function(data) {
       alertService.add(data.status.message, 'danger');
     })
+  }
+}]);
+
+controllers.controller('resourcesCtrl', ['$scope', 'uploadsFactory', '$routeParams', function($scope, uploadsFactory, $routeParams) {
+  $scope.title = "RESOURCES";
+  $scope.project_id = $routeParams.project_id;
+
+  uploadsFactory.all($routeParams.project_id)
+  .success(function(data) {
+    console.log(data);
+    $scope.resources = data.document.resources;
+  });
+}]);
+
+controllers.controller('newResourceCtrl', ['$scope', 'uploadsFactory', '$location', 'FileUploader', '$routeParams',
+  function($scope, uploadsFactory, $location, FileUploader, $routeParams) {
+  $scope.title = "RESOURCES";
+  $scope.uploader = new FileUploader({url: '/api/projects/' + $routeParams.project_id + '/uploads'});
+
+  $scope.upload = function() {
+    $scope.uploader.uploadItem(0);
+    $location.path('/projects/' + $routeParams.project_id);
   }
 }]);
