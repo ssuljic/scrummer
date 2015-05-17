@@ -7,13 +7,13 @@
     <menu></menu>
   </div>
 
-  <div class="col-md-9">
+  <div class="col-md-9 backlog-container">
 
     <div ng-show="user_role == 'Manager'">
-      <button class="btn btn-primary" ng-click="open('lg')">Start New Sprint</button>
+      <button class="btn btn-common" ng-click="open('lg')">Start New Sprint</button>
     </div><br>
     <div class="row">
-      <div class="panel panel-primary">
+      <div class="panel panel-common">
         <div class="panel-heading">New Sprint</div>
 
         <div ui-sortable="selectedItems" class="panel-body ticket-space-backlog" ng-model="selectedTickets">
@@ -26,7 +26,7 @@
 
 
     <div class="row">
-      <div class="panel panel-primary">
+      <div class="panel panel-common">
         <div class="panel-heading">Backlog</div>
         <div ui-sortable="notSelectedItems" class="panel-body ticket-space-backlog" ng-model="tickets">
             <div class="well ticket" ng-repeat="ticket in tickets">
@@ -52,7 +52,7 @@
         </ul><br><br>
       Ramaining tickets from current sprint:
         <ul ng-repeat="ticket in remaining_tickets">
-          <li>{{ticket.name }} - {{ticket.status}} </li>
+          <ticket></ticket>
         </ul><br><br>
     </div>
 
@@ -74,7 +74,7 @@
 
   </div>
   <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="start()">Start</button>
-      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-common" ng-click="start()">Start</button>
+      <button class="btn btn-common" ng-click="cancel()">Cancel</button>
   </div>
 </script>

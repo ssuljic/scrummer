@@ -7,13 +7,10 @@
  <menu></menu>
 </div>
 
-<div class="col-md-9">
-<div class="container-fluid">
 
+<div class="container col-md-9 newproject-container">
+    <h5 class="title">New project</h5>
     <form class="form-horizontal" role="form" id="newprojectform">
-      <div class="page-header">
-        <h4 translate="PROJECT_FORM"></h4>
-      </div>
       <div class="form-group">
         <label for="name" class="col-xs-4 control-label" translate="NAME_PROJECT"></label>
         <div class="col-xs-8">
@@ -40,21 +37,20 @@
                   ng-options="user.firstname +' ' + user.lastname  for user in users track by user.id"
                   ng-model="selected_users"
                   multiple
-                  placeholder="Select members"
                   ></oi-multiselect>
                 </div>
       </div>
-      </div>
+
 
 
       <div class="form-group">
         <div class="col-xs-offset-10 col-xs-8">
-          <button type="submit" class="btn btn-primary" ng-click="saveProject()" translate="SAVE_PROJECT"></button>
+          <button type="submit" class="btn btn-common" ng-click="saveProject()" translate="SAVE_PROJECT"></button>
         </div>
       </div>
     </form>
 
 </div>
 
-</div>
+
 </div>

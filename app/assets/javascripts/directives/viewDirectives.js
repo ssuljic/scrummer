@@ -12,16 +12,16 @@ view_directives.directive('header', ['$translate', function() {
     },
     link: function($scope, $element) {},
     template:'<div class="page-header" id="header">' +
-              '<p>' +
+              '<p class="header">' +
                 '{{title | translate}}' +
-                '<small style="color:gray;margin-left:20px;">' +
+                '<small class="desc">' +
                   ' {{description}}' +
                 '</small>' +
-                '<button class="btn btn-default" ng-click="changeLanguage(\'bs\')" translate="BUTTON_TEXT_BS"></button>' +
-                '<button class="btn btn-default" ng-click="changeLanguage(\'en\')" translate="BUTTON_TEXT_EN"></button>' +
-                '<a ng-href="/#/logout" translate="LOGOUT"></a>' +
-                '<a ng-href="/#/inbox" translate="INBOX"></a>' +
-                '<a ng-href="/#/dashboard" translate="DASHBOARD"></a>' +
+                '<button class="btn btn-lang" ng-click="changeLanguage(\'bs\')" translate="BUTTON_TEXT_BS"></button>' +
+                '<button class="btn btn-lang" ng-click="changeLanguage(\'en\')" translate="BUTTON_TEXT_EN"></button>' +
+                '<a ng-href="/#/logout"><span class="glyphicon glyphicon-log-out icon"></span></a>' +
+                '<a ng-href="/#/inbox"><span class="glyphicon glyphicon-envelope icon"></span></a>' +
+                '<a ng-href="/#/dashboard"><span class="glyphicon glyphicon-home icon"></span></a>' +
               '</p>' +
             '</div>',
     controller: function($scope, $element, $translate) {

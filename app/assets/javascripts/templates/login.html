@@ -1,9 +1,7 @@
-<div class="container-fluid">
+<div class="container login-container">
 
+    <h4 class="title" translate="LOGIN"></h4>
     <form class="form-horizontal" role="form" id="loginform">
-      <div class="page-header">
-        <h4 translate="LOGIN"></h4>
-      </div>
       <div class="form-group">
         <label for="email" class="col-xs-1 control-label" translate="EMAIL"></label>
         <div class="col-xs-11">
@@ -21,10 +19,9 @@
           <h6><a id="forgotPassword" ng-click="doReset()" translate="FORGOT_PASS"></a></h6>
         </div>
       </div>
-      </div>
       <div class="form-group">
         <div class="col-xs-offset-1 col-xs-11">
-          <button type="submit" class="btn btn-primary" ng-click="doLogin()" translate="LOGIN"></button>
+          <button type="submit" class="btn btn-common" ng-click="doLogin()" translate="LOGIN"></button>
         </div>
       </div>
     </form>
