@@ -116,6 +116,7 @@ services.factory('userStoryFactory', function ($http, $q, $location, $rootScope)
       return $http.post('api/projects/' + id +'/backlog/userstories', {project_id : id, sprint_id:123,name : name, description:description});
     }
   };
+  });
 
 
 // Factory for sprints
