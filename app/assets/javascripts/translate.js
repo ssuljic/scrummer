@@ -38,10 +38,11 @@ scrummer.config(function($translateProvider) {
     NEW_RESOURCE: 'New resource',
     UPLOADED_BY: 'Uploaded by',
     UPLOAD: 'Upload',
-	USERSTORY_FORM: 'New user story form',
-	USERSTORY_NAME: 'Name of user story',
-	SAVE_USERSTORY: 'Save user story',
-	NEW_USERSTORY: 'New user story'
+    USERSTORY_FORM: 'New user story form',
+    USERSTORY_NAME: 'Name of user story',
+    SAVE_USERSTORY: 'Save user story',
+    NEW_USERSTORY: 'New user story',
+    UPLOADED_RESOURCES: 'Uploaded resources'
   })
   .translations('bs', {
     DASHBOARD: 'Komandna Tabla',
@@ -82,10 +83,11 @@ scrummer.config(function($translateProvider) {
     NEW_RESOURCE: 'Novi resurs',
     UPLOADED_BY: 'Postavio',
     UPLOAD: 'Postavi',
-	USERSTORY_FORM: 'Forma za unos novog user story-a',
-	USERSTORY_NAME: 'Ime user story',
-	SAVE_USERSTORY: 'Spasi user story',
-	NEW_USERSTORY: 'Novi user story'
+    USERSTORY_FORM: 'Forma za unos novog user story-a',
+    USERSTORY_NAME: 'Ime user story',
+    SAVE_USERSTORY: 'Spasi user story',
+    NEW_USERSTORY: 'Novi user story',
+    UPLOADED_RESOURCES: 'Postavljeni resursi'
   });
    $translateProvider.preferredLanguage('en');
 });
