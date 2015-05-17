@@ -1,6 +1,8 @@
-<div class="jumbotron">
-  <p><a ng-href="/#/project/new" translate="NEW_PROJECT">New project</a></p>
-  <p ng-repeat="project in Project.projects">
-  <a ng-href="/#/projects/{{project.id}}">{{project.name}}</a>
-  </p>
+<div class="container menu-container col-sm-12">
+  <a class="btn btn-common" ng-href="/#/project/new"><span class="glyphicon glyphicon-plus-sign"></span> New project</a>
+  <hr>
+  <div ng-repeat="project in Project.projects">
+  <a class="btn btn-project" ng-href="/#/projects/{{project.id}}">{{project.name}}</a>
+  <hr>
+  </div>
 </div>

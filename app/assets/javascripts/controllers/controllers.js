@@ -80,8 +80,10 @@ controllers.controller('backlogCtrl', ['$scope', '$location', '$modal', '$log', 
 
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
-      }, function () {
-        $scope.selectedTickets = [];
+      }, function (action) {
+        if(action=="OK") {
+          $scope.selectedTickets = [];
+        }
       });
     };
 
@@ -103,7 +105,7 @@ controllers.controller('newSprintModalCtrl', function ($scope, $location, $modal
   $scope.start = function () {
     sprintsFactory.create($routeParams.id, $scope.sprint, $scope.items, $scope.remaining_tickets)
     .success(function(resp) {
-       $modalInstance.dismiss();
+       $modalInstance.dismiss('OK');
     });
   };
 

@@ -1,3 +1,7 @@
+@import 'mixins';
+@import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+
 .status-heading {
   text-align: center;
 }
@@ -62,20 +66,420 @@
   margin-right: 2%;
 }
 
-menu {
-  margin: 0;
-  padding: 0;
+.message-container .table {
+  min-height: 200px;
 }
 
-.chart {
-  border: 1px solid #efefef;
-  h5 {
-    padding-bottom: 5px;
-    border-bottom: 1px solid #377BB5;
-    text-align:center;
+
+
+body {
+    font-family: Lato;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+/*** Index page ***/
+
+.index-container {
+  background: url('/assets/cover.jpg') no-repeat center center fixed !important;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 500px;
+  opacity: 0.6;
+}
+
+.welcome-panel {
+  text-align: center;
+  height: 90px;
+  width: 100%;
+  background: #FFFFFF;
+  font-family: 'Pacifico', cursive;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+
+    .btn-common {
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 14px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+}
+
+/*** Sign up and Login and Reset Pass***/
+
+.signup-container,
+.login-container,
+.reset-container {
+
+  display: inline-block;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-bottom: 5%;
+  background: #ecf0f1;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.29);
+  @include border-radius(4px);
+
+  .title {
+    font-size: 18px;
+    font-family: 'Pacifico', cursive;
+
+  }
+
+  .btn-common {
+      font-family: 'Pacifico', cursive;
+
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 14px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+
+  .error {
+    color: #d35400;
+  }
+
+  input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+    box-shadow: 1px 1px 1px 1px #E6C19F;
+    border: 0px;
   }
 }
 
-.message-container .table {
-  min-height: 200px;
+/*** Header ***/
+.header {
+  font-size: 18px;
+  font-family: 'Pacifico', cursive;
+  letter-spacing: 1.5px;
+
+  .desc {
+    font-family: Lato;
+    margin-left: 4%;
+    color: gray;
+    letter-spacing: 0px;
+  }
+
+  .btn-lang {
+    font-family: Lato;
+    background: #ecf0f1;
+    margin-left: 1px;
+    margin-top: -5px;
+    border: 2px solid #95a5a6;
+    @include border-radius(3px);
+    font-size: 12px;
+    color: #e67e22;
+    line-height: 17px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+  }
+
+  .icon {
+    color: #e67e22;
+    line-height: 17px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+  }
+}
+
+/** Left menu **/
+
+.menu-container {
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+  text-align: center;
+
+  .btn-common {
+      font-family: 'Pacifico', cursive;
+      margin-top: 3%;
+      width: 100%;
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 18px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+
+  .btn-project {
+     font-family: 'Lato';
+    background: #fff;
+    margin: 1px;
+    @include border-radius(3px);
+    font-size: 18px;
+    color: #e67e22;
+    text-align: left;
+    line-height: 2px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    width: 100%;
+    }
+}
+
+/*** Activities ***/
+
+.activity-container {
+  text-align: center;
+  h4 {
+    font-family: 'Pacifico';
+    letter-spacing: 1px;
+    color: #e67e22;
+  }
+
+  .jumbotron,
+  .jumbotron:hover {
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+    background: transparent;
+    @include border-radius(3px);
+    text-align: left;
+    font-size: 15px;
+    padding: 2%;
+  }
+
+  .desc {
+    font-family: Lato;
+    margin-left: 4%;
+    color: gray;
+    letter-spacing: 0px;
+  }
+
+
+  .glyphicon {
+    color: #e67e22;
+    line-height: 17px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+  }
+}
+
+
+/*** New project ***/
+
+.newproject-container {
+
+  background: #ecf0f1;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.29);
+  @include border-radius(4px);
+
+  .title {
+    font-size: 18px;
+    font-family: 'Pacifico', cursive;
+
+  }
+
+  .btn-common {
+      font-family: 'Pacifico', cursive;
+
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 14px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+
+  .error {
+    color: #d35400;
+  }
+
+  input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus,
+  oi-multiselect .multiselect-search.open,
+  oi-multiselect .multiselect-search.focused,
+  .multiselect-dropdown{
+    box-shadow: 1px 1px 1px 1px #E6C19F;
+    border: 0px;
+  }
+}
+
+/*** Project show ***/
+
+.project-container {
+  .btn-common {
+      font-family: 'Pacifico', cursive;
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 18px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+
+    .icon {
+    color: #e67e22;
+    line-height: 17px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    float: right;
+    margin-right: 2%;
+    font-size: 20px;
+  }
+
+
+  .jumbotron {
+      background: #FFF;
+      box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.29);
+      @include border-radius(3px);
+      border: 1px solid #efefef;
+      h5 {
+        font-family: 'Pacifico', cursive;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #e67e22;
+        text-align:center;
+      }
+    }
+}
+
+/*** Board ***/
+
+.panel-common
+ {
+  font-family: 'Pacifico', cursive;
+  background: #e67e22;
+  border: 2px solid #d35400;
+  @include border-radius(3px);
+  font-size: 14px;
+  color: #FFFFFF;
+  opacity:0.8;
+  line-height: 17px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+
+  .ticket {
+    font-family: 'Lato';
+    color: #000;
+    opacity: 1;
+    text-shadow: none;
+    line-height: 15px;
+    @include border-radius(1px);
+  }
+
+}
+
+.backlog-container {
+  .btn-common {
+      font-family: 'Pacifico', cursive;
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 18px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+}
+
+/*** New Sprint ***/
+.modal-header {
+  .modal-title {
+    font-size: 18px;
+    font-family: 'Pacifico', cursive;
+  }
+
+}
+.modal-body {
+  height: auto;
+  input[type="text"]:focus, input[type="date"]:focus{
+    box-shadow: 1px 1px 1px 1px #E6C19F;
+    border: 0px;
+  }
+
+  p {
+    padding-left: 3px;
+    nt-family: 'Pacifico';
+    letter-spacing: 1.5px;
+  }
+
+  .ticket {
+    background: #fff;
+    border: 2px solid #E6C19F;
+    @include border-radius(3px);
+    box-shadow: 1px 1px 1px 1px #E6C19F;
+    margin-left: 1%;
+  }
+}
+.modal-footer {
+    .btn-common {
+      font-family: 'Pacifico', cursive;
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 18px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+}
+
+/*** INBOX ***/
+.inbox-container {
+   .btn-common,
+   .panel-msg > .panel-heading {
+      font-family: 'Pacifico', cursive;
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 18px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+
+}
+
+/*** Message ***/
+.message-container {
+
+  .table {
+    min-height: 200px;
+    padding: 5px;
+  }
+
+.panel-msg > .panel-heading {
+    background: #e67e22;
+  }
+
+}
+
+/*** New message ***/
+
+.new-message-container{
+
+  background: #ecf0f1;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.29);
+  @include border-radius(4px);
+
+  .title {
+    font-size: 18px;
+    font-family: 'Pacifico', cursive;
+
+  }
+
+  .btn-common {
+      font-family: 'Pacifico', cursive;
+
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 14px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+
+  .error {
+    color: #d35400;
+  }
+
+  input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus,
+  oi-multiselect .multiselect-search.open,
+  oi-multiselect .multiselect-search.focused,
+  .multiselect-dropdown{
+    box-shadow: 1px 1px 1px 1px #E6C19F;
+    border: 0px;
+  }
+}
+
+menu {
+  padding:0;
+  margin:0;
 }

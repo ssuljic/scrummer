@@ -7,7 +7,8 @@
     <menu></menu>
   </div>
 
-  <div class="col-md-9">
+  <div class="col-md-9 new-message-container">
+    <h5 class="title">New message</h5><br><br>
     <form class="form" ng-submit="sendMessage()">
       <div class="form-group">
         <label for="recipient" translate="RECIPIENT">:</label>
@@ -27,7 +28,7 @@
       <div class="form-group">
         <textarea id="content" rows="15" class="form-control" style="resize:none;" ng-model="content" required></textarea>
       </div>
-      <button type="submit" class="btn btn-primary" translate="SEND"></button>
+      <button type="submit" class="btn btn-common" translate="SEND"></button>
     </form>
   </div>
 </div>
