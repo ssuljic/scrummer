@@ -38,6 +38,9 @@ Scrummer::Application.routes.draw do
         end
       end
       resources :tickets
+	  resource :backlog do
+		resource :userstories
+	  end
     end
 
     resource :dashboard, only: :show

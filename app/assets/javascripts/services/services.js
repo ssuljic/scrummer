@@ -86,7 +86,7 @@ services.factory('resetFactory', function($http, $q, $rootScope, $location) {
   };
 });
 
-// Factory for users
+// Factory for projects
 services.factory('projectFactory', function ($http, $q, $location, $rootScope) {
   return {
     index: function() {
@@ -97,6 +97,15 @@ services.factory('projectFactory', function ($http, $q, $location, $rootScope) {
     },
     create: function(name,code_name,description,selected_users) {
       return $http.post('api/projects', {name : name,code_name:code_name,description:description,selected_users:selected_users});
+    }
+  };
+});
+
+// Factory for userStories
+services.factory('userStoryFactory', function ($http, $q, $location, $rootScope) {
+  return {
+    create: function(id,name,description) {
+      return $http.post('api/projects/' + id +'/backlog/userstories', {project_id : id, sprint_id:123,name : name, description:description});
     }
   };
 });

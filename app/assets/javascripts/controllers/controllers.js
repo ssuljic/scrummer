@@ -103,6 +103,7 @@ controllers.controller('resetCtrl', ['$scope', '$location','resetFactory',
     }
 }]);
 
+//New project controller
 controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory', 'usersFactory',function($scope,$location, projectFactory,usersFactory) {
   $scope.title = "NEW_PROJECT";
   usersFactory.index()
@@ -120,6 +121,7 @@ controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory'
   }
 }]);
 
+//Project controller
 controllers.controller('projectCtrl', ['projectFactory', function(projectFactory) {
   var project = this;
 
@@ -143,6 +145,20 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
     });
   }
 }]);
+
+//New user story controller
+ controllers.controller('newUserStoryCtrl', ['$scope', '$location','userStoryFactory', '$routeParams',function($scope,$location, userStoryFactory,$routeParams) {
+  $scope.title = "New user story";
+
+ 	$scope.saveUserStory = function() {
+    userStoryFactory.create($routeParams.id, $scope.user_story.name,$scope.user_story.description)
+    .success(function(resp) {
+      $location.path('/dashboard');
+    }).error(function(resp) {
+      $location.path('/backlog');
+    });
+  }  
+}]); 
 
 
 
