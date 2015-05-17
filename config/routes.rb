@@ -25,7 +25,7 @@ Scrummer::Application.routes.draw do
     end
 
     resources :projects do
-      resources :members, :only => [:index, :create, :destroy] do
+      resources :members, :only => [:index, :create, :destroy, :update] do
         collection do
           get :search
         end
@@ -41,6 +41,9 @@ Scrummer::Application.routes.draw do
       end
       resources :uploads
       resources :tickets
+	  resource :backlog do
+		resource :userstories
+	  end
     end
 
     resources :messages, only: [:index, :show, :create]

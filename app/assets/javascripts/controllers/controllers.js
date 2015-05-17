@@ -45,7 +45,8 @@ controllers.controller('backlogCtrl', ['$scope', '$location', '$modal', '$log', 
           $scope.tickets= resp.document.tickets;
           $scope.selectedTickets = [];
           $scope.project = resp.document.project;
-          $scope.description = resp.document.project.name;
+          $scope.title = resp.document.project.name;
+          $scope.description = resp.document.project.description;
           $scope.user_role = resp.document.user_role;
           $scope.panels = [{name: "Sprint"}, {name: "Backlog"}];
           $scope.selectedItems = createOptions();
@@ -193,6 +194,7 @@ controllers.controller('resetCtrl', ['$scope', '$location','resetFactory',
     }
 }]);
 
+//New project controller
 controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory', 'usersFactory',function($scope,$location, projectFactory,usersFactory) {
   $scope.title = "NEW_PROJECT";
   usersFactory.index()
@@ -210,6 +212,7 @@ controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory'
   }
 }]);
 
+//Project controller
 controllers.controller('projectCtrl', ['projectFactory', function(projectFactory) {
   var project = this;
 
@@ -228,8 +231,39 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
       $scope.title = $scope.project.name;
       $scope.description = $scope.project.description;
       $scope.summary = response.document.summary;
+      $scope.user_role = response.document.user_role;
       var chartsBuilder = new ChartsBuilder($scope.summary);
       $scope.charts = chartsBuilder.build();
+    });
+  }
+}]);
+
+//New user story controller
+ controllers.controller('newUserStoryCtrl', ['$scope', '$location','userStoryFactory', '$routeParams',function($scope,$location, userStoryFactory,$routeParams) {
+  $scope.title = "New user story";
+
+ 	$scope.saveUserStory = function() {
+    userStoryFactory.create($routeParams.id, $scope.user_story.name,$scope.user_story.description)
+    .success(function(resp) {
+      $location.path('/dashboard');
+    }).error(function(resp) {
+      $location.path('/backlog');
+    });
+  }
+}]);
+
+controllers.controller('membersCtrl', ['membersFactory', '$routeParams', '$scope', '$location',
+  function(membersFactory, $routeParams, $scope, $location) {
+
+  membersFactory.get($routeParams.id)
+    .success(function(response) {
+      $scope.members = response.document.users;
+    });
+
+  $scope.promote = function(member_id) {
+    membersFactory.update($routeParams.id, member_id)
+    .success(function(response) {
+      $location.path('/projects/'+$routeParams.id);
     });
   }
 }]);

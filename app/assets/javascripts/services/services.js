@@ -38,8 +38,7 @@ services.factory('dashboardFactory', function ($http, $q, $location, $rootScope,
 services.factory('backlogFactory', function ($http, $q, $location, $rootScope, flash) {
   return {
     get: function(id) {
-      var d = $q.defer();
-        return $http.get('/api/projects/'+ id +'/backlogs', {});
+      return $http.get('/api/projects/'+ id +'/backlogs', {});
     }
 
   };
@@ -77,7 +76,7 @@ services.factory('resetFactory', function($http, $q, $rootScope, $location) {
   };
 });
 
-// Factory for users
+// Factory for projects
 services.factory('projectFactory', function ($http, $q, $location, $rootScope) {
   return {
     index: function() {
@@ -110,6 +109,15 @@ services.factory('messagesFactory', function ($http) {
   };
 });
 
+// Factory for userStories
+services.factory('userStoryFactory', function ($http, $q, $location, $rootScope) {
+  return {
+    create: function(id,name,description) {
+      return $http.post('api/projects/' + id +'/backlog/userstories', {project_id : id, sprint_id:123,name : name, description:description});
+    }
+  };
+  });
+
 
 // Factory for sprints
 services.factory('sprintsFactory', function ($http) {
@@ -131,6 +139,19 @@ services.factory('uploadsFactory', function ($http) {
     },
     create: function(project_id, file) {
       return $http.post('api/projects/' + project_id + '/uploads', { file: file });
+    }
+  }
+});
+
+// Factory for members
+services.factory('membersFactory', function ($http) {
+  return {
+    get: function(id) {
+      return $http.get('/api/projects/'+ id +'/members', {});
+    },
+    update: function(project_id, member_id) {
+      return $http.put('api/projects/' + project_id + '/members/' + member_id, {
+       });
     }
   }
 });

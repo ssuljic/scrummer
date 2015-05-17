@@ -8,7 +8,8 @@ before_filter :restrict_api_access
 
     render response: {
       project: project,
-      summary: summary
+      summary: summary,
+      :user_role => project.get_role(@current_user.id)
     }
   end
 

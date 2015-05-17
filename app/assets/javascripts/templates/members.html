@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+  <header title="title" description="description"></header>
+  </div>
+
+  <div class="col-md-3">
+    <menu></menu>
+  </div>
+
+  <div class="col-md-9">
+    <div ng-repeat="member in members">
+      <div class="row">
+        <button class="btn btn-default disabled" disable="true">{{member.username}}</button>
+        <button ng-click="promote(member.id)" class="btn btn-default">Promote</button>
+      </div><br><br>
+    </div>
+  </div>
+</div>

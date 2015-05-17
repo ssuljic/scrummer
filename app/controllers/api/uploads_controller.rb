@@ -3,7 +3,7 @@ class Api::UploadsController < ApiController
 
   def index
     project = Project.find(params[:project_id])
-    uploads = project.uploads
+    uploads = project.uploads.order('created_at DESC')
     render response: { resources: uploads }
   end
 
