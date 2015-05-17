@@ -66,21 +66,11 @@
   margin-right: 2%;
 }
 
-menu {
-  margin: 0;
-  padding: 0;
-}
-
-
-
 .message-container .table {
   min-height: 200px;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
-  border: 1px solid #D6D6D6;
-  @include border-radius(4px);
-}
+
 
 body {
     font-family: Lato;
@@ -386,6 +376,27 @@ body {
   }
 
 }
+.modal-body {
+  height: auto;
+  input[type="text"]:focus, input[type="date"]:focus{
+    box-shadow: 1px 1px 1px 1px #E6C19F;
+    border: 0px;
+  }
+
+  p {
+    padding-left: 3px;
+    nt-family: 'Pacifico';
+    letter-spacing: 1.5px;
+  }
+
+  .ticket {
+    background: #fff;
+    border: 2px solid #E6C19F;
+    @include border-radius(3px);
+    box-shadow: 1px 1px 1px 1px #E6C19F;
+    margin-left: 1%;
+  }
+}
 .modal-footer {
     .btn-common {
       font-family: 'Pacifico', cursive;
@@ -397,4 +408,78 @@ body {
       line-height: 17px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
     }
+}
+
+/*** INBOX ***/
+.inbox-container {
+   .btn-common,
+   .panel-msg > .panel-heading {
+      font-family: 'Pacifico', cursive;
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 18px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+
+}
+
+/*** Message ***/
+.message-container {
+
+  .table {
+    min-height: 200px;
+    padding: 5px;
+  }
+
+.panel-msg > .panel-heading {
+    background: #e67e22;
+  }
+
+}
+
+/*** New message ***/
+
+.new-message-container{
+
+  background: #ecf0f1;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.29);
+  @include border-radius(4px);
+
+  .title {
+    font-size: 18px;
+    font-family: 'Pacifico', cursive;
+
+  }
+
+  .btn-common {
+      font-family: 'Pacifico', cursive;
+
+      background: #e67e22;
+      border: 2px solid #d35400;
+      @include border-radius(3px);
+      font-size: 14px;
+      color: #FFFFFF;
+      line-height: 17px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.26);
+    }
+
+  .error {
+    color: #d35400;
+  }
+
+  input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus,
+  oi-multiselect .multiselect-search.open,
+  oi-multiselect .multiselect-search.focused,
+  .multiselect-dropdown{
+    box-shadow: 1px 1px 1px 1px #E6C19F;
+    border: 0px;
+  }
+}
+
+menu {
+  padding:0;
+  margin:0;
 }

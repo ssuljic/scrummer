@@ -11,6 +11,7 @@
 
     <div ng-show="user_role == 'Manager'">
       <button class="btn btn-common" ng-click="open('lg')">Start New Sprint</button>
+      <a class="btn btn-common" ng-href="/#/projects/{{project.id}}/backlog/userstories" translate="NEW_USERSTORY"></a>
     </div><br>
     <div class="row">
       <div class="panel panel-common">
@@ -24,12 +25,8 @@
       </div>
     </div>
 
-	<div>
-		<a class="btn btn-default" ng-href="/#/projects/{{project.id}}/backlog/userstories" translate="NEW_USERSTORY"></a>
-		<br>
-		<br>
-	</div>
-	
+
+
 
     <div class="row">
       <div class="panel panel-common">
@@ -49,33 +46,35 @@
   <div class="modal-header">
       <h3 class="modal-title">Create New Sprint</h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body container">
 
-    <div class="jumbotron">
-      You selected these tickets for new sprint:
-        <ul ng-repeat="item in items">
-          <li>{{item.name }} </li>
-        </ul><br><br>
-      Ramaining tickets from current sprint:
-        <ul ng-repeat="ticket in remaining_tickets">
-          <ticket></ticket>
-        </ul><br><br>
+    <div class="row">
+    <p ng-show="tickets.count > 0"> You selected these tickets for new sprint:</p>
+      <div class="well ticket col-sm-2" ng-repeat="ticket in items">
+        <ticket></ticket>
+      </div><br><br>
+    <p ng-show="remaining_tickets.length > 0"><span class="glyphicon glyphicon-th-list"></span> Remaining tickets from current sprint:</p>
+      <div class="well ticket col-sm-2" ng-repeat="ticket in remaining_tickets">
+        <ticket></ticket>
+      </div><br><br>
     </div>
-
-    <div class="form-horizontal">
-      <div class="form-group">
-        <label for="name" class="col-xs-4 control-label">Sprint name:</label>
-        <div class="col-xs-8">
-          <input type="text" ng-model="sprint.name" class="form-control" id="name" required>
+    <br>
+    <div class="row">
+      <form class="form-horizontal row">
+        <div class="form-group">
+          <label for="name" class="col-xs-2 control-label">Sprint name:</label>
+          <div class="col-xs-6">
+            <input type="text" ng-model="sprint.name" class="form-control" id="name" required>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="end_date" class="col-xs-4 control-label">End date:</label>
-        <div class="col-xs-8">
-        <input type="date" ng-model="sprint.end_date" "sprint.end_date" class="form-control" id="end_date" required>
+        <div class="form-group">
+          <label for="end_date" class="col-xs-2 control-label">End date:</label>
+          <div class="col-xs-6">
+          <input type="date" ng-model="sprint.end_date" "sprint.end_date" class="form-control" id="end_date" required>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
 
   </div>
