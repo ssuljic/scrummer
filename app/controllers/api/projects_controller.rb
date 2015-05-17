@@ -3,6 +3,7 @@ before_filter :restrict_api_access
 
   #Shows project with specified id
   def show
+    #byebug
     project = Project.find(params[:id])
     summary = SummaryBuilder.new(project).build.data
 
@@ -47,6 +48,13 @@ before_filter :restrict_api_access
   def index
     projects = current_user.projects
     render response: { projects: projects}
+  end
+
+  #Get ramianing tickets for new sprint
+  def remaining_tickets
+
+    tickets = Project.find(params[:id]).sprints.where(:active => true).first.tickets.where(:status_id => [ActiveRecord::Base::Status.to_do.id, ActiveRecord::Base::Status.in_progress.id, ActiveRecord::Base::Status.to_verify.id])
+    render response: { tickets: tickets}
   end
 
   #Project parameters

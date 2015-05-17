@@ -2,7 +2,7 @@
 
 // Controllers
 
-var controllers = angular.module('controllers', []);
+var controllers = angular.module('controllers', ['ui.bootstrap']);
 
 // Index controller
 controllers.controller('indexCtrl', ['$scope', '$location', 'flash', 'AuthToken',
@@ -37,11 +37,79 @@ controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$
 }]);
 
 // Backlog controller
-controllers.controller('backlogCtrl', ['$scope', '$location', 'backlogFactory', '$translate', '$routeParams',
-  function($scope, $location, backlogFactory, $translate, $routeParams) {
-    backlogFactory.get($routeParams.id);
-    $scope.title = 'BACKLOG';
+controllers.controller('backlogCtrl', ['$scope', '$location', '$modal', '$log', 'backlogFactory', '$translate', '$routeParams',
+  function($scope, $location, $modal, $log, backlogFactory, $translate, $routeParams) {
+    backlogFactory.get($routeParams.id)
+    .success(function(resp) {
+        if(resp.status.message == "OK") {
+          $scope.tickets= resp.document.tickets;
+          $scope.selectedTickets = [];
+          $scope.project = resp.document.project;
+          $scope.description = resp.document.project.name;
+          $scope.user_role = resp.document.user_role;
+          $scope.panels = [{name: "Sprint"}, {name: "Backlog"}];
+          $scope.selectedItems = createOptions();
+          $scope.notSelectedItems = createOptions();
+      }
+    });
+
+    function createOptions() {
+      var options = {
+        placeholder: "ticket",
+        connectWith: ".ticket-space-backlog",
+      };
+      return options;
+    }
+
+    $scope.animationsEnabled = true;
+
+    $scope.open = function (size) {
+
+      var modalInstance = $modal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'newSprintModalContent.html',
+        controller: 'newSprintModalCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.selectedTickets;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $scope.selectedTickets = [];
+      });
+    };
+
+    $scope.toggleAnimation = function () {
+      $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
+
 }]);
+
+// New sprint
+controllers.controller('newSprintModalCtrl', function ($scope, $location, $modalInstance, items, projectFactory, $routeParams, sprintsFactory) {
+
+  $scope.items = items;
+  projectFactory.remainingTickets($routeParams.id)
+    .success(function(resp) {
+     $scope.remaining_tickets = resp.document.tickets;
+  });
+
+  $scope.start = function () {
+    sprintsFactory.create($routeParams.id, $scope.sprint, $scope.items, $scope.remaining_tickets)
+    .success(function(resp) {
+       $modalInstance.dismiss();
+    });
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
 
 // Dashboard controller
 controllers.controller('dashboardCtrl', ['$scope', '$location', 'dashboardFactory', '$translate',

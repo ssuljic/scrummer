@@ -10,34 +10,71 @@
   <div class="col-md-9">
 
     <div ng-show="user_role == 'Manager'">
-      <button class="btn btn-default">Start this sprint</button>
+      <button class="btn btn-primary" ng-click="open('lg')">Start New Sprint</button>
     </div><br>
     <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading">Sprint</div>
-        Drag tickets here.
+      <div class="panel panel-primary">
+        <div class="panel-heading">New Sprint</div>
+
+        <div ui-sortable="selectedItems" class="panel-body ticket-space-backlog" ng-model="selectedTickets">
+          <div class="well ticket" ng-repeat="ticket in selectedTickets">
+            <ticket></ticket>
+          </div>
+        </div>
       </div>
     </div>
 
 
     <div class="row">
-      <div class="panel panel-default">
+      <div class="panel panel-primary">
         <div class="panel-heading">Backlog</div>
-        <div class="panel-body ticket-space">
-            <div ng-repeat = "story in stories">
-              <p>From user story: {{ story.name }} </p>
-              <div class="well ticket" ng-repeat="ticket in story.tickets">
-                <ticket></ticket>
-              </div>
-            </div>
-            <p>Independent tickets</p>
+        <div ui-sortable="notSelectedItems" class="panel-body ticket-space-backlog" ng-model="tickets">
             <div class="well ticket" ng-repeat="ticket in tickets">
               <ticket></ticket>
             </div>
-          </div>
+        </div>
       </div>
     </div>
 
-
   </div>
 </div>
+
+<script type="text/ng-template" id="newSprintModalContent.html">
+  <div class="modal-header">
+      <h3 class="modal-title">Create New Sprint</h3>
+  </div>
+  <div class="modal-body">
+
+    <div class="jumbotron">
+      You selected these tickets for new sprint:
+        <ul ng-repeat="item in items">
+          <li>{{item.name }} </li>
+        </ul><br><br>
+      Ramaining tickets from current sprint:
+        <ul ng-repeat="ticket in remaining_tickets">
+          <li>{{ticket.name }} - {{ticket.status}} </li>
+        </ul><br><br>
+    </div>
+
+    <div class="form-horizontal">
+      <div class="form-group">
+        <label for="name" class="col-xs-4 control-label">Sprint name:</label>
+        <div class="col-xs-8">
+          <input type="text" ng-model="sprint.name" class="form-control" id="name" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="end_date" class="col-xs-4 control-label">End date:</label>
+        <div class="col-xs-8">
+        <input type="date" ng-model="sprint.end_date" "sprint.end_date" class="form-control" id="end_date" required>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="start()">Start</button>
+      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+</script>
