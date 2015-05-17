@@ -10,7 +10,7 @@ class TicketAssignmentCalculator < Calculator
                 ]
       }
     }
-    #byebug
+
     {
       type: 'multiBarChart',
       title: 'Tickets per Users',

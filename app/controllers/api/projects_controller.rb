@@ -3,7 +3,6 @@ before_filter :restrict_api_access
 
   #Shows project with specified id
   def show
-    #byebug
     project = Project.find(params[:id])
     summary = SummaryBuilder.new(project).build.data
 

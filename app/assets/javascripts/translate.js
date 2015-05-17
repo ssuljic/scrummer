@@ -33,7 +33,11 @@ scrummer.config(function($translateProvider) {
     DESCRIPTION: 'Description',
     SAVE_PROJECT: 'Save project',
     BACKLOG: 'Backlog',
-    ADDMEMBERS:'Members of project:'
+    ADDMEMBERS:'Members of project:',
+    RESOURCES: 'Resources',
+    NEW_RESOURCE: 'New resource',
+    UPLOADED_BY: 'Uploaded by',
+    UPLOAD: 'Upload'
   })
   .translations('bs', {
     DASHBOARD: 'Komandna Tabla',
@@ -69,8 +73,11 @@ scrummer.config(function($translateProvider) {
     DESCRIPTION: 'Opis',
     SAVE_PROJECT: 'Sačuvaj projekat',
     BACKLOG: 'Katalog zadataka',
-    ADDMEMBERS:'Članovi projekta:'
-
+    ADDMEMBERS:'Članovi projekta:',
+    RESOURCES: 'Resursi',
+    NEW_RESOURCE: 'Novi resurs',
+    UPLOADED_BY: 'Postavio',
+    UPLOAD: 'Postavi'
   });
    $translateProvider.preferredLanguage('en');
 });

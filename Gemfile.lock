@@ -29,6 +29,7 @@ GEM
       railties (>= 3.1)
       sprockets
       tilt
+    angularjs-file-upload-rails (1.1.6)
     arel (4.0.2)
     bcrypt (3.1.10)
     bcrypt (3.1.10-x86-mingw32)
@@ -67,8 +68,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.11.0)
-    pg (0.18.1)
-    pg (0.18.1-x86-mingw32)
+    pg (0.17.1)
     polyglot (0.3.5)
     public_activity (1.4.2)
       actionpack (>= 3.0.0)
@@ -142,6 +142,7 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails-templates
+  angularjs-file-upload-rails
   bcrypt (~> 3.1.10)
   bower-rails
   byebug
@@ -149,7 +150,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   jwt
-  pg (~> 0.18.1)
+  pg (~> 0.17.1)
   public_activity
   rails (= 4.0.7)
   rails_12factor
