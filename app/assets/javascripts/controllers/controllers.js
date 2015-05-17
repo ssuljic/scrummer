@@ -2,7 +2,7 @@
 
 // Controllers
 
-var controllers = angular.module('controllers', []);
+var controllers = angular.module('controllers', ['ui.bootstrap']);
 
 // Index controller
 controllers.controller('indexCtrl', ['$scope', '$location', 'flash', 'AuthToken',
@@ -17,6 +17,14 @@ controllers.controller('indexCtrl', ['$scope', '$location', 'flash', 'AuthToken'
       }
 }]);
 
+controllers.controller('alertsCtrl', ['$scope', 'alertService', function($scope, alertService) {
+  $scope.alerts = alertService.get();
+
+  $scope.closeAlert = function(index) {
+    alertService.close(index);
+  };
+}]);
+
 // Login controller
 controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$location',
   function($scope, $routeParams, AuthService, $location) {
@@ -29,11 +37,79 @@ controllers.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$
 }]);
 
 // Backlog controller
-controllers.controller('backlogCtrl', ['$scope', '$location', 'backlogFactory', '$translate', '$routeParams',
-  function($scope, $location, backlogFactory, $translate, $routeParams) {
-    backlogFactory.get($routeParams.id);
-    $scope.title = 'BACKLOG';
+controllers.controller('backlogCtrl', ['$scope', '$location', '$modal', '$log', 'backlogFactory', '$translate', '$routeParams',
+  function($scope, $location, $modal, $log, backlogFactory, $translate, $routeParams) {
+    backlogFactory.get($routeParams.id)
+    .success(function(resp) {
+        if(resp.status.message == "OK") {
+          $scope.tickets= resp.document.tickets;
+          $scope.selectedTickets = [];
+          $scope.project = resp.document.project;
+          $scope.description = resp.document.project.name;
+          $scope.user_role = resp.document.user_role;
+          $scope.panels = [{name: "Sprint"}, {name: "Backlog"}];
+          $scope.selectedItems = createOptions();
+          $scope.notSelectedItems = createOptions();
+      }
+    });
+
+    function createOptions() {
+      var options = {
+        placeholder: "ticket",
+        connectWith: ".ticket-space-backlog",
+      };
+      return options;
+    }
+
+    $scope.animationsEnabled = true;
+
+    $scope.open = function (size) {
+
+      var modalInstance = $modal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'newSprintModalContent.html',
+        controller: 'newSprintModalCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.selectedTickets;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $scope.selectedTickets = [];
+      });
+    };
+
+    $scope.toggleAnimation = function () {
+      $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
+
 }]);
+
+// New sprint
+controllers.controller('newSprintModalCtrl', function ($scope, $location, $modalInstance, items, projectFactory, $routeParams, sprintsFactory) {
+
+  $scope.items = items;
+  projectFactory.remainingTickets($routeParams.id)
+    .success(function(resp) {
+     $scope.remaining_tickets = resp.document.tickets;
+  });
+
+  $scope.start = function () {
+    sprintsFactory.create($routeParams.id, $scope.sprint, $scope.items, $scope.remaining_tickets)
+    .success(function(resp) {
+       $modalInstance.dismiss();
+    });
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+});
 
 // Dashboard controller
 controllers.controller('dashboardCtrl', ['$scope', '$location', 'dashboardFactory', '$translate',
@@ -67,11 +143,25 @@ controllers.controller('boardCtrl', ['$scope', 'boardFactory', '$routeParams',
   function($scope, boardFactory, $routeParams) {
     boardFactory.get($routeParams.id)
     .success(function(result) {
-      $scope.content = result;
+      $scope.tickets = result.document.board.tickets;
       $scope.statuses = result.document.board.statuses;
       $scope.title = result.document.board.sprint.name;
       $scope.description = result.document.board.sprint.start_date + '-' + result.document.board.sprint.end_date;
+      $scope.sortableOptionsList = {};
+      _.each($scope.statuses, function(status) { $scope.sortableOptionsList[status.name] = createOptions(status.name); });
     });
+
+    function createOptions(listName) {
+      var _listName = listName;
+      var options = {
+        placeholder: "ticket",
+        connectWith: ".ticket-space",
+        stop: function() {
+          boardFactory.update($routeParams.id, $scope.tickets);
+        }
+      };
+      return options;
+    }
 }]);
 
 // Signup controller
@@ -140,6 +230,7 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
       $scope.title = $scope.project.name;
       $scope.description = $scope.project.description;
       $scope.summary = response.document.summary;
+      $scope.user_role = response.document.user_role;
       var chartsBuilder = new ChartsBuilder($scope.summary);
       $scope.charts = chartsBuilder.build();
     });
@@ -160,5 +251,57 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
   }  
 }]); 
 
+controllers.controller('membersCtrl', ['membersFactory', '$routeParams', '$scope', '$location',
+  function(membersFactory, $routeParams, $scope, $location) {
 
+  membersFactory.get($routeParams.id)
+    .success(function(response) {
+      $scope.members = response.document.users;
+    });
 
+  $scope.promote = function(member_id) {
+    membersFactory.update($routeParams.id, member_id)
+    .success(function(response) {
+      $location.path('/projects/'+$routeParams.id);
+    });
+  }
+}]);
+
+controllers.controller('inboxCtrl', ['$scope', 'messagesFactory', function($scope, messagesFactory) {
+  $scope.title = "INBOX";
+
+  messagesFactory.all()
+  .success(function(data) {
+    $scope.messages = data.document.messages;
+  });
+}]);
+
+controllers.controller('messageCtrl', ['$scope', 'messagesFactory', '$routeParams', function($scope, messagesFactory, $routeParams) {
+  $scope.title = "INBOX";
+
+  messagesFactory.get($routeParams.id)
+  .success(function(data) {
+    $scope.message = data.document.message;
+  });
+}]);
+
+controllers.controller('newMessageCtrl', ['$scope', 'messagesFactory', 'usersFactory', 'alertService', '$location',
+  function($scope, messagesFactory, usersFactory, alertService, $location) {
+  $scope.title = "INBOX";
+  usersFactory.index()
+  .success(function(data) {
+    $scope.users = data.document.users;
+  });
+
+  $scope.sendMessage = function() {
+    messagesFactory.create({
+      title: $scope.subject,
+      content: $scope.content,
+      recipient: $scope.username
+    }).success(function(data) {
+      $location.path('/inbox');
+    }).error(function(data) {
+      alertService.add(data.status.message, 'danger');
+    })
+  }
+}]);

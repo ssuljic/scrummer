@@ -6,13 +6,15 @@ var scrummer = angular.module('scrummer', [
   'controllers',
   'auth',
   'services',
+  'alertService',
   'validator',
   'custom',
   'view_directives',
   'pascalprecht.translate',
   'ui.bootstrap',
   'oi.multiselect',
-  'nvd3'
+  'nvd3',
+  'ui.sortable'
 ]);
 
 scrummer.config(['$routeProvider',
@@ -53,14 +55,30 @@ scrummer.config(['$routeProvider',
 	  when('/projects/:id/backlog/userstories', {
         templateUrl: 'new_story.html',
         controller: 'newUserStoryCtrl'
+	  }).
+      when('/projects/:id/members', {
+        templateUrl: 'members.html',
+        controller: 'membersCtrl'
       }).
-	     when('/reset', {
+	  when('/reset', {
         templateUrl: 'reset.html',
         controller: 'resetCtrl'
       }).
       when('/logout', {
         templateUrl: 'index.html',
         controller: 'logoutCtrl'
+      }).
+      when('/inbox', {
+        templateUrl: 'inbox.html',
+        controller: 'inboxCtrl'
+      }).
+      when('/inbox/:id', {
+        templateUrl: 'message.html',
+        controller: 'messageCtrl'
+      }).
+      when('/message/new', {
+        templateUrl: 'new_message.html',
+        controller: 'newMessageCtrl'
       }).
       otherwise({
         redirectTo: '/'

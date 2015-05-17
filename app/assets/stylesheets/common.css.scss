@@ -3,10 +3,23 @@
 }
 .ticket {
   margin: 3px;
+  cursor: move;
 }
 .ticket-space {
   padding: 0;
+  min-height:500px;
 }
+
+.ticket-space-backlog {
+  padding: 0;
+  min-height:200px;
+}
+
+.ticket-space-backlog-col {
+  padding: 0;
+  height: 100%;
+}
+
 .ticket-space-col {
   padding: 0;
   height: 100%;
@@ -16,6 +29,11 @@
 }
 .gray {
   color: #888;
+}
+
+#header a  {
+  float:right;
+  margin: 0 7px;
 }
 
 #header .btn  {
@@ -56,4 +74,8 @@ menu {
     border-bottom: 1px solid #377BB5;
     text-align:center;
   }
+}
+
+.message-container .table {
+  min-height: 200px;
 }

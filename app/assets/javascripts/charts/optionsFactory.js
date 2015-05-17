@@ -5,6 +5,8 @@ var OptionsFactory = function() {
       return pieChartOptions;
     } else if(type === "historicalBarChart") {
       return historicalBarChartOptions;
+    } else if(type === "multiBarChart") {
+      return multiBarChartOptions;
     } else {
       throw 'Unknown type of chart';
     }
@@ -62,6 +64,44 @@ var historicalBarChartOptions = {
     },
     yAxis: {
       axisLabel: 'Y Axis',
+      axisLabelDistance: 35,
+      tickFormat: function(d){
+        return d3.format('d')(d);
+      }
+    }
+  }
+};
+
+var multiBarChartOptions = {
+   chart: {
+    type: 'multiBarChart',
+    height: 300,
+    width: 600,
+    stacked: true,
+    showControls: false,
+    margin : {
+      top: 20,
+      right: 20,
+      bottom: 60,
+      left: 100
+    },
+    x: function(d) { return d[0]; },
+    y: function(d) { return d[1]; },
+    showValues: true,
+    valueFormat: function(d) {
+      return d3.format('d')(d);
+    },
+    transitionDuration: 500,
+    xAxis: {
+      axisLabel: 'X Axis',
+      tickFormat: function(d) {
+        return d;
+      },
+      rotateLabels: 50,
+      showMaxMin: false
+    },
+    yAxis: {
+      axisLabel: 'Number of tickets',
       axisLabelDistance: 35,
       tickFormat: function(d){
         return d3.format('d')(d);

@@ -25,13 +25,15 @@ Scrummer::Application.routes.draw do
     end
 
     resources :projects do
-      resources :members, :only => [:index, :create, :destroy] do
+      resources :members, :only => [:index, :create, :destroy, :update] do
         collection do
           get :search
         end
       end
       member do
-        resource :board, only: :show
+        get :remaining_tickets
+        resource :board, only: [:show, :update]
+        resources :sprints, :only => [:create]
       end
       resources :backlogs, :only => [:index] do
         collection do
@@ -42,6 +44,8 @@ Scrummer::Application.routes.draw do
 		resource :userstories
 	  end
     end
+
+    resources :messages, only: [:index, :show, :create]
 
     resource :dashboard, only: :show
   end

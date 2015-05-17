@@ -18,7 +18,7 @@ class Ticket < ActiveRecord::Base
   scope :independent, -> { where(user_story_id: nil) }
 
   def serializable_hash options={}
-    {
+    ticket = {
       id:          id,
       name:        "#{project.code_name}-#{seq}",
       description: description,
@@ -27,6 +27,10 @@ class Ticket < ActiveRecord::Base
       status:      status.name,
       assigned_to: user.serializable_hash
     }
+    unless user_story.nil?
+      ticket[:user_story] = user_story
+    end
+    ticket
   end
 
   private

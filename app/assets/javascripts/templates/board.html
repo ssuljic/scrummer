@@ -8,41 +8,19 @@
   </div>
 
   <div class="col-md-9">
-    <!-- Statuses -->
-    <div class="row">
+
+    <div class="col-md-3" ng-repeat="status in statuses">
       <div class="panel panel-primary">
-        <div class="panel-heading col-md-3 status-heading" ng-repeat="status in statuses">
+        <div class="panel-heading col-md-12 status-heading">
           {{ status.name }}
         </div>
-      </div>
-    </div>
-
-    <!-- Stories -->
-    <div class="row">
-      <div class="panel panel-default" ng-repeat="story in content.document.board.stories">
-        <div class="panel-heading">{{ story.name }}: <small class="gray">{{ story.description }}</small></div>
-        <div class="panel-body ticket-space">
-          <div class="col-md-3 ticket-space-col" ng-repeat="status in statuses">
-            <div class="well ticket" ng-repeat="ticket in story.tickets[status.name]">
-              <ticket></ticket>
-            </div>
+        <div ui-sortable="sortableOptionsList[status.name]" class="panel-body ticket-space" ng-model="tickets[status.name]">
+          <div class="well ticket" ng-repeat="ticket in tickets[status.name]">
+            <ticket></ticket>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Tickets -->
-    <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading">Other issues</div>
-        <div class="panel-body ticket-space">
-          <div class="col-md-3 ticket-space-col" ng-repeat="status in statuses">
-            <div class="well ticket" ng-repeat="ticket in content.document.board.tickets[status.name]">
-              <ticket></ticket>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
