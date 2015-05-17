@@ -14,7 +14,8 @@ var scrummer = angular.module('scrummer', [
   'ui.bootstrap',
   'oi.multiselect',
   'nvd3',
-  'ui.sortable'
+  'ui.sortable',
+  'angularFileUpload'
 ]);
 
 scrummer.config(['$routeProvider',
@@ -52,11 +53,23 @@ scrummer.config(['$routeProvider',
         templateUrl: 'backlog.html',
         controller: 'backlogCtrl'
       }).
+      when('/projects/:project_id/resources', {
+        templateUrl: 'resources.html',
+        controller: 'resourcesCtrl'
+      }).
+      when('/projects/:project_id/new_resource', {
+        templateUrl: 'new_resource.html',
+        controller: 'newResourceCtrl'
+      }).
+  	  when('/projects/:id/backlog/userstories', {
+          templateUrl: 'new_story.html',
+          controller: 'newUserStoryCtrl'
+  	  }).
       when('/projects/:id/members', {
         templateUrl: 'members.html',
         controller: 'membersCtrl'
       }).
-	     when('/reset', {
+      when('/reset', {
         templateUrl: 'reset.html',
         controller: 'resetCtrl'
       }).

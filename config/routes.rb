@@ -39,7 +39,11 @@ Scrummer::Application.routes.draw do
         collection do
         end
       end
+      resources :uploads
       resources :tickets
+	  resource :backlog do
+		resource :userstories
+	  end
     end
 
     resources :messages, only: [:index, :show, :create]

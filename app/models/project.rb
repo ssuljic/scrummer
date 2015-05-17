@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
   has_many :tickets
   has_many :sprints
   has_many :notifications
+  has_many :uploads
 
   def get_available_users
     a = [-1] #In a case of all available users

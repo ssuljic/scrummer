@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516131129) do
+ActiveRecord::Schema.define(version: 20150517113257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(version: 20150516131129) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+
+  create_table "binaries", force: true do |t|
+    t.binary "data"
+  end
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -109,6 +113,17 @@ ActiveRecord::Schema.define(version: 20150516131129) do
 
   create_table "types", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "uploads", force: true do |t|
+    t.string   "filename"
+    t.string   "content_type"
+    t.integer  "size"
+    t.integer  "project_id"
+    t.integer  "binary_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
