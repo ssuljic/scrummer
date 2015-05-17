@@ -228,8 +228,25 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
       $scope.title = $scope.project.name;
       $scope.description = $scope.project.description;
       $scope.summary = response.document.summary;
+      $scope.user_role = response.document.user_role;
       var chartsBuilder = new ChartsBuilder($scope.summary);
       $scope.charts = chartsBuilder.build();
+    });
+  }
+}]);
+
+controllers.controller('membersCtrl', ['membersFactory', '$routeParams', '$scope', '$location',
+  function(membersFactory, $routeParams, $scope, $location) {
+
+  membersFactory.get($routeParams.id)
+    .success(function(response) {
+      $scope.members = response.document.users;
+    });
+
+  $scope.promote = function(member_id) {
+    membersFactory.update($routeParams.id, member_id)
+    .success(function(response) {
+      $location.path('/projects/'+$routeParams.id);
     });
   }
 }]);

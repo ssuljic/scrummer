@@ -38,8 +38,7 @@ services.factory('dashboardFactory', function ($http, $q, $location, $rootScope,
 services.factory('backlogFactory', function ($http, $q, $location, $rootScope, flash) {
   return {
     get: function(id) {
-      var d = $q.defer();
-        return $http.get('/api/projects/'+ id +'/backlogs', {});
+      return $http.get('/api/projects/'+ id +'/backlogs', {});
     }
 
   };
@@ -119,6 +118,20 @@ services.factory('sprintsFactory', function ($http) {
         sprint: sprint,
         tickets: tickets,
         remaining_tickets: remaining_tickets
+       });
+    }
+  }
+});
+
+
+// Factory for members
+services.factory('membersFactory', function ($http) {
+  return {
+    get: function(id) {
+      return $http.get('/api/projects/'+ id +'/members', {});
+    },
+    update: function(project_id, member_id) {
+      return $http.put('api/projects/' + project_id + '/members/' + member_id, {
        });
     }
   }

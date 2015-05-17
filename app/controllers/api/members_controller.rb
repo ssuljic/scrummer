@@ -12,7 +12,7 @@ class Api::MembersController < ApiController
   # GET    /api/projects/:project_id/members   api/members#index
   def index
     begin
-      members = @current_user.projects.find(params[:project_id]).users.includes(:user_projects)
+      members = User.where(:id => UserProject.where(:project_id => params[:project_id], :role_id => Role.member).map {|u| u.user_id})
       render response: { :users => members }
     rescue
       raise NotAuthorized
@@ -28,6 +28,13 @@ class Api::MembersController < ApiController
     rescue
       raise NotAuthorized
     end
+  end
+
+  # Promote user to manager
+  # PUT    /api/projects/:project_id/members/:member_id   api/members#update
+  def update
+    UserProject.where(:project_id => params[:project_id], :user_id => params[:id]).first.update_attribute(:role_id, Role.manager)
+    render response: { :message => "Member promoted." }
   end
 
   # Removes member from specified project.

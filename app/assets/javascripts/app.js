@@ -52,6 +52,10 @@ scrummer.config(['$routeProvider',
         templateUrl: 'backlog.html',
         controller: 'backlogCtrl'
       }).
+      when('/projects/:id/members', {
+        templateUrl: 'members.html',
+        controller: 'membersCtrl'
+      }).
 	     when('/reset', {
         templateUrl: 'reset.html',
         controller: 'resetCtrl'

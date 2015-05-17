@@ -20,6 +20,7 @@ class Api::SprintsController < ApiController
           Ticket.find(t[:id]).update_attribute(:sprint_id, sprint.id)
         end
       end
+      Project.find(params[:id]).create_activity key: 'project.new_sprint', owner: @current_user
       render response: { status: 'Sprint started successfully.' }
     rescue
       raise SprintStartError
