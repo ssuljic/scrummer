@@ -31,7 +31,9 @@ Scrummer::Application.routes.draw do
         end
       end
       member do
+        get :remaining_tickets
         resource :board, only: [:show, :update]
+        resources :sprints, :only => [:create]
       end
       resources :backlogs, :only => [:index] do
         collection do

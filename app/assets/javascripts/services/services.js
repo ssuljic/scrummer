@@ -39,19 +39,7 @@ services.factory('backlogFactory', function ($http, $q, $location, $rootScope, f
   return {
     get: function(id) {
       var d = $q.defer();
-      $http.get('/api/projects/'+ id +'/backlogs', {}).success(function(resp) {
-        if(resp.status.message == "OK") {
-          $rootScope.tickets = resp.document.tickets;
-          $rootScope.project = resp.document.project;
-          $rootScope.stories = resp.document.stories;
-          $rootScope.description = resp.document.project.name;
-          $rootScope.user_role = resp.document.user_role;
-        }
-      }).error(function(resp) {
-        flash.setMessage(resp.status.message);
-        $location.path('/');
-      });
-      return d.promise;
+        return $http.get('/api/projects/'+ id +'/backlogs', {});
     }
 
   };
@@ -70,8 +58,6 @@ services.factory('boardFactory', function ($http) {
     }
   };
 });
-
-
 
 // Service for password reset
 services.factory('resetFactory', function($http, $q, $rootScope, $location) {
@@ -102,6 +88,9 @@ services.factory('projectFactory', function ($http, $q, $location, $rootScope) {
     },
     create: function(name,code_name,description,selected_users) {
       return $http.post('api/projects', {name : name,code_name:code_name,description:description,selected_users:selected_users});
+    },
+    remainingTickets: function(id) {
+      return $http.get('/api/projects/' + id + '/remaining_tickets');
     }
   };
 });
@@ -119,4 +108,18 @@ services.factory('messagesFactory', function ($http) {
       return $http.post('/api/messages', params);
     }
   };
+});
+
+
+// Factory for sprints
+services.factory('sprintsFactory', function ($http) {
+  return {
+    create: function(project_id, sprint, tickets, remaining_tickets) {
+      return $http.post('api/projects/' + project_id + '/sprints', {
+        sprint: sprint,
+        tickets: tickets,
+        remaining_tickets: remaining_tickets
+       });
+    }
+  }
 });
