@@ -46,7 +46,7 @@ before_filter :restrict_api_access
 
   #Shows all projects
   def index
-    projects = current_user.projects
+    projects = current_user.projects.order('created_at')
     render response: { projects: projects}
   end
 
