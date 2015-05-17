@@ -14,6 +14,7 @@ class Api::MessagesController < ApiController
   def create
     raise EmptyRecipient if params[:recipient].nil?
     message = Message.create(from_id: current_user.id, to_id: params[:recipient][:id], title: params[:title], content: params[:content])
+    message.create_activity key: 'message.is_created', owner: @current_user, recipient: User.find(params[:recipient][:id])
     render response: { message: message }
   end
 end

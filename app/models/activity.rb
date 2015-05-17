@@ -5,6 +5,16 @@ class Activity < ActiveRecord::Base
       url = '/projects/' + self.trackable_id.to_s
       icon = 'glyphicon glyphicon-plus'
       { content: content, url: url, icon: icon }
+    elsif self.key == 'message.is_created'
+      content = 'You received new message: ' + Message.find(self.trackable_id).title + '.'
+      url = '/inbox/' + self.trackable_id.to_s
+      icon = 'glyphicon glyphicon-envelope'
+      { content: content, url: url, icon: icon }
+    elsif self.key == 'project.new_sprint'
+      content = 'New sprint started on: ' + Project.find(self.trackable_id).name + '.'
+      url = '/projects/' + self.trackable_id.to_s + '/board'
+      icon = 'glyphicon glyphicon-asterisk'
+      { content: content, url: url, icon: icon }
     end
   end
 

@@ -76,14 +76,14 @@ var multiBarChartOptions = {
    chart: {
     type: 'multiBarChart',
     height: 300,
-    width: 450,
+    width: 600,
     stacked: true,
     showControls: false,
     margin : {
       top: 20,
       right: 20,
       bottom: 60,
-      left: 50
+      left: 100
     },
     x: function(d) { return d[0]; },
     y: function(d) { return d[1]; },
