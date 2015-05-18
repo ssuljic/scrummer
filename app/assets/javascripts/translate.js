@@ -95,7 +95,7 @@ scrummer.config(function($translateProvider) {
     SAVE:'Spasi',
     EDIT:'Uredi',
     CANCEL:'Otkaži',
-    REMOVE_MEMBERS:'Odaberi članove za ukoniti:'
+    REMOVE_MEMBERS:'Odaberi članove za ukoniti'
 
 
   });

@@ -313,8 +313,8 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
   }
 }]);
 
-controllers.controller('membersCtrl', ['membersFactory', '$routeParams', '$scope', '$location','alertService',
-  function(membersFactory, $routeParams, $scope, $location,alertService) {
+controllers.controller('membersCtrl', ['membersFactory', '$routeParams', '$scope', '$location','alertService','projectFactory',
+  function(membersFactory, $routeParams, $scope, $location,alertService,projectFactory) {
 
   membersFactory.get($routeParams.id)
     .success(function(response) {
@@ -328,6 +328,12 @@ controllers.controller('membersCtrl', ['membersFactory', '$routeParams', '$scope
       $location.path('/projects/'+$routeParams.id);
     });
   }
+  projectFactory.show($routeParams.id)
+    .success(function(response) {
+      $scope.project = response.document.project;
+      $scope.title = $scope.project.name;
+      $scope.description = $scope.project.description;
+    });
 }]);
 
 controllers.controller('inboxCtrl', ['$scope', 'messagesFactory', function($scope, messagesFactory) {
