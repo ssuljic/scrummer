@@ -25,9 +25,13 @@ Scrummer::Application.routes.draw do
     end
 
     resources :projects do
+       collection do
+        post :show_role
+      end
       resources :members, :only => [:index, :create, :destroy, :update] do
         collection do
           get :search
+          post :remove_members
         end
       end
       member do

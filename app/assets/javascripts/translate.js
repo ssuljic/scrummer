@@ -28,9 +28,9 @@ scrummer.config(function($translateProvider) {
     PROJECT: 'Project',
     NAME: 'Name',
     PROJECT_FORM: 'New project form-basic info',
-    NAME_PROJECT: 'Name of project',
-    CODE_NAME_PROJECT: 'Code name of project',
-    DESCRIPTION: 'Description',
+    NAME_PROJECT: 'Name of project:',
+    CODE_NAME_PROJECT: 'Code name of project:',
+    DESCRIPTION: 'Description:',
     SAVE_PROJECT: 'Save project',
     BACKLOG: 'Backlog',
     ADDMEMBERS:'Members of project:',
@@ -42,7 +42,11 @@ scrummer.config(function($translateProvider) {
     USERSTORY_NAME: 'Name of user story',
     SAVE_USERSTORY: 'Save user story',
     NEW_USERSTORY: 'New user story',
-    UPLOADED_RESOURCES: 'Uploaded resources'
+    UPLOADED_RESOURCES: 'Uploaded resources',
+    SAVE:'Save',
+    EDIT:'Edit',
+    CANCEL:'Cancel',
+    REMOVE_MEMBERS:'Choose members to remove'
   })
   .translations('bs', {
     DASHBOARD: 'Komandna Tabla',
@@ -73,9 +77,9 @@ scrummer.config(function($translateProvider) {
     PROJECT: 'Projekat',
     NAME: 'Ime',
     PROJECT_FORM: 'Forma za unos novog projekta-osnovne info',
-    NAME_PROJECT: 'Ime projekta',
-    CODE_NAME_PROJECT: 'Kodno ime projekta',
-    DESCRIPTION: 'Opis',
+    NAME_PROJECT: 'Ime projekta:',
+    CODE_NAME_PROJECT: 'Kodno ime projekta:',
+    DESCRIPTION: 'Opis:',
     SAVE_PROJECT: 'Sačuvaj projekat',
     BACKLOG: 'Katalog zadataka',
     ADDMEMBERS:'Članovi projekta:',
@@ -87,7 +91,13 @@ scrummer.config(function($translateProvider) {
     USERSTORY_NAME: 'Ime user story',
     SAVE_USERSTORY: 'Spasi user story',
     NEW_USERSTORY: 'Novi user story',
-    UPLOADED_RESOURCES: 'Postavljeni resursi'
+    UPLOADED_RESOURCES: 'Postavljeni resursi',
+    SAVE:'Spasi',
+    EDIT:'Uredi',
+    CANCEL:'Otkaži',
+    REMOVE_MEMBERS:'Odaberi članove za ukoniti:'
+
+
   });
    $translateProvider.preferredLanguage('en');
 });

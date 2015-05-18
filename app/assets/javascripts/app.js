@@ -15,7 +15,8 @@ var scrummer = angular.module('scrummer', [
   'oi.multiselect',
   'nvd3',
   'ui.sortable',
-  'angularFileUpload'
+  'angularFileUpload',
+  'xeditable'
 ]);
 
 scrummer.config(['$routeProvider',

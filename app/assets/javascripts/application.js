@@ -28,5 +28,6 @@
 //= require angular-nvd3/dist/angular-nvd3.js
 //= require jquery-ui/jquery-ui.min.js
 //= require angular-ui-sortable/sortable.min.js
+//= require angular-xeditable/dist/js/xeditable.js
 //= require_tree .
 
