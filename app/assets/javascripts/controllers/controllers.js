@@ -168,8 +168,8 @@ controllers.controller('boardCtrl', ['$scope', 'boardFactory', '$routeParams',
 }]);
 
 // Signup controller
-controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory', 'reCAPTCHA', 'flash',
-    function($scope, $location, usersFactory, reCAPTCHA, flash) {
+controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory', 'reCAPTCHA', 'flash','alertService',
+    function($scope, $location, usersFactory, reCAPTCHA, flash,alertService) {
     $scope.submitted = false; // Set form unsubmitted to unable validation messages
     reCAPTCHA.setPublicKey('6LeV5wQTAAAAAA4uCs95tbEZwBNP55UlSCiI21lC');
     $scope.createNewUser = function() {
@@ -177,9 +177,11 @@ controllers.controller('signupCtrl', ['$scope', '$location', 'usersFactory', 're
         usersFactory.create($scope.user)
           .success(function(resp) {
             flash.setMessage("You received confirmation email. Please activate your account!");
+            alertService.add("You received confirmation email. Please activate your account!", 'success');
             $location.path('/');
           }).error(function(resp) {
             $scope.errorMessage = resp.status.message;
+             alertService.add(resp.status.message, 'danger');
           });
       } else {
         $scope.signupform.submitted = true;
@@ -197,7 +199,7 @@ controllers.controller('resetCtrl', ['$scope', '$location','resetFactory',
 }]);
 
 //New project controller
-controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory', 'usersFactory',function($scope,$location, projectFactory,usersFactory) {
+controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory', 'usersFactory','alertService',function($scope,$location, projectFactory,usersFactory,alertService) {
   $scope.title = "NEW_PROJECT";
   usersFactory.index()
   .success(function(data) {
@@ -209,8 +211,10 @@ controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory'
     if ($scope.newprojectform.$valid) {
     projectFactory.create($scope.project.name,$scope.project.code_name,$scope.project.description,$scope.selected_users)
     .success(function(resp) {
+       alertService.add("Project added", 'success');
       $location.path('/dashboard');
     }).error(function(resp) {
+       alertService.add("Error adding project", 'danger');
       $location.path('/project/new');
     });
   }
@@ -231,7 +235,7 @@ controllers.controller('projectCtrl', ['projectFactory', function(projectFactory
 
 }]);
 
-controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routeParams', function($scope, projectFactory, $routeParams) {
+controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routeParams','alertService', function($scope, projectFactory, $routeParams,alertService) {
   if($routeParams && $routeParams.id) {
     projectFactory.show($routeParams.id)
     .success(function(response) {
@@ -248,8 +252,9 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
     .success(function(resp) {
       $scope.title = $scope.project.name;
       $scope.description = $scope.project.description;
+       alertService.add("Project edited!", 'success');
    }).error(function(resp) {
-      //greska
+       alertService.add("Error editing project", 'danger');
     });
   }
 
@@ -264,6 +269,7 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
       $scope.editMembers = function() {
     projectFactory.remove_members($scope.selected_users,$routeParams.id)
     .success(function(resp) {
+       alertService.add("Members removed", 'success');
        projectFactory.find_members($routeParams.id)
   .success(function(data) {
     $scope.users = data.document.users;
@@ -272,7 +278,7 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
   });
 
     }).error(function(resp) {
-      //greska
+       alertService.add("Error removing members", 'danger');
     });
   }
    $scope.checkString = function(data) {
@@ -292,21 +298,23 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
 }]);
 
 //New user story controller
- controllers.controller('newUserStoryCtrl', ['$scope', '$location','userStoryFactory', '$routeParams',function($scope,$location, userStoryFactory,$routeParams) {
+ controllers.controller('newUserStoryCtrl', ['$scope', '$location','userStoryFactory', '$routeParams','alertService',function($scope,$location, userStoryFactory,$routeParams,alertService) {
   $scope.title = "New user story";
 
  	$scope.saveUserStory = function() {
     userStoryFactory.create($routeParams.id, $scope.user_story.name,$scope.user_story.description)
     .success(function(resp) {
+       alertService.add("User story saved", 'success');
       $location.path('/dashboard');
     }).error(function(resp) {
+       alertService.add("Error saving user story", 'danger');
       $location.path('/backlog');
     });
   }
 }]);
 
-controllers.controller('membersCtrl', ['membersFactory', '$routeParams', '$scope', '$location',
-  function(membersFactory, $routeParams, $scope, $location) {
+controllers.controller('membersCtrl', ['membersFactory', '$routeParams', '$scope', '$location','alertService',
+  function(membersFactory, $routeParams, $scope, $location,alertService) {
 
   membersFactory.get($routeParams.id)
     .success(function(response) {
@@ -316,6 +324,7 @@ controllers.controller('membersCtrl', ['membersFactory', '$routeParams', '$scope
   $scope.promote = function(member_id) {
     membersFactory.update($routeParams.id, member_id)
     .success(function(response) {
+       alertService.add("User promoted", 'success');
       $location.path('/projects/'+$routeParams.id);
     });
   }
