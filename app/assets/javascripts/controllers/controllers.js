@@ -131,8 +131,10 @@ controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory'
   .success(function(data) {
     $scope.users = data.document.users;
   });
+   $scope.submitted = false;
 
   $scope.saveProject = function() {
+    if ($scope.newprojectform.$valid) {
     projectFactory.create($scope.project.name,$scope.project.code_name,$scope.project.description,$scope.selected_users)
     .success(function(resp) {
       $location.path('/dashboard');
@@ -140,6 +142,10 @@ controllers.controller('newProjectCtrl', ['$scope', '$location','projectFactory'
       $location.path('/project/new');
     });
   }
+  else{
+    $scope.newprojectform.submitted = true;
+  }
+}
 }]);
 
 controllers.controller('projectCtrl', ['projectFactory', function(projectFactory) {
@@ -163,7 +169,52 @@ controllers.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routePa
       var chartsBuilder = new ChartsBuilder($scope.summary);
       $scope.charts = chartsBuilder.build();
     });
+     $scope.saveProject = function() {
+    projectFactory.update($scope.project.name,$scope.project.code_name,$scope.project.description,$routeParams.id)
+    .success(function(resp) {
+      $scope.title = $scope.project.name;
+      $scope.description = $scope.project.description;
+   }).error(function(resp) {
+      //greska
+    });
   }
+
+    projectFactory.show_role($routeParams.id)
+    .success(function(response) {
+      $scope.role=response.document.role;
+  });
+     projectFactory.find_members($routeParams.id)
+  .success(function(data) {
+    $scope.users = data.document.users;
+    $scope.selected_users=data.document.users;
+  });
+      $scope.editMembers = function() {
+    projectFactory.remove_members($scope.selected_users,$routeParams.id)
+    .success(function(resp) {
+       projectFactory.find_members($routeParams.id)
+  .success(function(data) {
+    $scope.users = data.document.users;
+    $scope.selected_users=data.document.users;
+  });
+
+    }).error(function(resp) {
+      //greska
+    });
+  }
+   $scope.checkString = function(data) {
+    if (data.length<3) {
+      return "It must be longer than 3 charactes";
+    }
+     if (data.length>25) {
+      return "It must be less than 25 charactes";
+    }
+
+
+  };
+
+
+
+}
 }]);
 
 controllers.controller('inboxCtrl', ['$scope', 'messagesFactory', function($scope, messagesFactory) {

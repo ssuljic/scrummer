@@ -14,7 +14,8 @@ var scrummer = angular.module('scrummer', [
   'ui.bootstrap',
   'oi.multiselect',
   'nvd3',
-  'ui.sortable'
+  'ui.sortable',
+  'xeditable'
 ]);
 
 scrummer.config(['$routeProvider',

@@ -11,8 +11,75 @@
     <div class="project-navigation">
       <a class="btn btn-primary" ng-href="/#/projects/{{project.id}}/board">Sprint Board</a>
       <a class="btn btn-default" ng-href="/#/projects/{{project.id}}/backlog">Backlog</a>
+
+       <!-- button to show form -->
+      <button ng-show="role == 'Manager'" type="button" class="btn btn-default" ng-click="editableProjectForm.$show()" ng-show="!editableProjectForm.$visible" translate="EDIT">
+      </button>
+       <!-- button to show form -->
+      <button ng-show="role == 'Manager'" type="button" class="btn btn-default" ng-click="removeMembersForm.$show()" ng-show="!removeMembersForm.$visible" translate="REMOVE_MEMBERS">
+      </button>
+
     </div>
     <br>
+     <div class="col-md-9">
+    <form editable-form name="editableProjectForm" onaftersave="saveProject()">
+
+    <div class="form-group ">
+      <span class="title col-xs-4 " translate="NAME_PROJECT"></span>
+      <div class="col-xs-8">
+      <span editable-text="project.name" e-name="name" onbeforesave="checkString($data)" e-required>{{ project.name || 'empty' }}</span>
+    </div>
+    </div>
+
+   <div class="form-group">
+      <span class="title col-xs-4 " translate="CODE_NAME_PROJECT"></span>
+      <div class="col-xs-8">
+      <span editable-text="project.code_name" e-name="code_name" onbeforesave="checkString($data)" e-required>{{ project.code_name || 'empty' }}</span>
+    </div>
+  </div>
+   <div class="form-group">
+      <span class="title col-xs-4 " translate="DESCRIPTION"></span>
+      <div class="col-xs-8">
+      <span editable-text="project.description" e-name="description"  e-required>{{ project.description || 'empty' }}</span>
+    </div>
+  </div>
+  <div class="buttons">
+
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="editableProjectForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="editableProjectForm.$waiting" translate="SAVE">
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editableProjectForm.$waiting" ng-click="editableProjectForm.$cancel()" translate="CANCEL">
+        </button>
+      </span>
+  </div>
+
+</form>
+</div>
+<div class="col-md-9" ng-show="removeMembersForm.$visible">
+  <form editable-form name="removeMembersForm" onaftersave="editMembers()">
+      <div class="form-group">
+                <label for="mambers" class="col-xs-4 control-label" translate="REMOVE_MEMBERS"></label>
+                <div class="col-xs-8">
+                <oi-multiselect
+                  ng-options="user.firstname +' ' + user.lastname  for user in users track by user.id"
+                  ng-model="selected_users"
+                  multiple
+                  placeholder="Select members"
+                  ></oi-multiselect>
+                </div>
+      </div>
+     <div class="buttons">
+      <!-- buttons to submit / cancel form -->
+      <span >
+        <button type="submit" class="btn btn-primary" ng-disabled="removeMembersForm.$waiting" translate="SAVE">
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="removeMembersForm.$waiting" ng-click="removeMembersForm.$cancel()" translate="CANCEL">
+        </button>
+      </span>
+  </div>
+  </form>
+</div>
 
     <div class="col-md-6 chart" ng-repeat="chart in charts">
       <h5>{{chart.title}}</h5>

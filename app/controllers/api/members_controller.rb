@@ -41,9 +41,22 @@ class Api::MembersController < ApiController
     end
   end
 
+  def remove_members
+    if params[:selected_users].present?
+        @selected=params[:selected_users]
+         @selected.each do  |obj|
+          user_project=UserProject.find_by(user_id: obj["id"]).destroy
+          end
+       render response: { :users => "Members deleted." }
+    end
+  end
+
   #Member parameters
   private
   def member_params
-    params.permit(:id)
+    params.permit(:id,:selected_users)
   end
+
+
+
 end
