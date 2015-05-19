@@ -7,7 +7,10 @@ var OptionsFactory = function() {
       return historicalBarChartOptions;
     } else if(type === "multiBarChart") {
       return multiBarChartOptions;
-    } else {
+    } else if(type=="multiBarHorizontalChart"){
+      return multiBarHorizontalChartOptions;
+    }
+    else {
       throw 'Unknown type of chart';
     }
   }
@@ -108,4 +111,29 @@ var multiBarChartOptions = {
       }
     }
   }
+};
+
+var multiBarHorizontalChartOptions={
+chart:{
+  type: 'multiBarHorizontalChart',
+    height: 400,
+     margin : {
+      top: 30,
+      right: 20,
+      bottom: 50,
+      left: 175
+    },
+     showValues: true,
+     tooltips:false,
+     showControls: false,
+    x: function(d) { return d.label; },
+    y: function(d) { return d.value; },
+    transitionDuration: 500,
+    yAxis:{
+      tickFormat: function(f){
+        return d3.format(',.2f')(f);
+      }
+    }
+}
+
 };
