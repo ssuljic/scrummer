@@ -3,9 +3,7 @@
 var scrummer = angular.module('scrummer', [
   'templates',
   'ngRoute',
-  'controllers',
   'auth',
-  'services',
   'alertService',
   'validator',
   'custom',
