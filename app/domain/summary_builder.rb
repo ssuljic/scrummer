@@ -11,7 +11,6 @@ class SummaryBuilder
 	    ticket_type: TicketTypeCalculator.new,
       ticket_statusperuser:TicketStatusperuserCalculator.new,
       stacked:StackedCalculator.new
-
     }
   end
 

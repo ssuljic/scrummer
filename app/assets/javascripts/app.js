@@ -92,3 +92,9 @@ scrummer.config(['$routeProvider',
         redirectTo: '/'
       });
   }]);
+
+scrummer.run(function($rootScope, alertService) {
+  $rootScope.$on("$locationChangeSuccess", function(event, next, current) {
+    alertService.clear();
+  });
+});
