@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+  <header title="title" description="description"></header>
+  </div>
+
+  <div class="col-md-3">
+    <menu></menu>
+  </div>
+
+  <div class="col-md-9">
+    <h3>{{ticket.name}}</h3>
+    <h4 class="gray">{{ticket.description}}</h4>
+    <p>
+      <b>Assigned to: </b> {{ticket.assigned_to.firstname}} {{ticket.assigned_to.lastname}}
+    </p>
+    <p>
+      <b>Status: </b> {{ticket.status}}
+    </p>
+    <p>
+      <b>Type: </b> {{ticket.type}}
+    </p>
+    <p>
+      <b>Estimate: </b> {{ticket.estimate}} h
+    </p>
+    <br>
+    <div class="row">
+      <h5>Comments:</h5>
+      <div class="comment col-md-8" ng-repeat="comment in ticket.comments">
+        <b>{{comment.user.firstname}} {{comment.user.lastname}}:</b> {{comment.content}}<br>
+        <small class="gray">{{comment.created_at}}</small>
+      </div>
+    </div>
+    <div class="row">
+      <form ng-submit="createComment()" style="margin-top:15px;padding:0" novalidate class="col-md-8">
+        <div class="form-group">
+          <textarea class="form-control" rows="3" style="resize:none" ng-model="comment.content" placeHolder="Comment"></textarea>
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-common">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,9 @@
 .ticket {
   margin: 3px;
   cursor: move;
+  a {
+    color:black;
+  }
 }
 .ticket-space {
   padding: 0;
@@ -480,4 +483,18 @@ body {
 menu {
   padding:0;
   margin:0;
+}
+
+.comment {
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+  background: transparent;
+  @include border-radius(3px);
+  text-align: left;
+  font-size: 15px;
+  padding: 2%;
+  line-height: 20px;
+  margin-bottom: 5px;
+  b {
+    color: #e67e22;
+  }
 }

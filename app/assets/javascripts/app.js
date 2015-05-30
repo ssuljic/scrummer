@@ -88,6 +88,10 @@ scrummer.config(['$routeProvider',
         templateUrl: 'new_message.html',
         controller: 'newMessageCtrl'
       }).
+      when('/ticket/:id', {
+        templateUrl: 'show_ticket.html',
+        controller: 'ticketCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });

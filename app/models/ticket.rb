@@ -25,7 +25,8 @@ class Ticket < ActiveRecord::Base
       estimate:    estimate,
       type:        type.name,
       status:      status.name,
-      assigned_to: user.serializable_hash
+      assigned_to: user.serializable_hash,
+      comments:    comments
     }
     unless user_story.nil?
       ticket[:user_story] = user_story
