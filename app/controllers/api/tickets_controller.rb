@@ -3,12 +3,9 @@ before_filter :restrict_api_access
 
   #Shows ticket with specified id
   def show
-  	begin
-        foundedTicket = Ticket.find(params[:id])
-        render response: { foundedTicket: foundedTicket.to_json }
-  	rescue
-  	  render response: { :message => "Ticket with specified id not found!"}
-  	end
+    ticket = Ticket.find(params[:id])
+    raise NotAuthorized unless current_user.projects.include? ticket.project
+    render response: { ticket: ticket }
   end
 
   #Creates new ticket with provided parameters

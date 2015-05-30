@@ -22,3 +22,29 @@ scrummer.controller('boardCtrl', ['$scope', 'boardFactory', '$routeParams',
       return options;
     }
 }]);
+
+scrummer.controller('ticketCtrl', ['$scope', 'ticketsFactory', 'commentsFactory', 'alertService', '$routeParams',
+  function($scope, ticketsFactory, commentsFactory, alertService, $routeParams) {
+    ticketsFactory.get($routeParams.id)
+    .success(function(result) {
+      $scope.ticket = result.document.ticket;
+      $scope.title = $scope.ticket.name;
+    });
+
+    $scope.createComment = function() {
+      if(!$scope.comment) {
+        alertService.add("Content must not be empty", 'danger');
+        return;
+      }
+      commentsFactory.create($scope.ticket.id, $scope.comment.content)
+      .success(function(result) {
+        $scope.ticket.comments.push(result.document.comment);
+        $scope.comment.content = "";
+      })
+      .error(function(result) {
+        alertService.add(result.status.message, 'danger');
+        $scope.comment.content = "";
+      });
+    }
+  }
+]);
