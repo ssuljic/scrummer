@@ -11,7 +11,21 @@
 
     <div ng-show="user_role == 'Manager'">
       <button class="btn btn-common" ng-click="open('lg')">Start New Sprint</button>
-      <a class="btn btn-common" ng-href="/#/projects/{{project.id}}/backlog/userstories" translate="NEW_USERSTORY"></a>
+
+
+      <!-- Dropdown -->
+      <div class="btn-group" dropdown is-open="status.isopen" style="float:right;">
+      <button type="button" class="btn btn-common dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+        <span class="glyphicon glyphicon-cog"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a ng-href="/#/projects/{{project.id}}/backlog/userstories" translate="NEW_USERSTORY"></a></li>
+        <li class="divider"></li>
+        <li><a href="#">New ticket</a></li>
+      </ul>
+    </div>
+
+
     </div><br>
     <div class="row">
       <div class="panel panel-common">
