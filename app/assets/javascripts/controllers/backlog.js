@@ -50,4 +50,16 @@ scrummer.controller('backlogCtrl', ['$scope', '$location', '$modal', '$log', 'ba
     $scope.toggleAnimation = function () {
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };
+    $scope.status = {
+      isopen: false
+    };
+    $scope.toggled = function(open) {
+      $log.log('Dropdown is now: ', open);
+    };
+    $scope.toggleDropdown = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.status.isopen = !$scope.status.isopen;
+    };
+
 }]);
