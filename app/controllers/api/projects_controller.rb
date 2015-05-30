@@ -1,8 +1,9 @@
 class Api::ProjectsController < ApiController
 before_filter :restrict_api_access
 
-  #Shows project with specified id
+  #Get project with specified id
   def show
+
     project = Project.find(params[:id])
     summary = SummaryBuilder.new(project).build.data
 

@@ -115,7 +115,7 @@ body {
 
   display: inline-block;
   margin-top: 5%;
-  margin-left: 10%;
+  margin-left: 5%;
   margin-bottom: 5%;
   background: #ecf0f1;
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.29);
@@ -480,4 +480,29 @@ body {
 menu {
   padding:0;
   margin:0;
+}
+
+.basic-info {
+  background: #fff;
+  color: #e67e22;
+
+  .icon {
+    float:none;
+  }
+
+  p {
+    font-size: 10px;
+     line-height: 130%;
+  }
+
+
+  .action {
+    padding-right: 1%;
+    border-right: 2px solid #e67e22;
+    margin-right: 1%;
+  }
+
+  a {
+    cursor: pointer;
+  }
 }

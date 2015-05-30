@@ -8,6 +8,31 @@
   </div>
 
   <div class="col-md-9">
+    <button ng-show="user_role == 'Manager'" type="button" class="btn btn-common" ng-click="removeMembersForm.$show()" ng-show="!removeMembersForm.$visible" translate="REMOVE_MEMBERS"></button>
+    <div class="container" ng-show="removeMembersForm.$visible">
+      <form editable-form name="removeMembersForm" onaftersave="editMembers()">
+          <div class="form-group">
+                    <label for="mambers" class="col-xs-4 control-label" translate="REMOVE_MEMBERS"></label>
+                    <div class="col-xs-8">
+                    <oi-multiselect
+                      ng-options="user.firstname +' ' + user.lastname  for user in users track by user.id"
+                      ng-model="selected_users"
+                      multiple
+                      placeholder="Select members"
+                      ></oi-multiselect>
+                    </div>
+          </div>
+         <div class="buttons">
+          <!-- buttons to submit / cancel form -->
+          <span >
+            <button type="submit" class="btn btn-common" ng-disabled="removeMembersForm.$waiting" translate="SAVE">
+            </button>
+            <button type="button" class="btn btn-default" ng-disabled="removeMembersForm.$waiting" ng-click="removeMembersForm.$cancel()" translate="CANCEL">
+            </button>
+          </span>
+      </div>
+      </form>
+    </div>
     <div ng-repeat="member in members">
       <div class="row">
         <button class="btn btn-default disabled" disable="true">{{member.username}}</button>

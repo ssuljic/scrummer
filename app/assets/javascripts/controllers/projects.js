@@ -30,6 +30,9 @@ scrummer.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routeParam
         alertService.add("Error editing project", 'danger');
       });
     }
+    $scope.toggleCharts = function() {
+      $(".col-md-12.jumbotron").toggle();
+    }
 
     projectFactory.show_role($routeParams.id)
     .success(function(response) {
@@ -39,20 +42,7 @@ scrummer.controller('projectPageCtrl', ['$scope', 'projectFactory', '$routeParam
     .success(function(data) {
       $scope.users = data.document.users;
     });
-    $scope.editMembers = function() {
-      projectFactory.remove_members($scope.selected_users,$routeParams.id)
-      .success(function(resp) {
-        alertService.add("Members removed", 'success');
-        projectFactory.find_members($routeParams.id)
-        .success(function(data) {
-          $scope.users = data.document.users;
-          $scope.selected_users='';
-        });
-      })
-      .error(function(resp) {
-        alertService.add("Error removing members", 'danger');
-      });
-    }
+
     $scope.checkString = function(data) {
       if (data.length<3) {
         return "It must be longer than 3 charactes";
