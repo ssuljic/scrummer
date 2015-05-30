@@ -29,7 +29,6 @@ scrummer.controller('ticketCtrl', ['$scope', 'ticketsFactory', 'commentsFactory'
     .success(function(result) {
       $scope.ticket = result.document.ticket;
       $scope.title = $scope.ticket.name;
-      console.log($scope.ticket)
     });
 
     $scope.createComment = function() {
