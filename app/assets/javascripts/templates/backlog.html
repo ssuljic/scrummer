@@ -48,17 +48,20 @@
   </div>
   <div class="modal-body container">
 
-    <div class="row">
-    <p ng-show="tickets.count > 0"> You selected these tickets for new sprint:</p>
-      <div class="well ticket col-sm-2" ng-repeat="ticket in items">
-        <ticket></ticket>
-      </div><br><br>
-    <p ng-show="remaining_tickets.length > 0"><span class="glyphicon glyphicon-th-list"></span> Remaining tickets from current sprint:</p>
-      <div class="well ticket col-sm-2" ng-repeat="ticket in remaining_tickets">
+    <div class="container-fluid">
+      <p ng-show="items.length > 0"><span class="glyphicon glyphicon-th-list"></span> You selected these tickets for new sprint:</p>
+      <div class="well ticket col-sm-8" ng-repeat="ticket in items">
         <ticket></ticket>
       </div><br><br>
     </div>
-    <br>
+    <br><br><br>
+    <div class="container-fluid">
+    <p ng-show="remaining_tickets.length > 0"><span class="glyphicon glyphicon-th-list"></span> Remaining tickets from current sprint:</p>
+      <div class="well ticket col-sm-8" ng-repeat="ticket in remaining_tickets">
+        <ticket></ticket>
+      </div><br><br>
+    </div>
+    <br><br><br>
     <div class="row">
       <form class="form-horizontal row">
         <div class="form-group">

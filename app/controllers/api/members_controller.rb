@@ -13,7 +13,8 @@ class Api::MembersController < ApiController
   def index
     begin
       members = User.where(:id => UserProject.where(:project_id => params[:project_id], :role_id => Role.member).map {|u| u.user_id})
-      render response: { :users => members }
+      render response: { :users => members,
+                         :user_role => Project.find(params[:project_id]).get_role(@current_user.id) }
     rescue
       raise NotAuthorized
     end

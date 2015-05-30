@@ -3,6 +3,7 @@ var OptionsFactory = function() {
     chart: {
       type: 'pieChart',
       height: 300,
+      width: 600,
       x: function(d) { return d.key; },
       y: function(d) { return d.y; },
       color: ["#90D4F3", "#FEF4A1", "#F0A0A4", "#96CB9D"],
@@ -27,6 +28,7 @@ var OptionsFactory = function() {
     chart: {
       type: 'historicalBarChart',
       height: 300,
+      width: 600,
       margin : {
         top: 20,
         right: 20,
@@ -100,6 +102,7 @@ var OptionsFactory = function() {
     chart: {
       type: 'multiBarHorizontalChart',
       height: 400,
+      width: 600,
       margin : {
         top: 30,
         right: 20,

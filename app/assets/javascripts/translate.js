@@ -44,7 +44,7 @@ scrummer.config(function($translateProvider) {
     NEW_USERSTORY: 'New user story',
     UPLOADED_RESOURCES: 'Uploaded resources',
     SAVE:'Save',
-    EDIT:'Edit',
+    EDIT_PROJECT:'Edit Project',
     CANCEL:'Cancel',
     REMOVE_MEMBERS:'Choose members to remove'
   })
@@ -93,7 +93,7 @@ scrummer.config(function($translateProvider) {
     NEW_USERSTORY: 'Novi user story',
     UPLOADED_RESOURCES: 'Postavljeni resursi',
     SAVE:'Spasi',
-    EDIT:'Uredi',
+    EDIT_PROJECT:'Izmjeni projekat',
     CANCEL:'Otkaži',
     REMOVE_MEMBERS:'Odaberi članove za ukoniti'
 
