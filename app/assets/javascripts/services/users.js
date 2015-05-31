@@ -14,9 +14,14 @@ scrummer.factory('membersFactory', function ($http) {
     get: function(id) {
       return $http.get('/api/projects/'+ id +'/members', {});
     },
-    update: function(project_id, member_id) {
-      return $http.put('api/projects/' + project_id + '/members/' + member_id, {
-       });
+    create: function(project_id, user) {
+      return $http.post('/api/projects/' + project_id + '/members', { user: user });
+    },
+    remove: function(project_id, id) {
+      return $http.delete('/api/projects/' + project_id + '/members/' + id);
+    },
+    update: function(project_id, member_id, role) {
+      return $http.put('api/projects/' + project_id + '/members/' + member_id, { role: role });
     }
   }
 });

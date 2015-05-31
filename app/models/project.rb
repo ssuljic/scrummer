@@ -16,6 +16,10 @@ class Project < ActiveRecord::Base
     User.where('id not :id in (?)', a)
   end
 
+  def available_users
+    User.where('id not in (?)', self.users.map(&:id))
+  end
+
   def get_role(user_id)
     Role.find(UserProject.where(:user_id => user_id, :project_id => self.id ).first.role_id).name
   end

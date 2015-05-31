@@ -31,6 +31,7 @@ Scrummer::Application.routes.draw do
         end
       end
       member do
+        get :available_users
         get :remaining_tickets
         resource :board, only: [:show, :update]
         resources :sprints, :only => [:create]

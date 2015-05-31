@@ -23,6 +23,9 @@ scrummer.factory('projectFactory', function ($http, $q, $location, $rootScope) {
     },
     remove_members:function(selected_users,id){
       return $http.post('/api/projects/' + id + '/members/remove_members',{selected_users:selected_users});
+    },
+    available_users: function(id) {
+      return $http.get('/api/projects/' + id + '/available_users');
     }
   };
 });

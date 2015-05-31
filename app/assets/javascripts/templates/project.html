@@ -25,7 +25,7 @@
         <div>
           <a ng-href="/#/projects/{{project.id}}/resources"><span class="glyphicon glyphicon-paperclip icon"></span></a><span class="action">Resources</span>
 
-          <a ng-href="/#/projects/{{project.id}}/members" ng-show="user_role == 'Manager'"><span class="glyphicon glyphicon-user icon"></a><span class="action">Manage members</span>
+          <a ng-href="/#/projects/{{project.id}}/members" ng-show="user_role == 'Manager'"><span class="glyphicon glyphicon-user icon"></a><span class="action" ng-show="user_role == 'Manager'">Manage members</span>
 
 
           <a ng-href="" ng-click="toggleCharts()"><span class="glyphicon glyphicon-signal icon"></span></a>Statistic

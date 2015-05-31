@@ -67,6 +67,14 @@ before_filter :restrict_api_access
     render response:{role:role}
   end
 
+  def available_users
+    project = Project.find(params[:id])
+    render response: {
+      users: project.available_users,
+      project: project
+    }
+  end
+
   #Project parameters
   private
   def project_params
