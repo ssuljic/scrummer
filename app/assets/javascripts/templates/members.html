@@ -8,36 +8,36 @@
   </div>
 
   <div class="col-md-9">
-    <button ng-show="user_role == 'Manager'" type="button" class="btn btn-common" ng-click="removeMembersForm.$show()" ng-show="!removeMembersForm.$visible" translate="REMOVE_MEMBERS"></button>
-    <div class="container" ng-show="removeMembersForm.$visible">
-      <form editable-form name="removeMembersForm" onaftersave="editMembers()">
+    <div class="row">
+      <form ng-submit="addMember()">
           <div class="form-group">
-                    <label for="mambers" class="col-xs-4 control-label" translate="REMOVE_MEMBERS"></label>
-                    <div class="col-xs-8">
-                    <oi-multiselect
-                      ng-options="user.firstname +' ' + user.lastname  for user in users track by user.id"
-                      ng-model="selected_users"
-                      multiple
-                      placeholder="Select members"
-                      ></oi-multiselect>
-                    </div>
+            <div class="col-xs-8">
+            <oi-multiselect
+              ng-options="user.username for user in users track by user.id"
+              ng-model="selected_user.user"
+              placeholder="Select members"
+              ></oi-multiselect>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-common" value="Add" />
+            </div>
           </div>
-         <div class="buttons">
-          <!-- buttons to submit / cancel form -->
-          <span >
-            <button type="submit" class="btn btn-common" ng-disabled="removeMembersForm.$waiting" translate="SAVE">
-            </button>
-            <button type="button" class="btn btn-default" ng-disabled="removeMembersForm.$waiting" ng-click="removeMembersForm.$cancel()" translate="CANCEL">
-            </button>
-          </span>
-      </div>
       </form>
     </div>
-    <div ng-repeat="member in members">
-      <div class="row">
-        <button class="btn btn-default disabled" disable="true">{{member.username}}</button>
-        <button ng-click="promote(member.id)" class="btn btn-default">Promote</button>
-      </div><br><br>
+      <div class="row" style="margin-top:20px">
+      <table class="table">
+        <tbody>
+          <tr ng-repeat="member in members">
+            <td>{{member.firstname}} {{member.lastname}} - {{member.username}}</td>
+            <td>{{member.role}}</td>
+            <td ng-switch on="member.role">
+              <button ng-click="promote(member.id)" class="btn btn-common" ng-switch-when="Member" ng-show="current_user.id !== member.id">Promote</button>
+              <button ng-click="degrade(member.id)" class="btn btn-common" ng-switch-when="Manager" ng-show="current_user.id !== member.id">Degrade</button>
+            </td>
+            <td><button ng-click="removeMember(member.id)" class="btn btn-common" ng-show="current_user.id !== member.id">Remove</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

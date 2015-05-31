@@ -4,7 +4,6 @@ scrummer.controller('resourcesCtrl', ['$scope', 'uploadsFactory', '$routeParams'
 
   uploadsFactory.all($routeParams.project_id)
   .success(function(data) {
-    console.log(data);
     $scope.resources = data.document.resources;
   });
 }]);

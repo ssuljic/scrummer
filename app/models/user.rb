@@ -34,4 +34,10 @@ class User < ActiveRecord::Base
   def serializable_hash options={}
     super(except: [:created_at, :updated_at, :password_digest, :is_active])
   end
+
+  def with_role project
+    user = self.serializable_hash
+    user[:role] = UserProject.where(user_id: self.id, project_id: project.id).first.role.name
+    user
+  end
 end
