@@ -34,8 +34,9 @@
 
     </div>
     <br>
-     <div class="col-md-9" ng-show="editableProjectForm.$visible">
-        <form editable-form name="editableProjectForm" onaftersave="saveProject()">
+     <div class="col-md-9 newproject-container" ng-show="editableProjectForm.$visible">
+      <br>
+        <form editable-form name="editableProjectForm" onaftersave="saveProject()" class="form-horizontal">
 
         <div class="form-group ">
           <span class="title col-xs-4 " translate="NAME_PROJECT"></span>

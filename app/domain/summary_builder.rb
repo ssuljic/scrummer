@@ -9,7 +9,6 @@ class SummaryBuilder
       ticket_timeline: TicketTimelineCalculator.new,
       ticket_assignment: TicketAssignmentCalculator.new,
 	    ticket_type: TicketTypeCalculator.new,
-      ticket_statusperuser:TicketStatusperuserCalculator.new,
       stacked:StackedCalculator.new
     }
   end
