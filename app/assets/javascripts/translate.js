@@ -46,7 +46,10 @@ scrummer.config(function($translateProvider) {
     SAVE:'Save',
     EDIT_PROJECT:'Edit Project',
     CANCEL:'Cancel',
-    REMOVE_MEMBERS:'Choose members to remove'
+    REMOVE_MEMBERS:'Choose members to remove',
+    ESTIMATE:'Estimation(hours)',
+    TYPES_TICKET:'Type of ticket:',
+    SAVE_TICKET:'Save ticket'
   })
   .translations('bs', {
     DASHBOARD: 'Komandna Tabla',
@@ -95,7 +98,10 @@ scrummer.config(function($translateProvider) {
     SAVE:'Spasi',
     EDIT_PROJECT:'Izmjeni projekat',
     CANCEL:'Otkaži',
-    REMOVE_MEMBERS:'Odaberi članove za ukoniti'
+    REMOVE_MEMBERS:'Odaberi članove za ukoniti',
+    ESTIMATE:'Procjena trajanja (sati)',
+    TYPES_TICKET:'Tip kartice:',
+    SAVE_TICKET:'Spasi karticu'
 
 
   });
