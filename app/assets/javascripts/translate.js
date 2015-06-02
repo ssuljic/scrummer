@@ -49,7 +49,9 @@ scrummer.config(function($translateProvider) {
     REMOVE_MEMBERS:'Choose members to remove',
     ESTIMATE:'Estimation(hours)',
     TYPES_TICKET:'Type of ticket:',
-    SAVE_TICKET:'Save ticket'
+    SAVE_TICKET:'Save ticket',
+	ALL_USER_STORIES:'All user stories',
+	BACK:'Back'
   })
   .translations('bs', {
     DASHBOARD: 'Komandna Tabla',
@@ -101,9 +103,9 @@ scrummer.config(function($translateProvider) {
     REMOVE_MEMBERS:'Odaberi članove za ukoniti',
     ESTIMATE:'Procjena trajanja (sati)',
     TYPES_TICKET:'Tip kartice:',
-    SAVE_TICKET:'Spasi karticu'
-
-
+    SAVE_TICKET:'Spasi karticu',
+	ALL_USER_STORIES:'Svi user story',
+	BACK:'Nazad'
   });
    $translateProvider.preferredLanguage('en');
 });

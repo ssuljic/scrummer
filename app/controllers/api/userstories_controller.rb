@@ -7,4 +7,8 @@ before_filter :restrict_api_access
     render response: { :message => "User story added."}
   end
 
+  def index
+	stories = UserStory.where(project_id: params[:project_id])
+    render response: { stories: stories}
+  end
 end

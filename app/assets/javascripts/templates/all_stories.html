@@ -1,0 +1,25 @@
+<div class="container">
+<div class="row">
+  <header title='title'></header>
+</div>
+
+<div class="col-md-3">
+ <menu></menu>
+</div>
+
+<div class="col-md-9 newproject-container">
+<div class="container-fluid" >
+        <div class="panel-body ticket-space-backlog" ng-model="stories">
+            <div class="well ticket" ng-repeat="story in stories">
+              <p><b>Story name:</b> {{ story.name }}</p>
+			  <p><b>Description:</b> {{ story.description }}</p>
+            </div>
+        </div>
+
+</div>
+<br>
+        <div class="col-md-9 backlog-container pull-right">
+          <a class="btn btn-common" ng-href="/#/dashboard" style="float: right;" translate="BACK"></span></a>
+        </div>
+</div>
+</div>

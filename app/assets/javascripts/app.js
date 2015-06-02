@@ -64,6 +64,10 @@ scrummer.config(['$routeProvider',
           templateUrl: 'new_story.html',
           controller: 'newUserStoryCtrl'
   	  }).
+	  when('/projects/:id/backlog/allstories', {
+          templateUrl: 'all_stories.html',
+          controller: 'newUserStoryCtrl'
+  	  }).
       when('/projects/:id/members', {
         templateUrl: 'members.html',
         controller: 'membersCtrl'

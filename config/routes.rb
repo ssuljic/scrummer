@@ -43,7 +43,7 @@ Scrummer::Application.routes.draw do
       resources :uploads
       resources :tickets
 	  resource :backlog do
-		resource :userstories
+		resources :userstories
 	  end
     end
 
