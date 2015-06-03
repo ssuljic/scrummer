@@ -51,7 +51,8 @@ scrummer.config(function($translateProvider) {
     TYPES_TICKET:'Type of ticket:',
     SAVE_TICKET:'Save ticket',
 	ALL_USER_STORIES:'All user stories',
-	BACK:'Back'
+	BACK:'Back',
+    ADDMEMBER:'Add member'
   })
   .translations('bs', {
     DASHBOARD: 'Komandna Tabla',
@@ -105,7 +106,8 @@ scrummer.config(function($translateProvider) {
     TYPES_TICKET:'Tip kartice:',
     SAVE_TICKET:'Spasi karticu',
 	ALL_USER_STORIES:'Svi user story',
-	BACK:'Nazad'
+	BACK:'Nazad',
+    ADDMEMBER:'Dodaj člana'
   });
    $translateProvider.preferredLanguage('en');
 });

@@ -10,7 +10,7 @@ before_filter :restrict_api_access
 
   #Creates new ticket with provided parameters
   def create
-	Ticket.create(description: params[:description], estimate: params[:estimate], type_id: params[:type_id], project_id: params[:project_id], status_id: 1, user_id: @current_user.id)
+	Ticket.create(description: params[:description], estimate: params[:estimate], type_id: params[:type_id], project_id: params[:project_id], status_id: 1, user_id:params[:selected_user] )
     render response: { :message => "Ticket added."}
   end
 
