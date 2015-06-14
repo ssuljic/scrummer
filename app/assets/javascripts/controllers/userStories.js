@@ -1,6 +1,7 @@
  scrummer.controller('newUserStoryCtrl', ['$scope', '$location','userStoryFactory', '$routeParams','alertService',
   function($scope,$location, userStoryFactory,$routeParams,alertService) {
     $scope.title = "New user story";
+    $scope.project_id = $routeParams.id;
 
 	userStoryFactory.get($routeParams.id)
 	.success(function(resp) {
@@ -8,7 +9,7 @@
           $scope.stories= resp.document.stories;
         }
     });
-	
+
     $scope.saveUserStory = function() {
       userStoryFactory.create($routeParams.id, $scope.user_story.name,$scope.user_story.description)
       .success(function(resp) {
@@ -19,5 +20,5 @@
         $location.path('/backlog');
       });
     }
-	
+
 }]);

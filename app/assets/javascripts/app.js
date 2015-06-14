@@ -96,9 +96,13 @@ scrummer.config(['$routeProvider',
         templateUrl: 'show_ticket.html',
         controller: 'ticketCtrl'
       }).
-        when('/projects/:id/tickets', {
-          templateUrl: 'new_ticket.html',
-          controller: 'newTicketCtrl'
+      when('/projects/:id/tickets', {
+        templateUrl: 'new_ticket.html',
+        controller: 'newTicketCtrl'
+      }).
+      when('/ticket/:id/edit', {
+        templateUrl: 'edit_ticket.html',
+        controller: 'editTicketCtrl'
       }).
       otherwise({
         redirectTo: '/'

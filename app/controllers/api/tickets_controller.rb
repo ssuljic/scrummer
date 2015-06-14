@@ -16,7 +16,12 @@ before_filter :restrict_api_access
 
   #Updates ticket with specified id
   def update
-    Ticket.find(params[:id]).update(ticket_params)
+    ticket = Ticket.find(params[:ticket][:id])
+    ticket.description = params[:ticket][:description]
+    ticket.estimate = params[:ticket][:estimate]
+    ticket.type = Type.find_by_name(params[:ticket][:type])
+    ticket.user = User.find(params[:ticket][:assigned_to][:id])
+    ticket.save!
     render response: { :message => "Ticket successfully edited."}
   end
 

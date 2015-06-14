@@ -26,7 +26,6 @@ view_directives.directive('header', ['$translate', function() {
             '</div>',
     controller: function($scope, $element, $translate) {
       $scope.changeLanguage = function (langKey) {
-        console.log(langKey);
         $translate.use(langKey);
       };
     }
