@@ -24,7 +24,7 @@ module Scrummer
     config.autoload_paths += %W(#{config.root}/app/domain/calculators)
 
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
-    config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
+    config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts", "bootstrap")
 
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
   end
