@@ -12,11 +12,11 @@
       <form ng-submit="addMember()">
           <div class="form-group">
             <div class="col-xs-8">
-            <oi-multiselect
-              ng-options="user.username for user in users track by user.id"
+            <oi-select
+              oi-options="user.username for user in users track by user.id"
               ng-model="selected_user.user"
               placeholder="Select members"
-              ></oi-multiselect>
+              ></oi-select>
             </div>
             <div class="form-group">
               <input type="submit" class="btn btn-common" value="Add" />

@@ -17,8 +17,6 @@ view_directives.directive('header', ['$translate', function() {
                 '<small class="desc">' +
                   ' {{description.substring(0, 50)}}...' +
                 '</small>' +
-                '<button class="btn btn-lang" ng-click="changeLanguage(\'bs\')" translate="BUTTON_TEXT_BS"></button>' +
-                '<button class="btn btn-lang" ng-click="changeLanguage(\'en\')" translate="BUTTON_TEXT_EN"></button>' +
                 '<a ng-href="/#/logout"><span class="glyphicon glyphicon-log-out icon"></span></a>' +
                 '<a ng-href="/#/inbox"><span class="glyphicon glyphicon-envelope icon"></span></a>' +
                 '<a ng-href="/#/dashboard"><span class="glyphicon glyphicon-home icon"></span></a>' +
