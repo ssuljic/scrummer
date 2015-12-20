@@ -10,10 +10,16 @@
  *
  *= require_self
  *= require angular-ui-bootstrap-bower/ui-bootstrap-csp.css
- *= require oi.multiselect/dist/multiselect.min.css
- *= require nvd3/nv.d3.css
+ *= require oi.multiselect/dist/select.min.css
+ *= require nvd3/build/nv.d3.css
  *= require angular-xeditable/dist/css/xeditable.css
  *= require_tree .
  */
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url(asset_path('glyphicons-halflings-regular.eot'));
+  src: url(asset_path('glyphicons-halflings-regular.eot?#iefix')) format('embedded-opentype'), url(asset_path('glyphicons-halflings-regular.woff')) format('woff'), url(asset_path('glyphicons-halflings-regular.ttf')) format('truetype'), url(asset_path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
+}

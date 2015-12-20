@@ -10,7 +10,7 @@ var scrummer = angular.module('scrummer', [
   'view_directives',
   'pascalprecht.translate',
   'ui.bootstrap',
-  'oi.multiselect',
+  'oi.select',
   'nvd3',
   'ui.sortable',
   'angularFileUpload',

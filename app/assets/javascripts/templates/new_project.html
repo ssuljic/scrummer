@@ -68,11 +68,11 @@
         <div class="form-group">
                 <label for="mambers" class="col-xs-4 control-label" translate="ADDMEMBERS"></label>
                 <div class="col-xs-8">
-                <oi-multiselect
-                  ng-options="user.firstname +' ' + user.lastname  for user in users track by user.id"
+                <oi-select
+                  oi-options="user.firstname +' ' + user.lastname  for user in users track by user.id"
                   ng-model="selected_users"
                   multiple
-                  ></oi-multiselect>
+                  ></oi-select>
                 </div>
       </div>
 
