@@ -285,8 +285,8 @@ body {
   }
 
   input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus,
-  oi-multiselect .multiselect-search.open,
-  oi-multiselect .multiselect-search.focused,
+  oi-select .multiselect-search.open,
+  oi-select .multiselect-search.focused,
   .multiselect-dropdown{
     box-shadow: 1px 1px 1px 1px #E6C19F;
     border: 0px;
@@ -472,8 +472,8 @@ body {
   }
 
   input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus,
-  oi-multiselect .multiselect-search.open,
-  oi-multiselect .multiselect-search.focused,
+  oi-select .multiselect-search.open,
+  oi-select .multiselect-search.focused,
   .multiselect-dropdown{
     box-shadow: 1px 1px 1px 1px #E6C19F;
     border: 0px;
