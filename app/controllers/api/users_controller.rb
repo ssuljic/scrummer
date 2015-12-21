@@ -16,7 +16,9 @@ class Api::UsersController < ApiController
       user.save!
       begin
         UserMailer.confirmation_email(user, request.url.split('/api').first).deliver
-      rescue
+      rescue => e
+        puts e.message
+        puts e.backtrace.join("\n")
         puts 'Failed to send email'
       end
       render response: { :message => "User created."}
@@ -110,7 +112,7 @@ class Api::UsersController < ApiController
   # @returns: true or false
   # Helper method to check uniqueness of email
   def check_email
-    render response: { :isUnique => User.exists?(:email => params[:field]) }
+    render response: { :isUnique => !User.exists?(:email => params[:field]) }
   end
 
   # Public:
@@ -119,7 +121,7 @@ class Api::UsersController < ApiController
   # @returns: true or false
   #Helper method to check uniqueness of username
   def check_username
-    render response: { :isUnique => User.exists?(:username => params[:field]) }
+    render response: { :isUnique => !User.exists?(:username => params[:field]) }
   end
 
   # Public:
