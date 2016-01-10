@@ -10,7 +10,7 @@
 <div class="col-md-9 activity-container">
   <h4>Activity Feed</h4>
   <hr>
-  <div ng-repeat="activity in activities | orderBy:'timestamp'" ng-animate="'animate'">
+  <div ng-repeat="activity in activities" ng-animate="'animate'">
     <a class="jumbotron col-sm-12" href="#{{activity.msg.url}}" id="activity">
       <span class="{{activity.msg.icon}}"> {{activity.msg.content | translate}}</span><br><br>
       <small class="desc" id="timestamp" ng-model="activity.timestamp">{{activity.timestamp}}</small>

@@ -14,7 +14,7 @@
         <div class="panel-heading col-md-12 status-heading">
           {{ status.name }}
         </div>
-        <div ui-sortable="sortableOptionsList[status.name]" class="panel-body ticket-space" ng-model="tickets[status.name]">
+        <div ui-sortable="sortableOptionsList[status.name]" class="panel-body ticket-space board" ng-model="tickets[status.name]">
           <div class="well ticket" ng-repeat="ticket in tickets[status.name]">
             <ticket></ticket>
           </div>

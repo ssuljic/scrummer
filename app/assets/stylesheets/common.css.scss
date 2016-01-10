@@ -1,5 +1,9 @@
 @import 'mixins';
 
+.btn-right {
+  float: right;
+}
+
 .status-heading {
   text-align: center;
 }
@@ -13,6 +17,10 @@
 .ticket-space {
   padding: 0;
   min-height:500px;
+}
+
+.ticket-space.board {
+  margin-top: 30px;
 }
 
 .ticket-space-backlog {
@@ -96,7 +104,7 @@ body {
   height: 90px;
   width: 100%;
   background: #FFFFFF;
-  font-family: 'Pacifico', cursive;
+  font-family: 'Pacifico';
   box-shadow: 1px 1px 3px rgba(0,0,0,0.26);
 
     .btn-common {
@@ -131,7 +139,7 @@ body {
   }
 
   .btn-common {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Lato';
 
       background: #e67e22;
       border: 2px solid #d35400;
@@ -192,7 +200,7 @@ body {
   text-align: center;
 
   .btn-common {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Lato';
       margin-top: 3%;
       width: 100%;
       background: #e67e22;
@@ -269,7 +277,7 @@ body {
   }
 
   .btn-common {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Lato';
 
       background: #e67e22;
       border: 2px solid #d35400;
@@ -297,7 +305,7 @@ body {
 
 .project-container {
   .btn-common {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Lato';
       background: #e67e22;
       border: 2px solid #d35400;
       @include border-radius(3px);
@@ -358,7 +366,7 @@ body {
 
 .backlog-container {
   .btn-common {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Lato';
       background: #e67e22;
       border: 2px solid #d35400;
       @include border-radius(3px);
@@ -400,7 +408,7 @@ body {
 }
 .modal-footer {
     .btn-common {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Lato';
       background: #e67e22;
       border: 2px solid #d35400;
       @include border-radius(3px);
@@ -415,7 +423,7 @@ body {
 .inbox-container {
    .btn-common,
    .panel-msg > .panel-heading {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Lato';
       background: #e67e22;
       border: 2px solid #d35400;
       @include border-radius(3px);
@@ -456,7 +464,7 @@ body {
   }
 
   .btn-common {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Lato';
 
       background: #e67e22;
       border: 2px solid #d35400;

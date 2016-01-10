@@ -6,10 +6,10 @@ class SummaryBuilder
     @project = project
     @calculators = {
       ticket_status: TicketStatusCalculator.new,
-      ticket_timeline: TicketTimelineCalculator.new,
+      # ticket_timeline: TicketTimelineCalculator.new,
       ticket_assignment: TicketAssignmentCalculator.new,
 	    ticket_type: TicketTypeCalculator.new,
-      stacked:StackedCalculator.new
+      # stacked:StackedCalculator.new
     }
   end
 

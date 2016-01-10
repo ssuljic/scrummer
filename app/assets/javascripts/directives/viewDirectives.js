@@ -15,7 +15,7 @@ view_directives.directive('header', ['$translate', function() {
               '<p class="header">' +
                 '{{title | translate}}' +
                 '<small class="desc">' +
-                  ' {{description.substring(0, 50)}}...' +
+                  ' {{description.substring(0, 50)}}' +
                 '</small>' +
                 '<a ng-href="/#/logout"><span class="glyphicon glyphicon-log-out icon"></span></a>' +
                 '<a ng-href="/#/inbox"><span class="glyphicon glyphicon-envelope icon"></span></a>' +

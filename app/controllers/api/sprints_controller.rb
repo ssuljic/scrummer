@@ -6,7 +6,8 @@ class Api::SprintsController < ApiController
     begin
 
       # Update current sprint to inactive
-      Project.find(params[:id]).sprints.where(:active => true).first.update(:active => false)
+      active_sprint = Project.find(params[:id]).sprints.where(:active => true).first
+      active_sprint.update(:active => false) unless active_sprint.nil?
       # Create new sprint
       sprint = Sprint.create(sprint_params)
       # Move remaining tickets and add new tickets to sprint
