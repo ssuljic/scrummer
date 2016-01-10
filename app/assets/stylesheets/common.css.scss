@@ -90,7 +90,7 @@ body {
 /*** Index page ***/
 
 .index-container {
-  background: url(asset-path('cover.jpg', image)) no-repeat center center fixed !important;
+  background: url(asset-path('cover.jpg')) no-repeat center center fixed !important;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

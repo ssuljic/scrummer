@@ -54,7 +54,7 @@ gem 'angular-rails-templates'
 gem 'angularjs-file-upload-rails'
 
 # Use Google reCAPTCHA
-gem "recaptcha", :require => "recaptcha/rails"
+gem "recaptcha", '~> 0.4.0', :require => "recaptcha/rails"
 
 group :development do
 	gem 'byebug'
