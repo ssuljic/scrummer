@@ -1,10 +1,10 @@
-<div class="container signup-container">
+<div class="container signup-container col-xs-offset-3 col-xs-6">
   <h4 class="title" translate="SIGNUP"></h4>
   <form class="form-horizontal" role="form" id="signupform" name="signupform" novalidate ng-submit="createNewUser()">
 
     <div class="form-group">
       <label for="firstname" class="col-xs-3 control-label" translate="FIRSTNAME"></label>
-      <div class="col-xs-9">
+      <div class="col-xs-6">
         <input type="text" ng-model="user.firstname" class="form-control" id="firstname" placeholder="" required ng-minlength="3" ng-maxlength="25" name="firstname"/>
         <div class="error-container" ng-show="signupform.firstname.$invalid && signupform.submitted">
           <small class="error"
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
       <label for="lastname" class="col-xs-3 control-label" translate="LASTNAME"></label>
-      <div class="col-xs-9">
+      <div class="col-xs-6">
         <input type="text" ng-model="user.lastname" class="form-control" id="lastname" name="lastname" placeholder="" required ng-minlength="2" ng-maxlength="35" />
         <div class="error-container" ng-show="signupform.lastname.$invalid && signupform.submitted">
           <small class="error"
@@ -44,7 +44,7 @@
     </div>
     <div class="form-group">
       <label for="username" class="col-xs-3 control-label" translate="USERNAME"></label>
-      <div class="col-xs-9">
+      <div class="col-xs-6">
         <input type="text" ng-model="user.username" class="form-control" id="username" name="username" placeholder="" required ng-minlength="5" ng-maxlength="15" ensure-unique-username="{{user.username}}"/>
         <div class="error-container" ng-show="signupform.username.$invalid && signupform.submitted">
           <small class="error"
@@ -68,7 +68,7 @@
     </div>
     <div class="form-group">
       <label for="email" class="col-xs-3 control-label" translate="EMAIL"></label>
-      <div class="col-xs-9">
+      <div class="col-xs-6">
         <input type="email" ng-model="user.email" class="form-control" id="email" name="email" placeholder="" required ng-minlength="5" ng-maxlength="255" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ensure-unique-email="{{user.email}}"/>
         <div class="error-container" ng-show="signupform.email.$invalid && signupform.submitted ">
           <small class="error"
@@ -96,7 +96,7 @@
     </div>
      <div class="form-group">
       <label for="password" class="col-xs-3 control-label" translate="PASSWORD"></label>
-      <div class="col-xs-9">
+      <div class="col-xs-6">
         <input type="password" ng-model="user.password" class="form-control" id="password" name="password" placeholder="" required ng-minlength="6" validate-password-characters/>
          <div class="error-container" ng-show="signupform.password.$invalid && signupform.submitted">
           <small class="error"
@@ -128,7 +128,7 @@
     </div>
      <div class="form-group">
       <label for="password_confirmation" class="col-xs-3 control-label" translate="PASSWORD_CONFIRM"></label>
-      <div class="col-xs-9">
+      <div class="col-xs-6">
         <input type="password" ng-model="user.password_confirmation" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="" required ng-minlength="6" compare-to="user.password"/>
         <div class="error-container" ng-show="signupform.password_confirmation.$invalid && signupform.submitted">
           <small class="error"
@@ -139,7 +139,7 @@
       </div>
     </div>
     <div class="form-group">
-      <div class="col-xs-offset-3 col-xs-9">
+      <div class="col-xs-offset-3 col-xs-6">
         <p>Confirm you are not a robot :)</p>
         <div re-captcha ng-model="user.captcha"></div>
         <p class="error">{{ errorMessage }}</p>
@@ -149,10 +149,13 @@
        <div class="col-xs-offset-3 col-xs-9">
         <h6><a href="#/" translate="BACK_TO_HOME"></a></h6>
       </div>
+      <div class="col-xs-offset-3 col-xs-9">
+        <h6><a href="#/login">Already have an account? Sign In!</a></h6>
+      </div>
     </div>
     <div class="form-group">
       <div class="col-xs-offset-3 col-xs-9">
-        <button type="reset" class="btn btn-common">Reset</button>
+        <button type="reset" class="btn btn-common">Reset Form</button>
         <button type="submit" class="btn btn-common" translate="SUBMIT"></button>
       </div>
     </div>

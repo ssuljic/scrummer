@@ -118,7 +118,6 @@ body {
 
   display: inline-block;
   margin-top: 5%;
-  margin-left: 5%;
   margin-bottom: 5%;
   background: #ecf0f1;
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.29);
@@ -522,4 +521,10 @@ menu {
   b {
     color: #e67e22;
   }
+}
+
+/* Alerts */
+.alert {
+  margin-top: 15px;
+
 }

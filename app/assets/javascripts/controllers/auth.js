@@ -18,6 +18,9 @@ scrummer.controller('loginCtrl', ['$scope', '$routeParams', 'AuthService', '$loc
     $scope.doReset = function() {
       $location.path('/reset');
     }
+    $scope.signUp = function() {
+      $location.path('/signup');
+    }
 }]);
 
 scrummer.controller('logoutCtrl', ['$scope', '$location', 'AuthToken',
