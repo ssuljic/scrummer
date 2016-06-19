@@ -154,7 +154,7 @@ DEPENDENCIES
   public_activity
   rails (= 4.0.7)
   rails_12factor
-  recaptcha
+  recaptcha (~> 0.4.0)
   sass-rails (~> 4.0.2)
   sdoc
   thin

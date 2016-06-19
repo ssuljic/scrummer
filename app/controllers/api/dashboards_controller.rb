@@ -6,6 +6,7 @@ class Api::DashboardsController < ApiController
     project_activities = Activity.where("trackable_type = 'Project' and trackable_id in (?)", @current_user.projects.map {|p| p.id})
     msg_activities = Activity.where("trackable_type = 'Message' and recipient_id = (?)", @current_user.id)
     activities = project_activities + msg_activities
+    activities.sort_by!(&:created_at).reverse!
     content = Domain::Decorators::AddWrapping.new(activities.map(&:serializable_hash), @current_user).decorate
     render response: { dashboard: content }
   end
