@@ -55,7 +55,7 @@
     <div class="form-group">
         <label for="name" class="col-xs-4 control-label" translate="DESCRIPTION"></label>
         <div class="col-xs-8">
-          <input type="text" ng-model="project.description" class="form-control" id="description" name="description" required>
+          <textarea type="text" ng-model="project.description" class="form-control" id="description" name="description" required />
           <div class="error-container" ng-show="newprojectform.description.$invalid && newprojectform.submitted">
           <small class="error"
             ng-show="newprojectform.description.$error.required">
@@ -68,11 +68,11 @@
         <div class="form-group">
                 <label for="mambers" class="col-xs-4 control-label" translate="ADDMEMBERS"></label>
                 <div class="col-xs-8">
-                <oi-multiselect
-                  ng-options="user.firstname +' ' + user.lastname  for user in users track by user.id"
+                <oi-select
+                  oi-options="user.firstname +' ' + user.lastname  for user in users track by user.id"
                   ng-model="selected_users"
                   multiple
-                  ></oi-multiselect>
+                  ></oi-select>
                 </div>
       </div>
 
@@ -80,7 +80,7 @@
 
       <div class="form-group">
         <div class="col-xs-offset-10 col-xs-8">
-          <button type="submit" class="btn btn-common" ng-click="saveProject()" translate="SAVE_PROJECT"></button>
+          <button type="submit" class="btn btn-common" ng-click="saveProject()" translate="SAVE_PROJECT">Save project</button>
         </div>
       </div>
     </form>

@@ -9,25 +9,11 @@
 
   <div class="col-md-9 backlog-container">
 
-    <div ng-show="user_role == 'Manager'">
+    <div class="row" ng-show="user_role == 'Manager'">
       <button class="btn btn-common" ng-click="open('lg')">Start New Sprint</button>
-
-
-      <!-- Dropdown -->
-      <div class="btn-group" dropdown is-open="status.isopen" style="float:right;">
-      <button type="button" class="btn btn-common dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-        <span class="glyphicon glyphicon-cog"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a ng-href="/#/projects/{{project.id}}/backlog/userstories" translate="NEW_USERSTORY"></a></li>
-		<li><a ng-href="/#/projects/{{project.id}}/backlog/allstories" translate="ALL_USER_STORIES"></a></li>
-        <li class="divider"></li>
-        <li><a href="/#/projects/{{project.id}}/tickets">New ticket</a></li>
-      </ul>
-    </div>
-
-
+      <a class="btn btn-common" href="/#/projects/{{project.id}}/tickets">Create ticket</a>
     </div><br>
+
     <div class="row">
       <div class="panel panel-common">
         <div class="panel-heading">New Sprint</div>

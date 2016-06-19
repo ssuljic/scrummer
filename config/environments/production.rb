@@ -78,6 +78,8 @@ Scrummer::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif]
+
   # reCAPTCHA keys
   RECAPTCHA_PUBLIC_KEY= '6LeV5wQTAAAAAA4uCs95tbEZwBNP55UlSCiI21lC'
   RECAPTCHA_PRIVATE_KEY= '6LeV5wQTAAAAAMrkZASznvOsrM3-h9WPxjwwskao'

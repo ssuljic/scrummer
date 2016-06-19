@@ -48,15 +48,36 @@ validator.directive('validatePasswordCharacters', function () {
 });
 
 // Ensure uniqueness of data directive
-validator.directive('ensureUnique', ['$http', function($http) {
+validator.directive('ensureUniqueEmail', ['$http', function($http) {
+  return {
+    require: 'ngModel',
+    link: function(scope, ele, attrs, c) {
+      scope.$watch(attrs.ngModel, function() {
+        console.log(attrs);
+        $http({
+          method: 'POST',
+          url: 'api/users/check_email',
+          data: {'field': attrs.ensureUniqueEmail}
+        }).success(function(data, status, headers, cfg) {
+          c.$setValidity('unique', data.document.isUnique);
+        }).error(function(data, status, headers, cfg) {
+          c.$setValidity('unique', false);
+        });
+      });
+    }
+  }
+}]);
+
+// Ensure uniqueness of data directive
+validator.directive('ensureUniqueUsername', ['$http', function($http) {
   return {
     require: 'ngModel',
     link: function(scope, ele, attrs, c) {
       scope.$watch(attrs.ngModel, function() {
         $http({
           method: 'POST',
-          url: 'api/users/check_' + attrs.ensureUnique,
-          data: {'field': attrs.ensureUnique}
+          url: 'api/users/check_username',
+          data: {'field': attrs.ensureUniqueUsername}
         }).success(function(data, status, headers, cfg) {
           c.$setValidity('unique', data.document.isUnique);
         }).error(function(data, status, headers, cfg) {
